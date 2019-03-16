@@ -61,9 +61,9 @@ func ParseWhenAttributeMulti(element *etree.Element, tag, attribute, value strin
 func ParseOptionalText(element *etree.Element) string {
 	if element != nil {
 		return element.Text()
-	} else {
-		return ""
 	}
+
+	return ""
 }
 
 func ParseInfoPlusDateTime(element *etree.Element) *time.Time {

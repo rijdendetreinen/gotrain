@@ -21,9 +21,9 @@ func ParseRitMessage(reader io.Reader) models.Service {
 
 	var service models.Service
 
-	service.Timestamp = productAdministration.SelectElement("ReisInformatieTijdstip").Text()
+	service.Timestamp = *ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
 	service.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
-	service.ValidUntil = productAdministration.SelectElement("GeldigTot").Text()
+	service.ValidUntil = *ParseInfoPlusDateTime(productAdministration.SelectElement("GeldigTot"))
 
 	service.ID = infoProduct.SelectElement("TreinNummer").Text()
 	service.ServiceDate = infoProduct.SelectElement("TreinDatum").Text()
