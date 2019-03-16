@@ -1,0 +1,9 @@
+---
+source:
+  server: tcp://127.0.0.01:12345
+  envelopes:
+    arrivals: "/RIG/InfoPlusDASInterface4"
+    departures: "/RIG/InfoPlusDVSInterface4"
+    services: "/RIG/InfoPlusRITInterface2"
+api:
+  port: 8080
