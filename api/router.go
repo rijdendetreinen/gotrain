@@ -17,6 +17,8 @@ func ServeAPI(address string) {
 	router.HandleFunc("/v1", apiVersion).Methods("GET")
 	router.HandleFunc("/v2", apiVersion).Methods("GET")
 	router.HandleFunc("/v2/version", apiVersion).Methods("GET")
+	router.HandleFunc("/v2/services/stats", serviceCounters).Methods("GET")
+	router.HandleFunc("/v2/services/all", serviceAll).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(address, router))
 }

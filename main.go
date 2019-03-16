@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/api"
+	"github.com/rijdendetreinen/gotrain/stores"
 
 	"github.com/rijdendetreinen/gotrain/models"
 	"github.com/spf13/viper"
@@ -25,6 +26,8 @@ func main() {
 	fmt.Println("Gotrain starting")
 
 	loadConfig()
+
+	initStores()
 
 	go receiveData()
 
@@ -46,6 +49,10 @@ func loadConfig() {
 	if err != nil {
 		panic(fmt.Errorf("Fatal error config file: %s", err))
 	}
+}
+
+func initStores() {
+	stores.InitializeStores()
 }
 
 func receiveData() {
@@ -92,6 +99,8 @@ func Listen(subscriber *zmq4.Socket, envelopes map[string]string) {
 				fmt.Println(time.Now().Format(time.RFC3339), ritCounter, service.ProductID, service.ServiceDate, service.ServiceID, service.ServiceParts[0].Stops[0].Station.NameLong, "-", service.ServiceParts[0].Stops[len(service.ServiceParts[0].Stops)-1].Station.NameLong)
 
 				services = append(services, service)
+
+				stores.ProcessService(&stores.Stores.ServiceStore, service)
 
 				ritCounter++
 			}

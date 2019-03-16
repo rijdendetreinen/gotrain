@@ -25,10 +25,10 @@ func ParseRitMessage(reader io.Reader) models.Service {
 	service.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
 	service.ValidUntil = *ParseInfoPlusDateTime(productAdministration.SelectElement("GeldigTot"))
 
-	service.ID = infoProduct.SelectElement("TreinNummer").Text()
-	service.ServiceDate = infoProduct.SelectElement("TreinDatum").Text()
-
 	service.ServiceNumber = infoProduct.SelectElement("TreinNummer").Text()
+	service.ServiceDate = infoProduct.SelectElement("TreinDatum").Text()
+	service.ID = service.ServiceDate + "-" + service.ServiceDate
+
 	service.ServiceType = infoProduct.SelectElement("TreinSoort").Text()
 	service.ServiceTypeCode = infoProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	service.Company = infoProduct.SelectElement("Vervoerder").Text()
