@@ -17,6 +17,7 @@ func ParseInfoPlusBoolean(element *etree.Element) bool {
 	return element.Text() == "J"
 }
 
+// ParseInfoPlusModifications parses a list of modifications
 func ParseInfoPlusModifications(element *etree.Element) []models.Modification {
 	var modifications []models.Modification
 	// TODO:Implement
@@ -36,6 +37,7 @@ func ParseInfoPlusStation(element *etree.Element) models.Station {
 	return station
 }
 
+// ParseWhenAttribute filters a list of elements on an attribute with a given value. Returns a single element, or nil.
 func ParseWhenAttribute(element *etree.Element, tag, attribute, value string) *etree.Element {
 	for _, childElement := range element.SelectElements(tag) {
 		if childElement.SelectAttrValue(attribute, "") == value {
@@ -46,6 +48,7 @@ func ParseWhenAttribute(element *etree.Element, tag, attribute, value string) *e
 	return nil
 }
 
+// ParseWhenAttributeMulti filters a list of elements on an attribute with a given value. Returns a slice with elements
 func ParseWhenAttributeMulti(element *etree.Element, tag, attribute, value string) []*etree.Element {
 	var elements []*etree.Element
 
@@ -58,6 +61,7 @@ func ParseWhenAttributeMulti(element *etree.Element, tag, attribute, value strin
 	return elements
 }
 
+// ParseOptionalText gets the text from an element, or returns an empty string when the element is nil.
 func ParseOptionalText(element *etree.Element) string {
 	if element != nil {
 		return element.Text()
@@ -66,6 +70,7 @@ func ParseOptionalText(element *etree.Element) string {
 	return ""
 }
 
+// ParseInfoPlusDateTime translates an element with a date/time to a time.Time struct
 func ParseInfoPlusDateTime(element *etree.Element) *time.Time {
 	if element == nil {
 		return nil
@@ -79,6 +84,7 @@ func ParseInfoPlusDateTime(element *etree.Element) *time.Time {
 	return &datetime
 }
 
+// ParseInfoPlusPlatform translates a platform element to a string
 func ParseInfoPlusPlatform(elements []*etree.Element) string {
 	if len(elements) == 0 {
 		return ""
@@ -101,6 +107,7 @@ func ParseInfoPlusPlatform(elements []*etree.Element) string {
 	return platform
 }
 
+// ParseInfoPlusDuration translates an element with a duration (i.e., delays) to seconds
 func ParseInfoPlusDuration(element *etree.Element) int {
 	if element == nil {
 		return 0
