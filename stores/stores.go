@@ -45,7 +45,7 @@ type Store struct {
 }
 
 // ResetCounters resets all store counters
-func ResetCounters(store *Store) {
+func (store *Store) ResetCounters() {
 	store.Counters.Received = 0
 	store.Counters.Processed = 0
 	store.Counters.Error = 0
@@ -55,8 +55,8 @@ func ResetCounters(store *Store) {
 }
 
 // ResetStatus resets the status and counters of a store
-func ResetStatus(store *Store) {
-	ResetCounters(store)
+func (store *Store) ResetStatus() {
+	store.ResetCounters()
 
 	store.status = StatusUnknown
 	store.messagesAverage = 0
@@ -65,9 +65,8 @@ func ResetStatus(store *Store) {
 
 // InitializeStores initializes all stores and resets their counters/status
 func InitializeStores() StoreCollection {
-	ResetStatus(&Stores.ServiceStore.Store)
-
-	InitServiceStore(&Stores.ServiceStore)
+	Stores.ServiceStore.ResetStatus()
+	Stores.ServiceStore.InitServiceStore()
 
 	return Stores
 }

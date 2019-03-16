@@ -13,7 +13,7 @@ type ServiceStore struct {
 }
 
 // ProcessService adds or updates a service in a service store
-func ProcessService(store *ServiceStore, newService models.Service) {
+func (store ServiceStore) ProcessService(newService models.Service) {
 	// Check whether service already exists. If so, check whether this message is newer.
 	if existingService, ok := store.services[newService.ID]; ok {
 		// Check for duplicate:
@@ -47,10 +47,11 @@ func ProcessService(store *ServiceStore, newService models.Service) {
 }
 
 // InitServiceStore initializes the service store by creating the services map
-func InitServiceStore(store *ServiceStore) {
+func (store *ServiceStore) InitServiceStore() {
 	store.services = make(map[string]models.Service)
 }
 
-func GetAllServices(store *ServiceStore) map[string]models.Service {
+// GetAllServices simply returns all services in the store
+func (store ServiceStore) GetAllServices() map[string]models.Service {
 	return store.services
 }

@@ -13,6 +13,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+// ReceiveData connects to the ZMQ server and starts receiving data
 func ReceiveData() {
 	subscriber, _ := zmq4.NewSocket(zmq4.SUB)
 
@@ -68,7 +69,7 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string) {
 
 			case strings.HasPrefix(envelope, envelopes["services"]):
 				service := parsers.ParseRitMessage(message)
-				stores.ProcessService(&stores.Stores.ServiceStore, service)
+				stores.Stores.ServiceStore.ProcessService(service)
 
 				log.WithFields(log.Fields{
 					"ProductID": service.ProductID,

@@ -14,5 +14,5 @@ func serviceCounters(w http.ResponseWriter, r *http.Request) {
 
 func serviceAll(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(stores.GetAllServices(&stores.Stores.ServiceStore))
+	json.NewEncoder(w).Encode(stores.Stores.ServiceStore.GetAllServices())
 }
