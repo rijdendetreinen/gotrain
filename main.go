@@ -7,6 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rijdendetreinen/gotrain/api"
+
 	"github.com/rijdendetreinen/gotrain/models"
 	"github.com/spf13/viper"
 
@@ -25,6 +27,11 @@ func main() {
 	loadConfig()
 
 	go receiveData()
+
+	apiAddress := viper.GetString("api.address")
+	fmt.Printf("REST API listening on %s\n", apiAddress)
+	go api.ServeAPI(apiAddress)
+
 	<-exit
 }
 

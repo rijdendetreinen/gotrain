@@ -6,4 +6,4 @@ source:
     departures: "/RIG/InfoPlusDVSInterface4"
     services: "/RIG/InfoPlusRITInterface2"
 api:
-  port: 8080
+  address: ":8080"
