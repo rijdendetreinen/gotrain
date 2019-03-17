@@ -23,7 +23,6 @@ func main() {
 	go receiver.ReceiveData()
 
 	apiAddress := viper.GetString("api.address")
-	log.WithField("address", apiAddress).Info("REST API listening")
 	go api.ServeAPI(apiAddress)
 
 	<-exit

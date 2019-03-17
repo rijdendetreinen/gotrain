@@ -2,10 +2,10 @@ package api
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 // ServeAPI serves the REST API on the given address
@@ -20,7 +20,10 @@ func ServeAPI(address string) {
 	router.HandleFunc("/v2/services/stats", serviceCounters).Methods("GET")
 	router.HandleFunc("/v2/services/all", serviceAll).Methods("GET")
 
-	log.Fatal(http.ListenAndServe(address, router))
+	log.WithField("address", address).Info("REST API started")
+
+	serverError := http.ListenAndServe(address, router)
+	log.WithField("error", serverError).Fatal("REST API fatal error")
 }
 
 func apiVersion(w http.ResponseWriter, r *http.Request) {
