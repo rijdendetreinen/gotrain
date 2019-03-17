@@ -4,9 +4,8 @@ import "time"
 
 // Departure is the train service containing all parts, stops etc.
 type Departure struct {
-	ID          string
-	Timestamp   time.Time
-	ProductID   string
+	StoreItem
+
 	ServiceID   string
 	ServiceDate string
 	ServiceName string

@@ -1,5 +1,7 @@
 package models
 
+import "time"
+
 // Station is a station in the railway network. It has a code and 3 names (short, medium, long)
 type Station struct {
 	Code       string
@@ -25,4 +27,11 @@ type Material struct {
 	DestinationPlanned Station
 	Accessible         bool
 	RemainsBehind      bool
+}
+
+// StoreItem is for shared fields like ID, timestamp etc.
+type StoreItem struct {
+	ID        string
+	Timestamp time.Time
+	ProductID string
 }

@@ -4,9 +4,8 @@ import "time"
 
 // Service is the train service containing all parts, stops etc.
 type Service struct {
-	ID              string
-	Timestamp       time.Time
-	ProductID       string
+	StoreItem
+
 	ValidUntil      time.Time
 	ServiceID       string
 	ServiceNumber   string
