@@ -14,6 +14,8 @@ type DepartureStore struct {
 
 // ProcessDeparture adds or updates a departure in a departure store
 func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
+	store.Counters.Received++
+
 	// Check whether departure already exists. If so, check whether this message is newer.
 	if existingDeparture, ok := store.departures[newDeparture.ID]; ok {
 		// Check for duplicate:

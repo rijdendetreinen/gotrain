@@ -14,6 +14,8 @@ type ServiceStore struct {
 
 // ProcessService adds or updates a service in a service store
 func (store *ServiceStore) ProcessService(newService models.Service) {
+	store.Counters.Received++
+
 	// Check whether service already exists. If so, check whether this message is newer.
 	if existingService, ok := store.services[newService.ID]; ok {
 		// Check for duplicate:
