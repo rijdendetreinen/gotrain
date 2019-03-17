@@ -69,8 +69,13 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string) {
 				}).Debug("Departure received")
 
 			case strings.HasPrefix(envelope, envelopes["arrivals"]):
-				// TODO: process arrival
-				log.Debug("Arrival received")
+				arrival := parsers.ParseDasMessage(message)
+				stores.Stores.ArrivalStore.ProcessArrival(arrival)
+
+				log.WithFields(log.Fields{
+					"ProductID": arrival.ProductID,
+					"ArrivalID": arrival.ID,
+				}).Debug("Arrival received")
 
 			case strings.HasPrefix(envelope, envelopes["services"]):
 				service := parsers.ParseRitMessage(message)

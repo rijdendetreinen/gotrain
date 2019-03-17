@@ -35,7 +35,7 @@ func ParseDvsMessage(reader io.Reader) models.Departure {
 	departure.ServiceTypeCode = trainProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	departure.Company = trainProduct.SelectElement("Vervoerder").Text()
 
-	departure.DepartureTime = ParseInfoPlusDateTime(trainProduct.SelectElement("VertrekTijd"))
+	departure.DepartureTime = ParseInfoPlusDateTime(ParseWhenAttribute(trainProduct, "VertrekTijd", "InfoStatus", "Gepland"))
 
 	departure.ReservationRequired = ParseInfoPlusBoolean(trainProduct.SelectElement("Reserveren"))
 	departure.WithSupplement = ParseInfoPlusBoolean(trainProduct.SelectElement("Toeslag"))

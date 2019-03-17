@@ -2,8 +2,8 @@ package models
 
 import "time"
 
-// Departure is a train service which departs from a single station
-type Departure struct {
+// Arrival is an arriving train on a single station
+type Arrival struct {
 	StoreItem
 
 	ServiceID   string
@@ -17,8 +17,8 @@ type Departure struct {
 	ServiceTypeCode string
 	Company         string
 
-	DepartureTime time.Time
-	Delay         int
+	ArrivalTime time.Time
+	Delay       int
 
 	ReservationRequired bool
 	WithSupplement      bool
@@ -28,12 +28,12 @@ type Departure struct {
 	Cancelled           bool
 	NotRealTime         bool
 
-	DestinationActual  Station
-	DestinationPlanned Station
-	PlatformActual     string
-	PlatformPlanned    string
+	OriginActual    Station
+	OriginPlanned   Station
+	PlatformActual  string
+	PlatformPlanned string
 
-	// TODO: ViaActual, ViaPlanned, Wings, BoardingTips, TravelTips, ChangeTips
+	// TODO: ViaActual, ViaPlanned, etc.
 
 	Modifications []Modification
 
