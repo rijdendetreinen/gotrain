@@ -51,6 +51,11 @@ func (store *ServiceStore) InitServiceStore() {
 	store.services = make(map[string]models.Service)
 }
 
+// GetNumberOfServices returns the number of services in the store (unfiltered)
+func (store ServiceStore) GetNumberOfServices() int {
+	return len(store.services)
+}
+
 // GetAllServices simply returns all services in the store
 func (store ServiceStore) GetAllServices() map[string]models.Service {
 	return store.services
