@@ -22,7 +22,7 @@ var Stores StoreCollection
 // StoreCollection is the collection of all stores
 type StoreCollection struct {
 	ArrivalStore   ServiceStore // TODO
-	DepartureStore ServiceStore // TODO
+	DepartureStore DepartureStore
 	ServiceStore   ServiceStore
 }
 
@@ -65,8 +65,11 @@ func (store *Store) ResetStatus() {
 
 // InitializeStores initializes all stores and resets their counters/status
 func InitializeStores() StoreCollection {
+	Stores.DepartureStore.ResetStatus()
+	Stores.DepartureStore.InitStore()
+
 	Stores.ServiceStore.ResetStatus()
-	Stores.ServiceStore.InitServiceStore()
+	Stores.ServiceStore.InitStore()
 
 	return Stores
 }

@@ -71,17 +71,18 @@ func ParseOptionalText(element *etree.Element) string {
 }
 
 // ParseInfoPlusDateTime translates an element with a date/time to a time.Time struct
-func ParseInfoPlusDateTime(element *etree.Element) *time.Time {
+func ParseInfoPlusDateTime(element *etree.Element) time.Time {
+
 	if element == nil {
-		return nil
+		return time.Time{}
 	}
 
 	datetime, error := time.Parse(time.RFC3339, element.Text())
 
 	if error != nil {
-		return nil
+		return time.Time{}
 	}
-	return &datetime
+	return datetime
 }
 
 // ParseInfoPlusPlatform translates a platform element to a string

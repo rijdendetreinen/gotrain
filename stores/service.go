@@ -46,8 +46,8 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 	store.Counters.Processed++
 }
 
-// InitServiceStore initializes the service store by creating the services map
-func (store *ServiceStore) InitServiceStore() {
+// InitStore initializes the service store by creating the services map
+func (store *ServiceStore) InitStore() {
 	store.services = make(map[string]models.Service)
 }
 

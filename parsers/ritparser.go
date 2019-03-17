@@ -21,9 +21,9 @@ func ParseRitMessage(reader io.Reader) models.Service {
 
 	var service models.Service
 
-	service.Timestamp = *ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
+	service.Timestamp = ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
 	service.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
-	service.ValidUntil = *ParseInfoPlusDateTime(productAdministration.SelectElement("GeldigTot"))
+	service.ValidUntil = ParseInfoPlusDateTime(productAdministration.SelectElement("GeldigTot"))
 
 	service.ServiceNumber = infoProduct.SelectElement("TreinNummer").Text()
 	service.ServiceDate = infoProduct.SelectElement("TreinDatum").Text()
@@ -33,7 +33,7 @@ func ParseRitMessage(reader io.Reader) models.Service {
 	service.ServiceTypeCode = infoProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	service.Company = infoProduct.SelectElement("Vervoerder").Text()
 
-	service.ReservationRequired = ParseInfoPlusBoolean(infoProduct.SelectElement("TreinNummer"))
+	service.ReservationRequired = ParseInfoPlusBoolean(infoProduct.SelectElement("Reserveren"))
 	service.WithSupplement = ParseInfoPlusBoolean(infoProduct.SelectElement("Toeslag"))
 	service.SpecialTicket = ParseInfoPlusBoolean(infoProduct.SelectElement("SpeciaalKaartje"))
 	service.JourneyPlanner = ParseInfoPlusBoolean(infoProduct.SelectElement("Reisplanner"))

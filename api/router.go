@@ -19,6 +19,8 @@ func ServeAPI(address string) {
 	router.HandleFunc("/v2/version", apiVersion).Methods("GET")
 	router.HandleFunc("/v2/services/stats", serviceCounters).Methods("GET")
 	router.HandleFunc("/v2/services/all", serviceAll).Methods("GET")
+	router.HandleFunc("/v2/departures/stats", departureCounters).Methods("GET")
+	router.HandleFunc("/v2/departures/all", departuresAll).Methods("GET")
 
 	log.WithField("address", address).Info("REST API started")
 

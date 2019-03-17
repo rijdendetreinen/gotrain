@@ -53,9 +53,9 @@ type ServiceStop struct {
 	StopType        string
 	DoNotBoard      bool
 
-	ArrivalTime    *time.Time
+	ArrivalTime    time.Time
 	ArrivalDelay   int
-	DepartureTime  *time.Time
+	DepartureTime  time.Time
 	DepartureDelay int
 
 	ArrivalCancelled   bool
