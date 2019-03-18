@@ -60,31 +60,46 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string) {
 		} else {
 			switch {
 			case strings.HasPrefix(envelope, envelopes["departures"]) == true:
-				departure := parsers.ParseDvsMessage(message)
-				stores.Stores.DepartureStore.ProcessDeparture(departure)
+				departure, err := parsers.ParseDvsMessage(message)
 
-				log.WithFields(log.Fields{
-					"ProductID":   departure.ProductID,
-					"DepartureID": departure.ID,
-				}).Debug("Departure received")
+				if err != nil {
+					log.WithError(err).Error("Could not parse departure message")
+				} else {
+					stores.Stores.DepartureStore.ProcessDeparture(departure)
+
+					log.WithFields(log.Fields{
+						"ProductID":   departure.ProductID,
+						"DepartureID": departure.ID,
+					}).Debug("Departure received")
+				}
 
 			case strings.HasPrefix(envelope, envelopes["arrivals"]):
-				arrival := parsers.ParseDasMessage(message)
-				stores.Stores.ArrivalStore.ProcessArrival(arrival)
+				arrival, err := parsers.ParseDasMessage(message)
 
-				log.WithFields(log.Fields{
-					"ProductID": arrival.ProductID,
-					"ArrivalID": arrival.ID,
-				}).Debug("Arrival received")
+				if err != nil {
+					log.WithError(err).Error("Could not parse arrival message")
+				} else {
+					stores.Stores.ArrivalStore.ProcessArrival(arrival)
+
+					log.WithFields(log.Fields{
+						"ProductID": arrival.ProductID,
+						"ArrivalID": arrival.ID,
+					}).Debug("Arrival received")
+				}
 
 			case strings.HasPrefix(envelope, envelopes["services"]):
-				service := parsers.ParseRitMessage(message)
-				stores.Stores.ServiceStore.ProcessService(service)
+				service, err := parsers.ParseRitMessage(message)
 
-				log.WithFields(log.Fields{
-					"ProductID": service.ProductID,
-					"ServiceID": service.ID,
-				}).Debug("Service received")
+				if err != nil {
+					log.WithError(err).Error("Could not parse service message")
+				} else {
+					stores.Stores.ServiceStore.ProcessService(service)
+
+					log.WithFields(log.Fields{
+						"ProductID": service.ProductID,
+						"ServiceID": service.ID,
+					}).Debug("Service received")
+				}
 
 			default:
 				log.WithFields(log.Fields{

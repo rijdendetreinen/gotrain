@@ -1,6 +1,7 @@
 package parsers
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/beevik/etree"
@@ -8,18 +9,22 @@ import (
 )
 
 // ParseRitMessage parses a RIT XML message to a Service object
-func ParseRitMessage(reader io.Reader) models.Service {
+func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 	doc := etree.NewDocument()
 
 	if _, err := doc.ReadFrom(reader); err != nil {
-		panic(err)
+		return service, err
 	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("Parser error: %+v", r)
+		}
+	}()
 
 	product := doc.SelectElement("PutReisInformatieBoodschapIn").SelectElement("ReisInformatieProductRitInfo")
 	productAdministration := product.SelectElement("RIPAdministratie")
 	infoProduct := product.SelectElement("RitInfo")
-
-	var service models.Service
 
 	service.Timestamp = ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
 	service.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
@@ -110,5 +115,5 @@ func ParseRitMessage(reader io.Reader) models.Service {
 		service.ServiceParts = append(service.ServiceParts, servicePart)
 	}
 
-	return service
+	return
 }

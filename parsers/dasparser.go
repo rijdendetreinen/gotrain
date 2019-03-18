@@ -1,6 +1,7 @@
 package parsers
 
 import (
+	"fmt"
 	"io"
 
 	"github.com/beevik/etree"
@@ -8,19 +9,23 @@ import (
 )
 
 // ParseDasMessage parses a DVS XML message to an Arrival object
-func ParseDasMessage(reader io.Reader) models.Arrival {
+func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	doc := etree.NewDocument()
 
 	if _, err := doc.ReadFrom(reader); err != nil {
-		panic(err)
+		return arrival, err
 	}
+
+	defer func() {
+		if r := recover(); r != nil {
+			err = fmt.Errorf("Parser error: %+v", r)
+		}
+	}()
 
 	product := doc.SelectElement("PutReisInformatieBoodschapIn").SelectElement("ReisInformatieProductDAS")
 	productAdministration := product.SelectElement("RIPAdministratie")
 	infoProduct := product.SelectElement("DynamischeAankomstStaat")
 	trainProduct := infoProduct.SelectElement("TreinAankomst")
-
-	var arrival models.Arrival
 
 	arrival.Timestamp = ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
 	arrival.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
@@ -39,5 +44,5 @@ func ParseDasMessage(reader io.Reader) models.Arrival {
 
 	// TODO: Parse other fields
 
-	return arrival
+	return
 }
