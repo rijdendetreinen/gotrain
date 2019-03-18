@@ -5,6 +5,7 @@ import (
 	"compress/gzip"
 	"io"
 	"strings"
+	"time"
 
 	"github.com/pebbe/zmq4"
 	"github.com/rijdendetreinen/gotrain/parsers"
@@ -14,11 +15,13 @@ import (
 )
 
 // ReceiveData connects to the ZMQ server and starts receiving data
-func ReceiveData() {
+func ReceiveData(exit chan bool) {
 	subscriber, _ := zmq4.NewSocket(zmq4.SUB)
 
-	subscriber.SetLinger(0)
 	defer subscriber.Close()
+
+	subscriber.SetLinger(0)
+	subscriber.SetRcvtimeo(1 * time.Second)
 
 	zmqHost := viper.GetString("source.server")
 	envelopes := viper.GetStringMapString("source.envelopes")
@@ -35,76 +38,91 @@ func ReceiveData() {
 		subscriber.SetSubscribe(envelope)
 	}
 
-	listen(subscriber, envelopes)
+	listen(subscriber, envelopes, exit)
 }
 
 // Listen for messages
-func listen(subscriber *zmq4.Socket, envelopes map[string]string) {
+func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool) {
 	log.Info("Receiving data...")
 
 	for {
-		msg, err := subscriber.RecvMessageBytes(0)
+		select {
+		case <-exit:
+			log.Info("Shutting down receiver")
 
-		envelope := string(msg[0])
+			subscriber.Close()
+			log.Info("Receiver shut down")
 
-		// Decompress message:
+			exit <- true
 
-		message, _ := gunzip(msg[1])
+			return
+		default:
+			msg, err := subscriber.RecvMessageBytes(0)
 
-		if err != nil {
-			log.WithFields(log.Fields{
-				"error":    err,
-				"envelope": envelope,
-				"message":  string(msg[1]),
-			}).Error("Error decompressing message. Message ignored")
-		} else {
-			switch {
-			case strings.HasPrefix(envelope, envelopes["departures"]) == true:
-				departure, err := parsers.ParseDvsMessage(message)
+			if err != nil {
+				continue
+			}
 
-				if err != nil {
-					log.WithError(err).Error("Could not parse departure message")
-				} else {
-					stores.Stores.DepartureStore.ProcessDeparture(departure)
+			envelope := string(msg[0])
 
-					log.WithFields(log.Fields{
-						"ProductID":   departure.ProductID,
-						"DepartureID": departure.ID,
-					}).Debug("Departure received")
-				}
+			// Decompress message:
+			message, _ := gunzip(msg[1])
 
-			case strings.HasPrefix(envelope, envelopes["arrivals"]):
-				arrival, err := parsers.ParseDasMessage(message)
-
-				if err != nil {
-					log.WithError(err).Error("Could not parse arrival message")
-				} else {
-					stores.Stores.ArrivalStore.ProcessArrival(arrival)
-
-					log.WithFields(log.Fields{
-						"ProductID": arrival.ProductID,
-						"ArrivalID": arrival.ID,
-					}).Debug("Arrival received")
-				}
-
-			case strings.HasPrefix(envelope, envelopes["services"]):
-				service, err := parsers.ParseRitMessage(message)
-
-				if err != nil {
-					log.WithError(err).Error("Could not parse service message")
-				} else {
-					stores.Stores.ServiceStore.ProcessService(service)
-
-					log.WithFields(log.Fields{
-						"ProductID": service.ProductID,
-						"ServiceID": service.ID,
-					}).Debug("Service received")
-				}
-
-			default:
+			if err != nil {
 				log.WithFields(log.Fields{
+					"error":    err,
 					"envelope": envelope,
-				}).Warning("Unknown envelope")
+					"message":  string(msg[1]),
+				}).Error("Error decompressing message. Message ignored")
+			} else {
+				switch {
+				case strings.HasPrefix(envelope, envelopes["departures"]) == true:
+					departure, err := parsers.ParseDvsMessage(message)
+
+					if err != nil {
+						log.WithError(err).Error("Could not parse departure message")
+					} else {
+						stores.Stores.DepartureStore.ProcessDeparture(departure)
+
+						log.WithFields(log.Fields{
+							"ProductID":   departure.ProductID,
+							"DepartureID": departure.ID,
+						}).Debug("Departure received")
+					}
+
+				case strings.HasPrefix(envelope, envelopes["arrivals"]):
+					arrival, err := parsers.ParseDasMessage(message)
+
+					if err != nil {
+						log.WithError(err).Error("Could not parse arrival message")
+					} else {
+						stores.Stores.ArrivalStore.ProcessArrival(arrival)
+
+						log.WithFields(log.Fields{
+							"ProductID": arrival.ProductID,
+							"ArrivalID": arrival.ID,
+						}).Debug("Arrival received")
+					}
+
+				case strings.HasPrefix(envelope, envelopes["services"]):
+					service, err := parsers.ParseRitMessage(message)
+
+					if err != nil {
+						log.WithError(err).Error("Could not parse service message")
+					} else {
+						stores.Stores.ServiceStore.ProcessService(service)
+
+						log.WithFields(log.Fields{
+							"ProductID": service.ProductID,
+							"ServiceID": service.ID,
+						}).Debug("Service received")
+					}
+
+				default:
+					log.WithFields(log.Fields{
+						"envelope": envelope,
+					}).Warning("Unknown envelope")
+				}
 			}
 		}
 	}
