@@ -1,6 +1,8 @@
 package stores
 
 import (
+	"encoding/gob"
+	"os"
 	"time"
 )
 
@@ -75,4 +77,43 @@ func InitializeStores() StoreCollection {
 	Stores.ServiceStore.InitStore()
 
 	return Stores
+}
+
+// SaveStores saves all stores
+func SaveStores() error {
+	servicesError := Stores.ServiceStore.SaveStore()
+	departuresError := Stores.DepartureStore.SaveStore()
+	arrivalsError := Stores.ArrivalStore.SaveStore()
+
+	if servicesError != nil {
+		return servicesError
+	} else if departuresError != nil {
+		return departuresError
+	} else if arrivalsError != nil {
+		return arrivalsError
+	}
+
+	return nil
+}
+
+// Encode a GOB file
+func writeGob(filePath string, object interface{}) error {
+	file, err := os.Create(filePath)
+	if err == nil {
+		encoder := gob.NewEncoder(file)
+		encoder.Encode(object)
+	}
+	file.Close()
+	return err
+}
+
+// Read a GOB file
+func readGob(filePath string, object interface{}) error {
+	file, err := os.Open(filePath)
+	if err == nil {
+		decoder := gob.NewDecoder(file)
+		err = decoder.Decode(object)
+	}
+	file.Close()
+	return err
 }

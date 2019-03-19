@@ -62,3 +62,8 @@ func (store ServiceStore) GetNumberOfServices() int {
 func (store ServiceStore) GetAllServices() map[string]models.Service {
 	return store.services
 }
+
+// SaveStore saves the service store contents
+func (store ServiceStore) SaveStore() error {
+	return writeGob("data/services.gob", store.services)
+}

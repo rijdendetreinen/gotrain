@@ -62,3 +62,8 @@ func (store *DepartureStore) GetNumberOfDepartures() int {
 func (store DepartureStore) GetAllDepartures() map[string]models.Departure {
 	return store.departures
 }
+
+// SaveStore saves the departures store contents
+func (store DepartureStore) SaveStore() error {
+	return writeGob("data/departures.gob", store.departures)
+}

@@ -58,6 +58,13 @@ func shutdown() {
 
 	<-exitRestAPI
 	<-exitReceiverChannel
+
+	log.Info("Saving store contents...")
+	err := stores.SaveStores()
+
+	if err != nil {
+		log.WithError(err).Error("Error while saving stores")
+	}
 }
 
 func loadConfig() {
