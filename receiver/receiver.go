@@ -81,6 +81,7 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 
 					if err != nil {
 						log.WithError(err).Error("Could not parse departure message")
+						stores.Stores.DepartureStore.Counters.Error++
 					} else {
 						stores.Stores.DepartureStore.ProcessDeparture(departure)
 
@@ -95,6 +96,7 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 
 					if err != nil {
 						log.WithError(err).Error("Could not parse arrival message")
+						stores.Stores.ArrivalStore.Counters.Error++
 					} else {
 						stores.Stores.ArrivalStore.ProcessArrival(arrival)
 
@@ -109,6 +111,7 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 
 					if err != nil {
 						log.WithError(err).Error("Could not parse service message")
+						stores.Stores.ServiceStore.Counters.Error++
 					} else {
 						stores.Stores.ServiceStore.ProcessService(service)
 
