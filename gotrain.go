@@ -84,4 +84,11 @@ func loadConfig() {
 
 func initStores() {
 	stores.InitializeStores()
+
+	log.Info("Reading saved store contents...")
+	err := stores.LoadStores()
+
+	if err != nil {
+		log.WithError(err).Warn("Error while loading stores")
+	}
 }

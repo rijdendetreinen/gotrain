@@ -63,6 +63,11 @@ func (store ServiceStore) GetAllServices() map[string]models.Service {
 	return store.services
 }
 
+// ReadStore reads the save store contents
+func (store ServiceStore) ReadStore() error {
+	return readGob("data/services.gob", &store.services)
+}
+
 // SaveStore saves the service store contents
 func (store ServiceStore) SaveStore() error {
 	return writeGob("data/services.gob", store.services)

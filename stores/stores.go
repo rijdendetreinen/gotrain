@@ -79,6 +79,23 @@ func InitializeStores() StoreCollection {
 	return Stores
 }
 
+// LoadStores reads all store content files
+func LoadStores() error {
+	servicesError := Stores.ServiceStore.ReadStore()
+	departuresError := Stores.DepartureStore.ReadStore()
+	arrivalsError := Stores.ArrivalStore.ReadStore()
+
+	if servicesError != nil {
+		return servicesError
+	} else if departuresError != nil {
+		return departuresError
+	} else if arrivalsError != nil {
+		return arrivalsError
+	}
+
+	return nil
+}
+
 // SaveStores saves all stores
 func SaveStores() error {
 	servicesError := Stores.ServiceStore.SaveStore()

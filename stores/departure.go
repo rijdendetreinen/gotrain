@@ -63,6 +63,11 @@ func (store DepartureStore) GetAllDepartures() map[string]models.Departure {
 	return store.departures
 }
 
+// ReadStore reads the save store contents
+func (store DepartureStore) ReadStore() error {
+	return readGob("data/departures.gob", &store.departures)
+}
+
 // SaveStore saves the departures store contents
 func (store DepartureStore) SaveStore() error {
 	return writeGob("data/departures.gob", store.departures)
