@@ -64,6 +64,17 @@ func (store ServiceStore) GetAllServices() map[string]models.Service {
 	return store.services
 }
 
+// GetService retrieves a single service
+func (store ServiceStore) GetService(serviceID, serviceDate string) *models.Service {
+	id := serviceDate + "-" + serviceID
+
+	if val, ok := store.services[id]; ok {
+		return &val
+	}
+
+	return nil
+}
+
 // ReadStore reads the save store contents
 func (store ServiceStore) ReadStore() error {
 	return readGob("data/services.gob", &store.services)

@@ -24,6 +24,7 @@ func ServeAPI(address string, exit chan bool) {
 	router.HandleFunc("/v2/departures/all", departuresAll).Methods("GET")
 	router.HandleFunc("/v2/services/stats", serviceCounters).Methods("GET")
 	router.HandleFunc("/v2/services/all", serviceAll).Methods("GET")
+	router.HandleFunc("/v2/services/service/{id}/{date}", serviceDetails).Methods("GET")
 
 	srv.Handler = router
 

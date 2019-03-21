@@ -6,60 +6,60 @@ import "time"
 type Service struct {
 	StoreItem
 
-	ValidUntil      time.Time
-	ServiceID       string
-	ServiceNumber   string
-	ServiceDate     string
-	ServiceType     string
-	ServiceTypeCode string
-	Company         string
+	ValidUntil      time.Time `json:"-"`
+	ServiceID       string    `json:"service_id"`
+	ServiceNumber   string    `json:"service_number"`
+	ServiceDate     string    `json:"service_date"`
+	ServiceType     string    `json:"type"`
+	ServiceTypeCode string    `json:"type_code"`
+	Company         string    `json:"company"`
 
-	ServiceParts []ServicePart
+	ServiceParts []ServicePart `json:"parts"`
 
-	ReservationRequired bool
-	WithSupplement      bool
-	SpecialTicket       bool
-	JourneyPlanner      bool
+	ReservationRequired bool `json:"reservation_required"`
+	WithSupplement      bool `json:"with_supplement"`
+	SpecialTicket       bool `json:"special_ticket"`
+	JourneyPlanner      bool `json:"in_journey_planner"`
 
-	Modifications []Modification
+	Modifications []Modification `json:"modifications"`
 
-	Hidden bool
+	Hidden bool `json:"-"`
 }
 
 // ServicePart is a single part of a train service (a service usually contains just one part, but may contain more)
 type ServicePart struct {
-	ServiceNumber string
-	Stops         []ServiceStop
-	Modifications []Modification
+	ServiceNumber string         `json:"service_number"`
+	Stops         []ServiceStop  `json:"stops"`
+	Modifications []Modification `json:"modifications"`
 }
 
 // ServiceStop is a stops which is called by a train service.
 type ServiceStop struct {
-	Station          Station
-	StationAccesible bool
+	Station Station `json:"station"`
 
-	AssistenceAvailable bool
+	StationAccesible    bool `json:"station_accesible"`
+	AssistenceAvailable bool `json:"assistance_available"`
 
-	DestinationActual        string
-	DestinationPlanned       string
-	ArrivalPlatformActual    string
-	ArrivalPlatformPlanned   string
-	DeparturePlatformActual  string
-	DeparturePlatformPlanned string
+	DestinationActual        string `json:"-"`
+	DestinationPlanned       string `json:"-"`
+	ArrivalPlatformActual    string `json:"arrival_platform_actual"`
+	ArrivalPlatformPlanned   string `json:"arrival_platform_planned"`
+	DeparturePlatformActual  string `json:"departure_platform_actual"`
+	DeparturePlatformPlanned string `json:"departure_platform_planned"`
 
-	StoppingActual  bool
-	StoppingPlanned bool
-	StopType        string
-	DoNotBoard      bool
+	StoppingActual  bool   `json:"stopping_actual"`
+	StoppingPlanned bool   `json:"stopping_planned"`
+	StopType        string `json:"stop_type"`
+	DoNotBoard      bool   `json:"do_not_board"`
 
-	ArrivalTime    time.Time
-	ArrivalDelay   int
-	DepartureTime  time.Time
-	DepartureDelay int
+	ArrivalTime    time.Time `json:"arrival_time"`
+	ArrivalDelay   int       `json:"arrival_delay"`
+	DepartureTime  time.Time `json:"departure_time"`
+	DepartureDelay int       `json:"departure_delay"`
 
-	ArrivalCancelled   bool
-	DepartureCancelled bool
+	ArrivalCancelled   bool `json:"arrival_cancelled"`
+	DepartureCancelled bool `json:"departure_cancelled"`
 
-	Modifications []Modification
-	Material      []Material
+	Modifications []Modification `json:"modifications"`
+	Material      []Material     `json:"material"`
 }
