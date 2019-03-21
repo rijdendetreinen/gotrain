@@ -17,10 +17,6 @@ var RootCmd = &cobra.Command{
 	Use:   "gotrain",
 	Short: "GoTrain tracks trains",
 	Long:  "GoTrain is a server to process real-time information about Dutch trains",
-
-	// Run: func(cmd *cobra.Command, args []string) {
-
-	// },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -56,7 +52,6 @@ func initConfig() {
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		// fmt.Println("Using config file:", viper.ConfigFileUsed())
 		log.WithField("file", viper.ConfigFileUsed()).Debug("Using config file:")
 	}
 
