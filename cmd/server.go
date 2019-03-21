@@ -4,6 +4,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+	"time"
 
 	"github.com/rijdendetreinen/gotrain/api"
 	"github.com/rijdendetreinen/gotrain/receiver"
@@ -28,6 +29,7 @@ func init() {
 
 var exitReceiverChannel = make(chan bool)
 var exitRestAPI = make(chan bool)
+var cleanupTicker *time.Ticker
 
 func startServer(cmd *cobra.Command) {
 	initLogger(cmd)
@@ -55,8 +57,25 @@ func startServer(cmd *cobra.Command) {
 	apiAddress := viper.GetString("api.address")
 	go api.ServeAPI(apiAddress, exitRestAPI)
 
+	setupCleanupScheduler()
+
 	<-shutdownFinished
 	log.Error("Exiting")
+}
+
+func setupCleanupScheduler() {
+	// Set up our internal "garbage collector" (which cleans up stores):
+	cleanupTicker := time.NewTicker(10 * time.Second)
+	log.Debug("Cleanup scheduler set up")
+
+	go func() {
+		for {
+			select {
+			case <-cleanupTicker.C:
+				stores.CleanUp()
+			}
+		}
+	}()
 }
 
 func initLogger(cmd *cobra.Command) {
@@ -81,6 +100,10 @@ func initStores() {
 
 func shutdown() {
 	log.Warn("Shutting down")
+
+	if cleanupTicker != nil {
+		cleanupTicker.Stop()
+	}
 
 	exitRestAPI <- true
 	exitReceiverChannel <- true

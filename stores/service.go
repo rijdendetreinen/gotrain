@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
+	log "github.com/sirupsen/logrus"
 )
 
 // The ServiceStore contains all services
@@ -71,4 +72,22 @@ func (store ServiceStore) ReadStore() error {
 // SaveStore saves the service store contents
 func (store ServiceStore) SaveStore() error {
 	return writeGob("data/services.gob", store.services)
+}
+
+// CleanUp removes outdated items
+func (store *ServiceStore) CleanUp() {
+	// Remove all services before date X:
+	thresholdRemove := time.Now().AddDate(0, 0, -1)
+	thresholdHide := time.Now()
+
+	log.WithField("thresholdHide", thresholdHide).WithField("thresholdRemove", thresholdRemove).Debug("Cleaning up service store; hiding and removing all services before thresholds")
+
+	for _, service := range store.services {
+		if !service.Hidden && service.ValidUntil.Before(thresholdHide) {
+			log.Debug("HIDE")
+		} else if service.ValidUntil.Before(thresholdRemove) {
+			log.Debug("REMOVE")
+			log.Debug(service.ValidUntil)
+		}
+	}
 }
