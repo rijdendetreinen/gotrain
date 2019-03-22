@@ -65,7 +65,7 @@ func startServer(cmd *cobra.Command) {
 
 func setupCleanupScheduler() {
 	// Set up our internal "garbage collector" (which cleans up stores):
-	cleanupTicker := time.NewTicker(10 * time.Second)
+	cleanupTicker := time.NewTicker(1 * time.Minute)
 	log.Debug("Cleanup scheduler set up")
 
 	go func() {

@@ -88,17 +88,21 @@ func (store ServiceStore) SaveStore() error {
 // CleanUp removes outdated items
 func (store *ServiceStore) CleanUp() {
 	// Remove all services before date X:
-	thresholdRemove := time.Now().AddDate(0, 0, -1)
+	thresholdRemove := time.Now().AddDate(0, 0, -2)
 	thresholdHide := time.Now()
 
-	log.WithField("thresholdHide", thresholdHide).WithField("thresholdRemove", thresholdRemove).Debug("Cleaning up service store; hiding and removing all services before thresholds")
+	log.Debug("Cleaning up service store")
 
-	for _, service := range store.services {
+	for serviceID, service := range store.services {
 		if !service.Hidden && service.ValidUntil.Before(thresholdHide) {
-			log.Debug("HIDE")
-		} else if service.ValidUntil.Before(thresholdRemove) {
-			log.Debug("REMOVE")
-			log.Debug(service.ValidUntil)
+			log.WithField("ServiceID", serviceID).Debug("Hiding service")
+
+			service.Hidden = true
+			store.services[serviceID] = service
+		} else if service.Hidden && service.ValidUntil.Before(thresholdRemove) {
+			log.WithField("ServiceID", serviceID).Debug("Removing service")
+
+			delete(store.services, serviceID)
 		}
 	}
 }
