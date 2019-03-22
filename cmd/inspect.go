@@ -26,7 +26,7 @@ var inspectServiceCommand = &cobra.Command{
 
 		if err != nil {
 			fmt.Printf("Error opening %s", filename)
-			fmt.Printf("Error: %s", err)
+			fmt.Printf("Error: %s\n", err)
 			os.Exit(1)
 		}
 
