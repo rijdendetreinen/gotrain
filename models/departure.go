@@ -39,3 +39,9 @@ type Departure struct {
 
 	Hidden bool
 }
+
+func (departure Departure) RealDepartureTime() time.Time {
+	var delayDuration time.Duration
+	delayDuration = time.Second * time.Duration(departure.Delay)
+	return departure.DepartureTime.Add(delayDuration)
+}

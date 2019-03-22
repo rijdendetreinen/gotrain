@@ -82,6 +82,7 @@ func InitializeStores() StoreCollection {
 // CleanUp cleans all stores and removes outdated items
 func CleanUp() {
 	Stores.ServiceStore.CleanUp()
+	Stores.DepartureStore.CleanUp()
 }
 
 // LoadStores reads all store content files

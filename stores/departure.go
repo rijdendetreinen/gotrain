@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
+	log "github.com/sirupsen/logrus"
 )
 
 // The DepartureStore contains all departures
@@ -71,4 +72,28 @@ func (store DepartureStore) ReadStore() error {
 // SaveStore saves the departures store contents
 func (store DepartureStore) SaveStore() error {
 	return writeGob("data/departures.gob", store.departures)
+}
+
+// CleanUp removes outdated items
+func (store *DepartureStore) CleanUp() {
+	// Remove departures which should have departures 4 hours ago:
+	thresholdRemove := time.Now().Add(-4 * time.Hour)
+
+	// Hide departures which should have departed 10 minutes ago:
+	thresholdHide := time.Now().Add(-10 * time.Minute)
+
+	log.Debug("Cleaning up departure store")
+
+	for departureID, departure := range store.departures {
+		if !departure.Hidden && departure.RealDepartureTime().Before(thresholdHide) {
+			log.WithField("DepartureID", departureID).Debug("Hiding departure")
+
+			departure.Hidden = true
+			store.departures[departureID] = departure
+		} else if departure.Hidden && departure.RealDepartureTime().Before(thresholdRemove) {
+			log.WithField("DepartureID", departureID).Debug("Removing departure")
+
+			delete(store.departures, departureID)
+		}
+	}
 }
