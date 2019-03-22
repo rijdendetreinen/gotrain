@@ -76,7 +76,7 @@ func (store DepartureStore) SaveStore() error {
 
 // CleanUp removes outdated items
 func (store *DepartureStore) CleanUp() {
-	// Remove departures which should have departures 4 hours ago:
+	// Remove departures which should have departured 4 hours ago:
 	thresholdRemove := time.Now().Add(-4 * time.Hour)
 
 	// Hide departures which should have departed 10 minutes ago:

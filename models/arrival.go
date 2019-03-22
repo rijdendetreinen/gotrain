@@ -39,3 +39,10 @@ type Arrival struct {
 
 	Hidden bool
 }
+
+// RealArrivalTime returns the actual arrival time, including delay
+func (arrival Arrival) RealArrivalTime() time.Time {
+	var delayDuration time.Duration
+	delayDuration = time.Second * time.Duration(arrival.Delay)
+	return arrival.ArrivalTime.Add(delayDuration)
+}

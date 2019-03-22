@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
+	log "github.com/sirupsen/logrus"
 )
 
 // The ArrivalStore contains all arrivals
@@ -68,7 +69,31 @@ func (store ArrivalStore) ReadStore() error {
 	return readGob("data/arrivals.gob", &store.arrivals)
 }
 
-// SaveStore saves the departures store contents
+// SaveStore saves the arrivals store contents
 func (store ArrivalStore) SaveStore() error {
 	return writeGob("data/arrivals.gob", store.arrivals)
+}
+
+// CleanUp removes outdated items
+func (store *ArrivalStore) CleanUp() {
+	// Remove arrivals which have arrived 4 hours ago:
+	thresholdRemove := time.Now().Add(-4 * time.Hour)
+
+	// Hide arrivals which should have arrived 30 minutes ago:
+	thresholdHide := time.Now().Add(-30 * time.Minute)
+
+	log.Debug("Cleaning up arrival store")
+
+	for arrivalID, arrival := range store.arrivals {
+		if !arrival.Hidden && arrival.RealArrivalTime().Before(thresholdHide) {
+			log.WithField("ArrivalID", arrivalID).Debug("Hiding arrival")
+
+			arrival.Hidden = true
+			store.arrivals[arrivalID] = arrival
+		} else if arrival.Hidden && arrival.RealArrivalTime().Before(thresholdRemove) {
+			log.WithField("ArrivalID", arrivalID).Debug("Removing arrival")
+
+			delete(store.arrivals, arrivalID)
+		}
+	}
 }

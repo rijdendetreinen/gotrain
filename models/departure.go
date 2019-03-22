@@ -40,6 +40,7 @@ type Departure struct {
 	Hidden bool
 }
 
+// RealDepartureTime returns the actual departure time, including delay
 func (departure Departure) RealDepartureTime() time.Time {
 	var delayDuration time.Duration
 	delayDuration = time.Second * time.Duration(departure.Delay)
