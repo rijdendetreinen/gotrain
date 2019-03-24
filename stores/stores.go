@@ -3,6 +3,7 @@ package stores
 import (
 	"encoding/gob"
 	"os"
+	"sync"
 	"time"
 )
 
@@ -40,6 +41,7 @@ type Counters struct {
 
 // Store is the generic store struct
 type Store struct {
+	sync.RWMutex
 	Counters         Counters
 	status           string
 	messagesAverage  float32

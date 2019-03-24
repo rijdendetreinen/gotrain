@@ -18,7 +18,11 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 	store.Counters.Received++
 
 	// Check whether service already exists. If so, check whether this message is newer.
-	if existingService, ok := store.services[newService.ID]; ok {
+	store.RLock()
+	existingService, serviceExists := store.services[newService.ID]
+	store.RUnlock()
+
+	if serviceExists {
 		// Check for duplicate:
 		if existingService.ProductID == newService.ProductID {
 			store.Counters.Duplicates++
@@ -44,7 +48,9 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 		store.Counters.TooLate++
 	}
 
+	store.Lock()
 	store.services[newService.ID] = newService
+	store.Unlock()
 
 	store.Counters.Processed++
 }
@@ -55,33 +61,59 @@ func (store *ServiceStore) InitStore() {
 }
 
 // GetNumberOfServices returns the number of services in the store (unfiltered)
-func (store ServiceStore) GetNumberOfServices() int {
-	return len(store.services)
+func (store *ServiceStore) GetNumberOfServices() int {
+	store.RLock()
+	count := len(store.services)
+	store.RUnlock()
+
+	return count
 }
 
 // GetAllServices simply returns all services in the store
-func (store ServiceStore) GetAllServices() map[string]models.Service {
-	return store.services
+func (store *ServiceStore) GetAllServices() map[string]models.Service {
+	store.RLock()
+	services := store.services
+	store.RUnlock()
+
+	return services
 }
 
 // GetService retrieves a single service
-func (store ServiceStore) GetService(serviceID, serviceDate string) *models.Service {
+func (store *ServiceStore) GetService(serviceID, serviceDate string) *models.Service {
 	id := serviceDate + "-" + serviceID
 
+	store.RLock()
 	if val, ok := store.services[id]; ok {
 		return &val
 	}
+	store.RUnlock()
 
 	return nil
 }
 
+// hideService hides a service
+func (store *ServiceStore) hideService(serviceID string) {
+	store.Lock()
+	service := store.services[serviceID]
+	service.Hidden = true
+	store.services[serviceID] = service
+	store.Unlock()
+}
+
+// deleteService deletes a service
+func (store *ServiceStore) deleteService(serviceID string) {
+	store.Lock()
+	delete(store.services, serviceID)
+	store.Unlock()
+}
+
 // ReadStore reads the save store contents
-func (store ServiceStore) ReadStore() error {
+func (store *ServiceStore) ReadStore() error {
 	return readGob("data/services.gob", &store.services)
 }
 
 // SaveStore saves the service store contents
-func (store ServiceStore) SaveStore() error {
+func (store *ServiceStore) SaveStore() error {
 	return writeGob("data/services.gob", store.services)
 }
 
@@ -93,16 +125,22 @@ func (store *ServiceStore) CleanUp() {
 
 	log.Debug("Cleaning up service store")
 
+	store.RLock()
+	defer store.RUnlock()
+
 	for serviceID, service := range store.services {
+		store.RUnlock()
+
 		if !service.Hidden && service.ValidUntil.Before(thresholdHide) {
 			log.WithField("ServiceID", serviceID).Debug("Hiding service")
 
-			service.Hidden = true
-			store.services[serviceID] = service
+			store.hideService(serviceID)
 		} else if service.Hidden && service.ValidUntil.Before(thresholdRemove) {
 			log.WithField("ServiceID", serviceID).Debug("Removing service")
 
-			delete(store.services, serviceID)
+			store.deleteService(serviceID)
 		}
+
+		store.RLock()
 	}
 }

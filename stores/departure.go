@@ -18,7 +18,11 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 	store.Counters.Received++
 
 	// Check whether departure already exists. If so, check whether this message is newer.
-	if existingDeparture, ok := store.departures[newDeparture.ID]; ok {
+	store.RLock()
+	existingDeparture, departureExists := store.departures[newDeparture.ID]
+	store.RUnlock()
+
+	if departureExists {
 		// Check for duplicate:
 		if existingDeparture.ProductID == newDeparture.ProductID {
 			store.Counters.Duplicates++
@@ -44,7 +48,9 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 		store.Counters.TooLate++
 	}
 
+	store.Lock()
 	store.departures[newDeparture.ID] = newDeparture
+	store.Unlock()
 
 	store.Counters.Processed++
 }
@@ -56,22 +62,59 @@ func (store *DepartureStore) InitStore() {
 
 // GetNumberOfDepartures returns the number of departures in the store (unfiltered)
 func (store *DepartureStore) GetNumberOfDepartures() int {
-	return len(store.departures)
+	store.RLock()
+	count := len(store.departures)
+	store.RUnlock()
+
+	return count
 }
 
 // GetAllDepartures simply returns all departures in the store
-func (store DepartureStore) GetAllDepartures() map[string]models.Departure {
-	return store.departures
+func (store *DepartureStore) GetAllDepartures() map[string]models.Departure {
+	store.RLock()
+	departures := store.departures
+	store.RUnlock()
+
+	return departures
+}
+
+// GetDeparture retrieves a single departure
+func (store *DepartureStore) GetDeparture(serviceID, serviceDate string, station string) *models.Departure {
+	id := serviceDate + "-" + serviceID + "-" + station
+
+	store.RLock()
+	if departure, ok := store.departures[id]; ok {
+		return &departure
+	}
+	store.RUnlock()
+
+	return nil
 }
 
 // ReadStore reads the save store contents
-func (store DepartureStore) ReadStore() error {
+func (store *DepartureStore) ReadStore() error {
 	return readGob("data/departures.gob", &store.departures)
 }
 
 // SaveStore saves the departures store contents
-func (store DepartureStore) SaveStore() error {
+func (store *DepartureStore) SaveStore() error {
 	return writeGob("data/departures.gob", store.departures)
+}
+
+// hideDeparture hides a departure
+func (store *DepartureStore) hideDeparture(ID string) {
+	store.Lock()
+	departure := store.departures[ID]
+	departure.Hidden = true
+	store.departures[ID] = departure
+	store.Unlock()
+}
+
+// deleteDeparture deletes a departure
+func (store *DepartureStore) deleteDeparture(ID string) {
+	store.Lock()
+	delete(store.departures, ID)
+	store.Unlock()
 }
 
 // CleanUp removes outdated items
@@ -84,16 +127,22 @@ func (store *DepartureStore) CleanUp() {
 
 	log.Debug("Cleaning up departure store")
 
+	store.RLock()
+	defer store.RUnlock()
+
 	for departureID, departure := range store.departures {
+		store.RUnlock()
+
 		if !departure.Hidden && departure.RealDepartureTime().Before(thresholdHide) {
 			log.WithField("DepartureID", departureID).Debug("Hiding departure")
 
-			departure.Hidden = true
-			store.departures[departureID] = departure
+			store.hideDeparture(departureID)
 		} else if departure.Hidden && departure.RealDepartureTime().Before(thresholdRemove) {
 			log.WithField("DepartureID", departureID).Debug("Removing departure")
 
-			delete(store.departures, departureID)
+			store.deleteDeparture(departureID)
 		}
+
+		store.RLock()
 	}
 }

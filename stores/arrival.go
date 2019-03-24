@@ -18,7 +18,11 @@ func (store *ArrivalStore) ProcessArrival(newArrival models.Arrival) {
 	store.Counters.Received++
 
 	// Check whether an arrival already exists. If so, check whether this message is newer.
-	if existingArrival, ok := store.arrivals[newArrival.ID]; ok {
+	store.RLock()
+	existingArrival, arrivalExists := store.arrivals[newArrival.ID]
+	store.RUnlock()
+
+	if arrivalExists {
 		// Check for duplicate:
 		if existingArrival.ProductID == newArrival.ProductID {
 			store.Counters.Duplicates++
@@ -44,7 +48,9 @@ func (store *ArrivalStore) ProcessArrival(newArrival models.Arrival) {
 		store.Counters.TooLate++
 	}
 
+	store.Lock()
 	store.arrivals[newArrival.ID] = newArrival
+	store.Unlock()
 
 	store.Counters.Processed++
 }
@@ -56,22 +62,59 @@ func (store *ArrivalStore) InitStore() {
 
 // GetNumberOfArrivals returns the number of arrivals in the store (unfiltered)
 func (store *ArrivalStore) GetNumberOfArrivals() int {
-	return len(store.arrivals)
+	store.RLock()
+	count := len(store.arrivals)
+	store.RUnlock()
+
+	return count
 }
 
 // GetAllArrivals simply returns all arrivals in the store
-func (store ArrivalStore) GetAllArrivals() map[string]models.Arrival {
-	return store.arrivals
+func (store *ArrivalStore) GetAllArrivals() map[string]models.Arrival {
+	store.RLock()
+	arrivals := store.arrivals
+	store.RUnlock()
+
+	return arrivals
+}
+
+// GetArrival retrieves a single arrival
+func (store *ArrivalStore) GetArrival(serviceID, serviceDate string, station string) *models.Arrival {
+	id := serviceDate + "-" + serviceID + "-" + station
+
+	store.RLock()
+	if arrival, ok := store.arrivals[id]; ok {
+		return &arrival
+	}
+	store.RUnlock()
+
+	return nil
 }
 
 // ReadStore reads the save store contents
-func (store ArrivalStore) ReadStore() error {
+func (store *ArrivalStore) ReadStore() error {
 	return readGob("data/arrivals.gob", &store.arrivals)
 }
 
 // SaveStore saves the arrivals store contents
-func (store ArrivalStore) SaveStore() error {
+func (store *ArrivalStore) SaveStore() error {
 	return writeGob("data/arrivals.gob", store.arrivals)
+}
+
+// hideArrival hides an arrival
+func (store *ArrivalStore) hideArrival(ID string) {
+	store.Lock()
+	arrival := store.arrivals[ID]
+	arrival.Hidden = true
+	store.arrivals[ID] = arrival
+	store.Unlock()
+}
+
+// deleteArrival deletes an arrival
+func (store *ArrivalStore) deleteArrival(ID string) {
+	store.Lock()
+	delete(store.arrivals, ID)
+	store.Unlock()
 }
 
 // CleanUp removes outdated items
@@ -88,12 +131,11 @@ func (store *ArrivalStore) CleanUp() {
 		if !arrival.Hidden && arrival.RealArrivalTime().Before(thresholdHide) {
 			log.WithField("ArrivalID", arrivalID).Debug("Hiding arrival")
 
-			arrival.Hidden = true
-			store.arrivals[arrivalID] = arrival
+			store.hideArrival(arrivalID)
 		} else if arrival.Hidden && arrival.RealArrivalTime().Before(thresholdRemove) {
 			log.WithField("ArrivalID", arrivalID).Debug("Removing arrival")
 
-			delete(store.arrivals, arrivalID)
+			store.deleteArrival(arrivalID)
 		}
 	}
 }
