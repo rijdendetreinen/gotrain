@@ -83,10 +83,12 @@ func (store *ServiceStore) GetService(serviceID, serviceDate string) *models.Ser
 	id := serviceDate + "-" + serviceID
 
 	store.RLock()
-	if val, ok := store.services[id]; ok {
-		return &val
-	}
+	service, found := store.services[id]
 	store.RUnlock()
+
+	if found {
+		return &service
+	}
 
 	return nil
 }

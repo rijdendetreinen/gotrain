@@ -83,10 +83,12 @@ func (store *DepartureStore) GetDeparture(serviceID, serviceDate string, station
 	id := serviceDate + "-" + serviceID + "-" + station
 
 	store.RLock()
-	if departure, ok := store.departures[id]; ok {
+	departure, found := store.departures[id]
+	store.RUnlock()
+
+	if found {
 		return &departure
 	}
-	store.RUnlock()
 
 	return nil
 }

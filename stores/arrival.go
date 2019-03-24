@@ -83,10 +83,12 @@ func (store *ArrivalStore) GetArrival(serviceID, serviceDate string, station str
 	id := serviceDate + "-" + serviceID + "-" + station
 
 	store.RLock()
-	if arrival, ok := store.arrivals[id]; ok {
+	arrival, found := store.arrivals[id]
+	store.RUnlock()
+
+	if found {
 		return &arrival
 	}
-	store.RUnlock()
 
 	return nil
 }
