@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"encoding/json"
+	"time"
+)
 
 // Service is the train service containing all parts, stops etc.
 type Service struct {
@@ -29,7 +32,7 @@ type Service struct {
 // ServicePart is a single part of a train service (a service usually contains just one part, but may contain more)
 type ServicePart struct {
 	ServiceNumber string         `json:"service_number"`
-	Stops         []ServiceStop  `json:"stops"`
+	Stops         []ServiceStop  `json:"-"`
 	Modifications []Modification `json:"modifications"`
 }
 
@@ -52,9 +55,9 @@ type ServiceStop struct {
 	StopType        string `json:"stop_type"`
 	DoNotBoard      bool   `json:"do_not_board"`
 
-	ArrivalTime    time.Time `json:"arrival_time"`
+	ArrivalTime    time.Time `json:"-"`
 	ArrivalDelay   int       `json:"arrival_delay"`
-	DepartureTime  time.Time `json:"departure_time"`
+	DepartureTime  time.Time `json:"-"`
 	DepartureDelay int       `json:"departure_delay"`
 
 	ArrivalCancelled   bool `json:"arrival_cancelled"`
@@ -62,4 +65,78 @@ type ServiceStop struct {
 
 	Modifications []Modification `json:"modifications"`
 	Material      []Material     `json:"material"`
+}
+
+func (service Service) MarshalJSON() ([]byte, error) {
+	return json.Marshal(NewJSONService(service))
+}
+
+func (servicePart ServicePart) MarshalJSON() ([]byte, error) {
+	return json.Marshal(NewJSONServicePart(servicePart))
+}
+
+func (serviceStop ServiceStop) MarshalJSON() ([]byte, error) {
+	return json.Marshal(NewJSONServiceStop(serviceStop))
+}
+
+type ServiceAlias Service
+type ServiceStopAlias ServiceStop
+type ServicePartAlias ServicePart
+
+func NewJSONService(service Service) JSONService {
+	return JSONService{
+		ServiceAlias(service),
+	}
+}
+
+func NewJSONServicePart(servicePart ServicePart) JSONServicePart {
+	var stops []ServiceStop
+
+	for _, stop := range servicePart.Stops {
+		if stop.StopType != "D" {
+			stops = append(stops, stop)
+		}
+	}
+
+	return JSONServicePart{
+		ServicePartAlias(servicePart),
+		stops,
+	}
+}
+
+func NewJSONServiceStop(serviceStop ServiceStop) JSONServiceStop {
+	var arrivalTime *string
+	var departureTime *string
+
+	if !serviceStop.ArrivalTime.IsZero() {
+		arrivalTimeV := serviceStop.ArrivalTime.Local().Format(time.RFC3339)
+		arrivalTime = &arrivalTimeV
+	}
+
+	if !serviceStop.DepartureTime.IsZero() {
+		departureTimeV := serviceStop.DepartureTime.Local().Format(time.RFC3339)
+		departureTime = &departureTimeV
+	}
+
+	return JSONServiceStop{
+		ServiceStopAlias(serviceStop),
+		arrivalTime,
+		departureTime,
+	}
+}
+
+// JSONService is the exported JSON service
+type JSONService struct {
+	ServiceAlias
+}
+
+type JSONServicePart struct {
+	ServicePartAlias
+	FilteredStops []ServiceStop `json:"stops"`
+}
+
+type JSONServiceStop struct {
+	ServiceStopAlias
+	ArrivalTime   *string `json:"arrival_time"`
+	DepartureTime *string `json:"departure_time"`
 }
