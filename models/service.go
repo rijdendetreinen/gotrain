@@ -39,7 +39,7 @@ type ServiceStop struct {
 	Station Station
 
 	StationAccesible    bool
-	AssistenceAvailable bool
+	AssistanceAvailable bool
 
 	DestinationActual        string
 	DestinationPlanned       string

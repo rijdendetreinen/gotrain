@@ -61,7 +61,7 @@ func serviceStopToJSON(stop models.ServiceStop, language string, verbose bool) m
 	stopResponse := map[string]interface{}{
 		"station":              stop.Station,
 		"station_accesible":    stop.StationAccesible,
-		"assistance_available": stop.AssistenceAvailable,
+		"assistance_available": stop.AssistanceAvailable,
 		"stopping_actual":      stop.StoppingActual,
 		"stopping_planned":     stop.StoppingPlanned,
 		"stop_type":            stop.StopType,
