@@ -1,7 +1,6 @@
 package models
 
 import (
-	"encoding/json"
 	"time"
 )
 
@@ -9,134 +8,69 @@ import (
 type Service struct {
 	StoreItem
 
-	ValidUntil      time.Time `json:"-"`
-	ServiceID       string    `json:"service_id"`
-	ServiceNumber   string    `json:"service_number"`
-	ServiceDate     string    `json:"service_date"`
-	ServiceType     string    `json:"type"`
-	ServiceTypeCode string    `json:"type_code"`
-	Company         string    `json:"company"`
+	ValidUntil      time.Time
+	ServiceNumber   string
+	ServiceDate     string
+	ServiceType     string
+	ServiceTypeCode string
+	Company         string
 
-	ServiceParts []ServicePart `json:"parts"`
+	ServiceParts []ServicePart
 
-	ReservationRequired bool `json:"reservation_required"`
-	WithSupplement      bool `json:"with_supplement"`
-	SpecialTicket       bool `json:"special_ticket"`
-	JourneyPlanner      bool `json:"in_journey_planner"`
+	ReservationRequired bool
+	WithSupplement      bool
+	SpecialTicket       bool
+	JourneyPlanner      bool
 
-	Modifications []Modification `json:"modifications"`
+	Modifications []Modification
 
-	Hidden bool `json:"-"`
+	Hidden bool
 }
 
 // ServicePart is a single part of a train service (a service usually contains just one part, but may contain more)
 type ServicePart struct {
-	ServiceNumber string         `json:"service_number"`
-	Stops         []ServiceStop  `json:"-"`
-	Modifications []Modification `json:"modifications"`
+	ServiceNumber string
+	Stops         []ServiceStop
+	Modifications []Modification
 }
 
 // ServiceStop is a stops which is called by a train service.
 type ServiceStop struct {
-	Station Station `json:"station"`
+	Station Station
 
-	StationAccesible    bool `json:"station_accesible"`
-	AssistenceAvailable bool `json:"assistance_available"`
+	StationAccesible    bool
+	AssistenceAvailable bool
 
-	DestinationActual        string `json:"-"`
-	DestinationPlanned       string `json:"-"`
-	ArrivalPlatformActual    string `json:"arrival_platform_actual"`
-	ArrivalPlatformPlanned   string `json:"arrival_platform_planned"`
-	DeparturePlatformActual  string `json:"departure_platform_actual"`
-	DeparturePlatformPlanned string `json:"departure_platform_planned"`
+	DestinationActual        string
+	DestinationPlanned       string
+	ArrivalPlatformActual    string
+	ArrivalPlatformPlanned   string
+	DeparturePlatformActual  string
+	DeparturePlatformPlanned string
 
-	StoppingActual  bool   `json:"stopping_actual"`
-	StoppingPlanned bool   `json:"stopping_planned"`
-	StopType        string `json:"stop_type"`
-	DoNotBoard      bool   `json:"do_not_board"`
+	StoppingActual  bool
+	StoppingPlanned bool
+	StopType        string
+	DoNotBoard      bool
 
-	ArrivalTime    time.Time `json:"-"`
-	ArrivalDelay   int       `json:"arrival_delay"`
-	DepartureTime  time.Time `json:"-"`
-	DepartureDelay int       `json:"departure_delay"`
+	ArrivalTime    time.Time
+	ArrivalDelay   int
+	DepartureTime  time.Time
+	DepartureDelay int
 
-	ArrivalCancelled   bool `json:"arrival_cancelled"`
-	DepartureCancelled bool `json:"departure_cancelled"`
+	ArrivalCancelled   bool
+	DepartureCancelled bool
 
-	Modifications []Modification `json:"modifications"`
-	Material      []Material     `json:"material"`
+	Modifications []Modification
+	Material      []Material
 }
 
-func (service Service) MarshalJSON() ([]byte, error) {
-	return json.Marshal(NewJSONService(service))
-}
-
-func (servicePart ServicePart) MarshalJSON() ([]byte, error) {
-	return json.Marshal(NewJSONServicePart(servicePart))
-}
-
-func (serviceStop ServiceStop) MarshalJSON() ([]byte, error) {
-	return json.Marshal(NewJSONServiceStop(serviceStop))
-}
-
-type ServiceAlias Service
-type ServiceStopAlias ServiceStop
-type ServicePartAlias ServicePart
-
-func NewJSONService(service Service) JSONService {
-	return JSONService{
-		ServiceAlias(service),
-	}
-}
-
-func NewJSONServicePart(servicePart ServicePart) JSONServicePart {
-	var stops []ServiceStop
-
+func (servicePart ServicePart) GetStoppingStations() (stops []ServiceStop) {
 	for _, stop := range servicePart.Stops {
 		if stop.StopType != "D" {
 			stops = append(stops, stop)
 		}
 	}
 
-	return JSONServicePart{
-		ServicePartAlias(servicePart),
-		stops,
-	}
-}
-
-func NewJSONServiceStop(serviceStop ServiceStop) JSONServiceStop {
-	var arrivalTime *string
-	var departureTime *string
-
-	if !serviceStop.ArrivalTime.IsZero() {
-		arrivalTimeV := serviceStop.ArrivalTime.Local().Format(time.RFC3339)
-		arrivalTime = &arrivalTimeV
-	}
-
-	if !serviceStop.DepartureTime.IsZero() {
-		departureTimeV := serviceStop.DepartureTime.Local().Format(time.RFC3339)
-		departureTime = &departureTimeV
-	}
-
-	return JSONServiceStop{
-		ServiceStopAlias(serviceStop),
-		arrivalTime,
-		departureTime,
-	}
-}
-
-// JSONService is the exported JSON service
-type JSONService struct {
-	ServiceAlias
-}
-
-type JSONServicePart struct {
-	ServicePartAlias
-	FilteredStops []ServiceStop `json:"stops"`
-}
-
-type JSONServiceStop struct {
-	ServiceStopAlias
-	ArrivalTime   *string `json:"arrival_time"`
-	DepartureTime *string `json:"departure_time"`
+	return
 }

@@ -27,6 +27,8 @@ func serviceDetails(w http.ResponseWriter, r *http.Request) {
 
 	serviceID := vars["id"]
 	serviceDate := vars["date"]
+	language := getLanguageVar(r.URL)
+	verbose := getBooleanQueryParameter(r.URL, "verbose", false)
 
 	service := stores.Stores.ServiceStore.GetService(serviceID, serviceDate)
 
@@ -37,5 +39,5 @@ func serviceDetails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(service)
+	json.NewEncoder(w).Encode(serviceToJSON(*service, language, verbose))
 }
