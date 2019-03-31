@@ -4,6 +4,7 @@ import (
 	"net/url"
 	"time"
 
+	"github.com/rijdendetreinen/gotrain/models"
 	"github.com/rijdendetreinen/gotrain/stores"
 )
 
@@ -49,4 +50,28 @@ func nullString(value string) *string {
 	}
 
 	return &value
+}
+
+func materialToJSON(material models.Material, language string, verbose bool) map[string]interface{} {
+	materialResponse := map[string]interface{}{
+		"type":             material.NaterialType,
+		"accesible":        material.Accessible,
+		"number":           material.NormalizedNumber(),
+		"position":         material.Position,
+		"remains_behind":   material.RemainsBehind,
+		"destination":      material.DestinationActual.NameLong,
+		"destination_code": material.DestinationActual.Code,
+	}
+
+	return materialResponse
+}
+
+func materialsToJSON(materials []models.Material, language string, verbose bool) []map[string]interface{} {
+	materialsResponse := []map[string]interface{}{}
+
+	for _, material := range materials {
+		materialsResponse = append(materialsResponse, materialToJSON(material, language, verbose))
+	}
+
+	return materialsResponse
 }

@@ -79,9 +79,9 @@ func serviceStopToJSON(stop models.ServiceStop, language string, verbose bool) m
 		"departure_delay":            stop.DepartureDelay,
 		"departure_cancelled":        stop.DepartureCancelled,
 
-		"remarks": []interface{}{},
-		"tips":    []interface{}{},
-		// "material": stop.Material,
+		"remarks":  []interface{}{},
+		"tips":     []interface{}{},
+		"material": materialsToJSON(stop.Material, language, verbose),
 	}
 
 	return stopResponse

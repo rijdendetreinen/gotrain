@@ -65,6 +65,7 @@ type ServiceStop struct {
 	Material      []Material
 }
 
+// GetStoppingStations filters out ServiceStops which are not called by the service.
 func (servicePart ServicePart) GetStoppingStations() (stops []ServiceStop) {
 	for _, stop := range servicePart.Stops {
 		if stop.StopType != "D" {

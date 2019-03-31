@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"strings"
+	"time"
+)
 
 // Station is a station in the railway network. It has a code and 3 names (short, medium, long)
 type Station struct {
@@ -34,4 +37,8 @@ type StoreItem struct {
 	ID        string    `json:"-"`
 	Timestamp time.Time `json:"-"`
 	ProductID string    `json:"-"`
+}
+
+func (material Material) NormalizedNumber() string {
+	return strings.TrimRight(strings.TrimLeft(material.Number, "0-"), "0-")
 }
