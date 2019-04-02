@@ -1,6 +1,7 @@
 package parsers
 
 import (
+	"strconv"
 	"time"
 
 	"github.com/beevik/etree"
@@ -20,7 +21,27 @@ func ParseInfoPlusBoolean(element *etree.Element) bool {
 // ParseInfoPlusModifications parses a list of modifications
 func ParseInfoPlusModifications(element *etree.Element) []models.Modification {
 	var modifications []models.Modification
-	// TODO:Implement
+
+	for _, modificationElement := range element.SelectElements("Wijziging") {
+		var modification models.Modification
+
+		modification.ModificationType, _ = strconv.Atoi(modificationElement.SelectElement("WijzigingType").Text())
+
+		causeShort := modificationElement.SelectElement("WijzigingOorzaakKort")
+		causeLong := modificationElement.SelectElement("WijzigingOorzaakLang")
+		station := modificationElement.SelectElement("WijzigingStation")
+
+		if causeShort != nil {
+			modification.CauseShort = causeShort.Text()
+			modification.CauseLong = causeLong.Text()
+		}
+
+		if station != nil {
+			modification.Station = ParseInfoPlusStation(station)
+		}
+
+		modifications = append(modifications, modification)
+	}
 
 	return modifications
 }
