@@ -3,7 +3,9 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"strings"
 
+	"github.com/rijdendetreinen/gotrain/models"
 	"github.com/rijdendetreinen/gotrain/parsers"
 	"github.com/spf13/cobra"
 )
@@ -49,10 +51,12 @@ var inspectServiceCommand = &cobra.Command{
 
 		fmt.Println("Service parts:")
 
+		showStops, _ := cmd.Flags().GetBool("stops")
+		showModifications, _ := cmd.Flags().GetBool("modifications")
+		language, _ := cmd.Flags().GetString("language")
+
 		for index, part := range service.ServiceParts {
 			fmt.Printf("  ** Service part %d  service=%s\n", index+1, part.ServiceNumber)
-
-			showStops, _ := cmd.Flags().GetBool("stops")
 
 			if showStops {
 				for stopIndex, stop := range part.Stops {
@@ -72,24 +76,34 @@ var inspectServiceCommand = &cobra.Command{
 
 						fmt.Print("\n")
 					}
+					fmt.Println("       Stop modifications:")
+					displayModifications(stop.Modifications, 7, showModifications, language)
 				}
 			} else {
 				fmt.Printf("     %d stop(s)\n", len(part.Stops))
 			}
+
+			fmt.Println("     Service part modifications:")
+			displayModifications(part.Modifications, 5, showModifications, language)
 		}
 
-		fmt.Println("Modifications:")
-
-		showModifications, _ := cmd.Flags().GetBool("modifications")
-
-		if showModifications {
-			for index, modification := range service.Modifications {
-				fmt.Printf("   %d, %v\n", index, modification)
-			}
-		} else {
-			fmt.Printf("   %d modifications(s)\n", len(service.Modifications))
-		}
+		fmt.Println("Service modifications:")
+		displayModifications(service.Modifications, 1, showModifications, language)
 	},
+}
+
+func displayModifications(modifications []models.Modification, level int, showModifications bool, language string) {
+	if showModifications {
+		if len(modifications) == 0 {
+			fmt.Printf("%sno modifications\n", strings.Repeat(" ", level))
+		}
+		for index, modification := range modifications {
+			remark, _ := modification.Remark(language)
+			fmt.Printf("%s%d. [%d] %v\n", strings.Repeat(" ", level), index, modification.ModificationType, remark)
+		}
+	} else {
+		fmt.Printf("%s%d modifications(s)\n", strings.Repeat(" ", level), len(modifications))
+	}
 }
 
 func init() {
@@ -98,4 +112,5 @@ func init() {
 
 	inspectServiceCommand.Flags().BoolP("modifications", "m", false, "Show modifications")
 	inspectServiceCommand.Flags().BoolP("stops", "s", false, "Show stops")
+	inspectServiceCommand.Flags().StringP("language", "l", "nl", "Language")
 }
