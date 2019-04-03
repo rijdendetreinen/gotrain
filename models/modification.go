@@ -126,3 +126,18 @@ func (modification Modification) remarkWithStation(remarkNL, remarkEN, language 
 
 	return fmt.Sprintf(remark, modification.Station.NameLong)
 }
+
+// GetRemarks translates a slice of Modification structs to remarks in the requested language
+func GetRemarks(modifications []Modification, language string) []string {
+	var remarks []string
+
+	for _, modification := range modifications {
+		remark, hasRemark := modification.Remark(language)
+
+		if hasRemark {
+			remarks = append(remarks, remark)
+		}
+	}
+
+	return remarks
+}

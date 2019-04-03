@@ -20,7 +20,7 @@ func serviceToJSON(service models.Service, language string, verbose bool) map[st
 		"with_supplement":      service.WithSupplement,
 
 		"parts":   []interface{}{},
-		"remarks": []interface{}{},
+		"remarks": models.GetRemarks(service.Modifications, language),
 		"tips":    []interface{}{},
 	}
 
@@ -29,7 +29,7 @@ func serviceToJSON(service models.Service, language string, verbose bool) map[st
 	for _, part := range service.ServiceParts {
 		partResponse := map[string]interface{}{
 			"service_number": part.ServiceNumber,
-			"remarks":        []interface{}{},
+			"remarks":        models.GetRemarks(part.Modifications, language),
 			"tips":           []interface{}{},
 			"stops":          []interface{}{},
 		}
@@ -79,7 +79,7 @@ func serviceStopToJSON(stop models.ServiceStop, language string, verbose bool) m
 		"departure_delay":            stop.DepartureDelay,
 		"departure_cancelled":        stop.DepartureCancelled,
 
-		"remarks":  []interface{}{},
+		"remarks":  models.GetRemarks(stop.Modifications, language),
 		"tips":     []interface{}{},
 		"material": materialsToJSON(stop.Material, language, verbose),
 	}
