@@ -13,14 +13,6 @@ type Station struct {
 	NameLong   string `json:"long"`
 }
 
-// Modification is a change (to the schedule) which is communicated to travellers
-type Modification struct {
-	ModificationType int     `json:"type"`
-	CauseShort       string  `json:"cause_short"`
-	CauseLong        string  `json:"cause_long"`
-	Station          Station `json:"station"`
-}
-
 // Material is the physical train unit
 type Material struct {
 	NaterialType       string  `json:"type"`
@@ -47,29 +39,3 @@ func (material Material) NormalizedNumber() *string {
 	number := strings.TrimRight(strings.TrimLeft(material.Number, "0-"), "0-")
 	return &number
 }
-
-const ModificationDelayedDeparture = 10
-const ModificationDelayedArrival = 11
-const ModificationChangedDeparturePlatform = 20
-const ModificationChangedArrivalPlatform = 21
-const ModificationDeparturePlatformAllocated = 22
-const ModificationArrivalPlatformAllocated = 23
-const ModificationExtraTrain = 24
-const ModificationCancelledTrain = 25
-const ModificationChangedStopPattern = 30
-const ModificationExtraDeparture = 31
-const ModificationCancelledDeparture = 32
-const ModificationDiverted = 33
-const ModificationRouteShortened = 34
-const ModificationRouteExtended = 35
-const ModificationOriginRouteShortened = 36
-const ModificationOriginRouteExtended = 37
-const ModificationExtraArrival = 38
-const ModificationCancelledArrival = 39
-const ModificationStatusChange = 40
-const ModificationChangedDestination = 41
-const ModificationChangedOrigin = 42
-const ModificationExtraThroughTrain = 43
-const ModificationCancelledThroughTrain = 44
-const ModificationNotActual = 50
-const ModificationBusReplacement = 51
