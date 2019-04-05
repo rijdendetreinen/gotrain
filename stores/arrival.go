@@ -129,7 +129,12 @@ func (store *ArrivalStore) CleanUp() {
 
 	log.Debug("Cleaning up arrival store")
 
+	store.RLock()
+	defer store.RUnlock()
+
 	for arrivalID, arrival := range store.arrivals {
+		store.RUnlock()
+
 		if !arrival.Hidden && arrival.RealArrivalTime().Before(thresholdHide) {
 			log.WithField("ArrivalID", arrivalID).Debug("Hiding arrival")
 
@@ -139,5 +144,7 @@ func (store *ArrivalStore) CleanUp() {
 
 			store.deleteArrival(arrivalID)
 		}
+
+		store.RLock()
 	}
 }
