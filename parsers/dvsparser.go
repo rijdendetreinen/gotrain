@@ -86,5 +86,41 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 
 	departure.Modifications = ParseInfoPlusModifications(trainProduct)
 
+	boardingTipNodes := trainProduct.SelectElements("InstapTip")
+	for _, boardingTipNode := range boardingTipNodes {
+		var boardingTip models.BoardingTip
+
+		boardingTip.ExitStation = ParseInfoPlusStation(boardingTipNode.SelectElement("InstapTipUitstapStation"))
+		boardingTip.Destination = ParseInfoPlusStation(boardingTipNode.SelectElement("InstapTipTreinEindBestemming"))
+
+		boardingTip.TrainType = boardingTipNode.SelectElement("InstapTipTreinSoort").Text()
+		boardingTip.TrainTypeCode = boardingTipNode.SelectElement("InstapTipTreinSoort").SelectAttrValue("Code", "")
+
+		boardingTip.DeparturePlatform = ParseInfoPlusPlatform(boardingTipNode.SelectElements("InstapTipVertrekSpoor"))
+		boardingTip.DepartureTime = ParseInfoPlusDateTime(boardingTipNode.SelectElement("InstapTipVertrekTijd"))
+
+		departure.BoardingTips = append(departure.BoardingTips, boardingTip)
+	}
+
+	travelTipNodes := trainProduct.SelectElements("ReisTip")
+	for _, travelTipNode := range travelTipNodes {
+		var travelTip models.TravelTip
+
+		travelTip.TipCode = travelTipNode.SelectElement("ReisTipCode").Text()
+		travelTip.Stations = ParseInfoPlusStations(travelTipNode.SelectElements("InstapTipTreinEindBestemmingReisTipStation"))
+
+		departure.TravelTips = append(departure.TravelTips, travelTip)
+	}
+
+	changeTipNodes := trainProduct.SelectElements("OverstapTip")
+	for _, changeTipNode := range changeTipNodes {
+		var changeTip models.ChangeTip
+
+		changeTip.ChangeStation = ParseInfoPlusStation(changeTipNode.SelectElement("OverstapTipOverstapStation"))
+		changeTip.Destination = ParseInfoPlusStation(changeTipNode.SelectElement("OverstapTipBestemming"))
+
+		departure.ChangeTips = append(departure.ChangeTips, changeTip)
+	}
+
 	return
 }

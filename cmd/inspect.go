@@ -68,6 +68,10 @@ var inspectDepartureCommand = &cobra.Command{
 		displayStations(departure.ViaPlanned)
 		fmt.Print("\n")
 
+		fmt.Printf("Boarding tips: %v\n", departure.BoardingTips)
+		fmt.Printf("Travel tips: %v\n", departure.TravelTips)
+		fmt.Printf("Change tips: %v\n", departure.ChangeTips)
+
 		fmt.Println("Service modifications:")
 		displayModifications(departure.Modifications, 1, showModifications, language)
 	},
