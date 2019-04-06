@@ -31,6 +31,8 @@ type StoreItem struct {
 	ProductID string    `json:"-"`
 }
 
+// NormalizedNumber returns a normal material number (i.e. it removes the 000000-0...-0 prefixes and suffixes).
+// Example: 000000-09547-0 will be translated to 9547
 func (material Material) NormalizedNumber() *string {
 	if material.Number == "" {
 		return nil

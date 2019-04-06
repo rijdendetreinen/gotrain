@@ -68,7 +68,7 @@ func (store *Store) ResetStatus() {
 }
 
 // InitializeStores initializes all stores and resets their counters/status
-func InitializeStores() StoreCollection {
+func InitializeStores() *StoreCollection {
 	Stores.ArrivalStore.ResetStatus()
 	Stores.ArrivalStore.InitStore()
 
@@ -78,7 +78,7 @@ func InitializeStores() StoreCollection {
 	Stores.ServiceStore.ResetStatus()
 	Stores.ServiceStore.InitStore()
 
-	return Stores
+	return &Stores
 }
 
 // CleanUp cleans all stores and removes outdated items
