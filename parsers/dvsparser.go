@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"strconv"
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
@@ -46,8 +47,22 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	departure.ServiceType = trainProduct.SelectElement("TreinSoort").Text()
 	departure.ServiceTypeCode = trainProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	departure.Company = trainProduct.SelectElement("Vervoerder").Text()
+	departure.Status, _ = strconv.Atoi(trainProduct.SelectElement("TreinStatus").Text())
+
+	// Train name, e.g. special trains like the museum train
+	nameNode := trainProduct.SelectElement("TreinNaam")
+	if nameNode != nil {
+		departure.ServiceName = nameNode.Text()
+	}
 
 	departure.DepartureTime = ParseInfoPlusDateTime(ParseWhenAttribute(trainProduct, "VertrekTijd", "InfoStatus", "Gepland"))
+	departure.Delay = ParseInfoPlusDuration(trainProduct.SelectElement("ExacteVertrekVertraging"))
+
+	departure.DestinationActual = ParseInfoPlusStations(ParseWhenAttributeMulti(trainProduct, "TreinEindBestemming", "InfoStatus", "Actueel"))
+	departure.DestinationPlanned = ParseInfoPlusStations(ParseWhenAttributeMulti(trainProduct, "TreinEindBestemming", "InfoStatus", "Gepland"))
+
+	departure.PlatformActual = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "VertrekSpoor", "InfoStatus", "Actueel"))
+	departure.PlatformPlanned = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "VertrekSpoor", "InfoStatus", "Gepland"))
 
 	departure.ReservationRequired = ParseInfoPlusBoolean(trainProduct.SelectElement("Reserveren"))
 	departure.WithSupplement = ParseInfoPlusBoolean(trainProduct.SelectElement("Toeslag"))
@@ -55,7 +70,21 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	departure.RearPartRemains = ParseInfoPlusBoolean(trainProduct.SelectElement("AchterBlijvenAchtersteTreinDeel"))
 	departure.DoNotBoard = ParseInfoPlusBoolean(trainProduct.SelectElement("NietInstappen"))
 
-	// TODO: Parse other fields
+	viaNodeActual := ParseWhenAttribute(trainProduct, "VerkorteRoute", "InfoStatus", "Actueel")
+	viaNodePlanned := ParseWhenAttribute(trainProduct, "VerkorteRoute", "InfoStatus", "Actueel")
+
+	if viaNodeActual != nil {
+		departure.ViaActual = ParseInfoPlusStations(viaNodeActual.SelectElements("Station"))
+	}
+	if viaNodePlanned != nil {
+		departure.ViaPlanned = ParseInfoPlusStations(viaNodePlanned.SelectElements("Station"))
+	}
+
+	// TODO:
+	// Tips: InstapTip, ReisTip, OverstapTip
+	// Wings
+
+	departure.Modifications = ParseInfoPlusModifications(trainProduct)
 
 	return
 }

@@ -58,6 +58,15 @@ func ParseInfoPlusStation(element *etree.Element) models.Station {
 	return station
 }
 
+// ParseInfoPlusStations process multiple station elements and returns them as a slice
+func ParseInfoPlusStations(elements []*etree.Element) (stations []models.Station) {
+	for _, element := range elements {
+		stations = append(stations, ParseInfoPlusStation(element))
+	}
+
+	return stations
+}
+
 // ParseWhenAttribute filters a list of elements on an attribute with a given value. Returns a single element, or nil.
 func ParseWhenAttribute(element *etree.Element, tag, attribute, value string) *etree.Element {
 	for _, childElement := range element.SelectElements(tag) {

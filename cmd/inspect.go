@@ -16,25 +16,82 @@ var inspectCommand = &cobra.Command{
 	Long:  `Inspect XML messages. Use a sub-command to specify the message type.`,
 }
 
+var inspectDepartureCommand = &cobra.Command{
+	Use:   "departure [filename]",
+	Short: "Inspect a departure message",
+	Long:  `Inspect a departure XML message and print a summary of the content to the screen.`,
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		showModifications, _ := cmd.Flags().GetBool("modifications")
+		language, _ := cmd.Flags().GetString("language")
+
+		f := openFile(args)
+
+		departure, err := parsers.ParseDvsMessage(f)
+
+		if err != nil {
+			fmt.Println("Error while parsing departure")
+			fmt.Println(err)
+			os.Exit(2)
+		}
+
+		fmt.Printf("Product ID: %s\n", departure.ProductID)
+		fmt.Printf("Timestamp: %s\n", departure.Timestamp.Local())
+		fmt.Printf("Departure ID: %s\n", departure.ID)
+		fmt.Printf("Service ID: %s\n", departure.ServiceID)
+		fmt.Printf("Departure station: %s = %s\n", departure.Station.Code, departure.Station.NameLong)
+		fmt.Printf("Service number: %s\n", departure.ServiceNumber)
+		fmt.Printf("Service date: %s\n", departure.ServiceDate)
+		fmt.Printf("Departure time: %s\n", departure.DepartureTime.Local())
+		fmt.Printf("Delay: %ds\n", departure.Delay)
+		fmt.Printf("Status: %d\n", departure.Status)
+		fmt.Printf("Real departure time: %s\n", departure.RealDepartureTime().Local())
+		fmt.Print("Actual destination(s): ")
+		displayStations(departure.DestinationActual)
+
+		fmt.Print("\nPlanned destination(s): ")
+		displayStations(departure.DestinationPlanned)
+
+		fmt.Printf("\nType: %s/%s\n", departure.ServiceTypeCode, departure.ServiceType)
+		fmt.Printf("Company: %v\n", departure.Company)
+
+		fmt.Printf("DoNotBoard: %v\n", departure.DoNotBoard)
+		fmt.Printf("NotRealTime: %v\n", departure.NotRealTime)
+		fmt.Printf("RearPartRemains: %v\n", departure.RearPartRemains)
+		fmt.Printf("ReservationRequired: %v\n", departure.ReservationRequired)
+		fmt.Printf("SpecialTicket: %v\n", departure.SpecialTicket)
+		fmt.Printf("WithSupplement: %v\n", departure.WithSupplement)
+
+		fmt.Print("Actual route station(s): ")
+		displayStations(departure.ViaActual)
+		fmt.Print("\nPlanned route station(s): ")
+		displayStations(departure.ViaPlanned)
+		fmt.Print("\n")
+
+		fmt.Println("Service modifications:")
+		displayModifications(departure.Modifications, 1, showModifications, language)
+	},
+}
+
 var inspectServiceCommand = &cobra.Command{
 	Use:   "service [filename]",
 	Short: "Inspect a service message",
 	Long:  `Inspect a service XML message and print a summary of the content to the screen.`,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		filename := args[0]
+		showModifications, _ := cmd.Flags().GetBool("modifications")
+		language, _ := cmd.Flags().GetString("language")
+		showStops, _ := cmd.Flags().GetBool("stops")
 
-		f, err := os.Open(filename)
-
-		if err != nil {
-			fmt.Printf("Error opening %s", filename)
-			fmt.Printf("Error: %s\n", err)
-			os.Exit(1)
-		}
+		f := openFile(args)
 
 		service, err := parsers.ParseRitMessage(f)
 
-		fmt.Printf("%s:\n", filename)
+		if err != nil {
+			fmt.Println("Error while parsing service")
+			fmt.Println(err)
+			os.Exit(2)
+		}
 
 		fmt.Printf("Product ID: %s\n", service.ProductID)
 		fmt.Printf("Timestamp: %s\n", service.Timestamp.Local())
@@ -50,10 +107,6 @@ var inspectServiceCommand = &cobra.Command{
 		fmt.Printf("WithSupplement: %v\n", service.WithSupplement)
 
 		fmt.Println("Service parts:")
-
-		showStops, _ := cmd.Flags().GetBool("stops")
-		showModifications, _ := cmd.Flags().GetBool("modifications")
-		language, _ := cmd.Flags().GetString("language")
 
 		for index, part := range service.ServiceParts {
 			fmt.Printf("  ** Service part %d  service=%s\n", index+1, part.ServiceNumber)
@@ -106,9 +159,43 @@ func displayModifications(modifications []models.Modification, level int, showMo
 	}
 }
 
+func displayStations(stations []models.Station) {
+	if len(stations) == 0 {
+		fmt.Printf("none")
+	} else {
+		for index, station := range stations {
+			if index > 0 {
+				fmt.Print("; ")
+			}
+			fmt.Printf("%s = %s", station.Code, station.NameLong)
+		}
+	}
+}
+
+func openFile(args []string) *os.File {
+	filename := args[0]
+
+	f, err := os.Open(filename)
+
+	if err != nil {
+		fmt.Printf("Error opening %s", filename)
+		fmt.Printf("Error: %s\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("%s:\n", filename)
+
+	return f
+}
+
 func init() {
 	RootCmd.AddCommand(inspectCommand)
+	inspectCommand.AddCommand(inspectDepartureCommand)
 	inspectCommand.AddCommand(inspectServiceCommand)
+
+	inspectDepartureCommand.Flags().BoolP("modifications", "m", false, "Show modifications")
+	inspectDepartureCommand.Flags().BoolP("stops", "s", false, "Show stops")
+	inspectDepartureCommand.Flags().StringP("language", "l", "nl", "Language")
 
 	inspectServiceCommand.Flags().BoolP("modifications", "m", false, "Show modifications")
 	inspectServiceCommand.Flags().BoolP("stops", "s", false, "Show stops")
