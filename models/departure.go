@@ -84,3 +84,28 @@ func (departure Departure) RealDepartureTime() time.Time {
 	delayDuration = time.Second * time.Duration(departure.Delay)
 	return departure.DepartureTime.Add(delayDuration)
 }
+
+// PlatformChanged returns true when the platform has been changed
+func (departure Departure) PlatformChanged() bool {
+	return departure.PlatformActual != departure.PlatformPlanned
+}
+
+// ActualDestinationString returns a string of all actual destinations (long name)
+func (departure Departure) ActualDestinationString() string {
+	return stationsLongString(departure.DestinationActual, "/")
+}
+
+// PlannedDestinationString returns a string of all planned destinations (long name)
+func (departure Departure) PlannedDestinationString() string {
+	return stationsLongString(departure.DestinationPlanned, "/")
+}
+
+// ActualDestinationCodes returns a slice of all actual destination station codes
+func (departure Departure) ActualDestinationCodes() []string {
+	return stationCodes(departure.DestinationActual)
+}
+
+// ViaStationsString returns a string of all actual via stations (medium name)
+func (departure Departure) ViaStationsString() string {
+	return stationsMediumString(departure.ViaActual, ", ")
+}

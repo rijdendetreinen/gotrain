@@ -41,3 +41,49 @@ func (material Material) NormalizedNumber() *string {
 	number := strings.TrimRight(strings.TrimLeft(material.Number, "0-"), "0-")
 	return &number
 }
+
+func stationsLongString(stations []Station, separator string) string {
+	stationsText := ""
+	for index, station := range stations {
+		if index > 0 {
+			stationsText += separator
+		}
+		stationsText += station.NameLong
+	}
+
+	return stationsText
+}
+
+func stationsMediumString(stations []Station, separator string) string {
+	stationsText := ""
+	for index, station := range stations {
+		if index > 0 {
+			stationsText += separator
+		}
+		stationsText += station.NameMedium
+	}
+
+	return stationsText
+}
+
+func stationsShortString(stations []Station, separator string) string {
+	stationsText := ""
+	for index, station := range stations {
+		if index > 0 {
+			stationsText += separator
+		}
+		stationsText += station.NameShort
+	}
+
+	return stationsText
+}
+
+func stationCodes(stations []Station) []string {
+	var stationCodes []string
+
+	for _, station := range stations {
+		stationCodes = append(stationCodes, station.Code)
+	}
+
+	return stationCodes
+}
