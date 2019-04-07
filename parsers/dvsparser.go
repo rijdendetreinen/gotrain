@@ -80,10 +80,6 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		departure.ViaPlanned = ParseInfoPlusStations(viaNodePlanned.SelectElements("Station"))
 	}
 
-	// TODO:
-	// Tips: InstapTip, ReisTip, OverstapTip
-	// Wings
-
 	departure.Modifications = ParseInfoPlusModifications(trainProduct)
 
 	boardingTipNodes := trainProduct.SelectElements("InstapTip")
@@ -120,6 +116,48 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		changeTip.Destination = ParseInfoPlusStation(changeTipNode.SelectElement("OverstapTipBestemming"))
 
 		departure.ChangeTips = append(departure.ChangeTips, changeTip)
+	}
+
+	for _, wingInfo := range trainProduct.SelectElements("TreinVleugel") {
+		var trainWing models.TrainWing
+
+		trainWing.DestinationActual = ParseInfoPlusStations(ParseWhenAttributeMulti(wingInfo, "TreinVleugelEindBestemming", "InfoStatus", "Actueel"))
+		trainWing.DestinationPlanned = ParseInfoPlusStations(ParseWhenAttributeMulti(wingInfo, "TreinVleugelEindBestemming", "InfoStatus", "Actueel"))
+		trainWing.Modifications = ParseInfoPlusModifications(wingInfo)
+
+		stationsNode := ParseWhenAttribute(wingInfo, "StopStations", "InfoStatus", "Actueel")
+
+		if stationsNode != nil {
+			for _, stationInfo := range stationsNode.SelectElements("Station") {
+				station := ParseInfoPlusStation(stationInfo)
+
+				trainWing.Stations = append(trainWing.Stations, station)
+			}
+		}
+
+		for _, materialInfo := range wingInfo.SelectElements("MaterieelDeelDVS") {
+			var material models.Material
+
+			material.NaterialType = materialInfo.SelectElement("MaterieelSoort").Text() + "-" + materialInfo.SelectElement("MaterieelAanduiding").Text()
+
+			materialNumberNode := materialInfo.SelectElement("MaterieelNummer")
+			materialPositionNode := materialInfo.SelectElement("MaterieelDeelVolgordeVertrek")
+
+			if materialNumberNode != nil {
+				material.Number = materialNumberNode.Text()
+			}
+
+			if materialPositionNode != nil {
+				material.Position, _ = strconv.Atoi(materialPositionNode.Text())
+			}
+
+			material.DestinationActual = ParseInfoPlusStation(ParseWhenAttribute(materialInfo, "MaterieelDeelEindBestemming", "InfoStatus", "Actueel"))
+			material.DestinationPlanned = ParseInfoPlusStation(ParseWhenAttribute(materialInfo, "MaterieelDeelEindBestemming", "InfoStatus", "Gepland"))
+
+			trainWing.Material = append(trainWing.Material, material)
+		}
+
+		departure.TrainWings = append(departure.TrainWings, trainWing)
 	}
 
 	return

@@ -24,6 +24,7 @@ var inspectDepartureCommand = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		showModifications, _ := cmd.Flags().GetBool("modifications")
 		language, _ := cmd.Flags().GetString("language")
+		showStops, _ := cmd.Flags().GetBool("stops")
 
 		f := openFile(args)
 
@@ -71,6 +72,27 @@ var inspectDepartureCommand = &cobra.Command{
 		fmt.Printf("Boarding tips: %v\n", departure.BoardingTips)
 		fmt.Printf("Travel tips: %v\n", departure.TravelTips)
 		fmt.Printf("Change tips: %v\n", departure.ChangeTips)
+
+		fmt.Println("Train wings:")
+
+		for index, wing := range departure.TrainWings {
+			fmt.Printf("  ** Train wing %d  destination=%s\n", index+1, wing.DestinationActual)
+
+			if showStops {
+				for stopIndex, stop := range wing.Stations {
+					fmt.Printf("    ** Stop %02d %7s = %s\n", stopIndex+1, stop.Code, stop.NameLong)
+				}
+			} else {
+				fmt.Printf("     %d stop(s)\n", len(wing.Stations))
+			}
+
+			fmt.Print("    Material: ")
+			for _, material := range wing.Material {
+				fmt.Printf("%s[%s]>%s ", material.NaterialType, *material.NormalizedNumber(), material.DestinationActual.Code)
+			}
+
+			fmt.Print("\n")
+		}
 
 		fmt.Println("Service modifications:")
 		displayModifications(departure.Modifications, 1, showModifications, language)
