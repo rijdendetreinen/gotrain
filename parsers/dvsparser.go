@@ -61,8 +61,8 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	departure.DestinationActual = ParseInfoPlusStations(ParseWhenAttributeMulti(trainProduct, "TreinEindBestemming", "InfoStatus", "Actueel"))
 	departure.DestinationPlanned = ParseInfoPlusStations(ParseWhenAttributeMulti(trainProduct, "TreinEindBestemming", "InfoStatus", "Gepland"))
 
-	departure.PlatformActual = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "VertrekSpoor", "InfoStatus", "Actueel"))
-	departure.PlatformPlanned = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "VertrekSpoor", "InfoStatus", "Gepland"))
+	departure.PlatformActual = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "TreinVertrekSpoor", "InfoStatus", "Actueel"))
+	departure.PlatformPlanned = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "TreinVertrekSpoor", "InfoStatus", "Gepland"))
 
 	departure.ReservationRequired = ParseInfoPlusBoolean(trainProduct.SelectElement("Reserveren"))
 	departure.WithSupplement = ParseInfoPlusBoolean(trainProduct.SelectElement("Toeslag"))
