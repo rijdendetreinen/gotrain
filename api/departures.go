@@ -31,7 +31,7 @@ func departuresStation(w http.ResponseWriter, r *http.Request) {
 	language := getLanguageVar(r.URL)
 	verbose := getBooleanQueryParameter(r.URL, "verbose", false)
 
-	departures := stores.Stores.DepartureStore.GetStationDepartures(station)
+	departures := stores.Stores.DepartureStore.GetStationDepartures(station, false)
 
 	// Sort departures on departure time, or on planned destination when departure times are equal
 	sort.Slice(departures, func(i, j int) bool {

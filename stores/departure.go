@@ -49,6 +49,11 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 		store.Counters.TooLate++
 	}
 
+	// Hide departured trains:
+	if newDeparture.Status == 5 {
+		newDeparture.Hidden = true
+	}
+
 	store.Lock()
 	store.departures[newDeparture.ID] = newDeparture
 	store.updateStationReference(newDeparture.Station.Code, newDeparture.ID)
@@ -95,7 +100,7 @@ func (store *DepartureStore) GetAllDepartures() map[string]models.Departure {
 }
 
 // GetStationDepartures returns all departures for a given station
-func (store *DepartureStore) GetStationDepartures(station string) []models.Departure {
+func (store *DepartureStore) GetStationDepartures(station string, includeHidden bool) []models.Departure {
 	var departures []models.Departure
 
 	store.RLock()
@@ -105,7 +110,9 @@ func (store *DepartureStore) GetStationDepartures(station string) []models.Depar
 		departure, found := store.departures[ID]
 
 		if found {
-			departures = append(departures, departure)
+			if includeHidden || !departure.Hidden {
+				departures = append(departures, departure)
+			}
 		}
 	}
 	store.RUnlock()
