@@ -11,6 +11,7 @@ import (
 type DepartureStore struct {
 	Store
 	departures map[string]models.Departure
+	stations   map[string]map[string]struct{}
 }
 
 // ProcessDeparture adds or updates a departure in a departure store
@@ -50,14 +51,29 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 
 	store.Lock()
 	store.departures[newDeparture.ID] = newDeparture
+	store.updateStationReference(newDeparture.Station.Code, newDeparture.ID)
 	store.Unlock()
 
 	store.Counters.Processed++
 }
 
+func (store *DepartureStore) updateStationReference(station, ID string) {
+	_, stationExists := store.stations[station]
+	if !stationExists {
+		store.stations[station] = make(map[string]struct{})
+	}
+
+	_, exists := store.stations[station][ID]
+	if !exists {
+		store.stations[station][ID] = struct{}{}
+	}
+
+}
+
 // InitStore initializes the departure store by creating the departures map
 func (store *DepartureStore) InitStore() {
 	store.departures = make(map[string]models.Departure)
+	store.stations = make(map[string]map[string]struct{})
 }
 
 // GetNumberOfDepartures returns the number of departures in the store (unfiltered)
@@ -73,6 +89,25 @@ func (store *DepartureStore) GetNumberOfDepartures() int {
 func (store *DepartureStore) GetAllDepartures() map[string]models.Departure {
 	store.RLock()
 	departures := store.departures
+	store.RUnlock()
+
+	return departures
+}
+
+// GetStationDepartures returns all departures for a given station
+func (store *DepartureStore) GetStationDepartures(station string) []models.Departure {
+	var departures []models.Departure
+
+	store.RLock()
+	stationServices := store.stations[station]
+
+	for ID := range stationServices {
+		departure, found := store.departures[ID]
+
+		if found {
+			departures = append(departures, departure)
+		}
+	}
 	store.RUnlock()
 
 	return departures
@@ -95,7 +130,17 @@ func (store *DepartureStore) GetDeparture(serviceID, serviceDate string, station
 
 // ReadStore reads the save store contents
 func (store *DepartureStore) ReadStore() error {
-	return readGob("data/departures.gob", &store.departures)
+	err := readGob("data/departures.gob", &store.departures)
+
+	if err != nil {
+		return err
+	}
+
+	for _, departure := range store.departures {
+		store.updateStationReference(departure.Station.Code, departure.ID)
+	}
+
+	return nil
 }
 
 // SaveStore saves the departures store contents
@@ -113,9 +158,19 @@ func (store *DepartureStore) hideDeparture(ID string) {
 }
 
 // deleteDeparture deletes a departure
-func (store *DepartureStore) deleteDeparture(ID string) {
+func (store *DepartureStore) deleteDeparture(departure models.Departure) {
 	store.Lock()
-	delete(store.departures, ID)
+	delete(store.departures, departure.ID)
+
+	_, stationExists := store.stations[departure.Station.Code]
+
+	if stationExists {
+		_, exists := store.stations[departure.Station.Code][departure.ID]
+		if exists {
+			delete(store.stations[departure.Station.Code], departure.ID)
+		}
+	}
+
 	store.Unlock()
 }
 
@@ -142,7 +197,7 @@ func (store *DepartureStore) CleanUp() {
 		} else if departure.Hidden && departure.RealDepartureTime().Before(thresholdRemove) {
 			log.WithField("DepartureID", departureID).Debug("Removing departure")
 
-			store.deleteDeparture(departureID)
+			store.deleteDeparture(departure)
 		}
 
 		store.RLock()
