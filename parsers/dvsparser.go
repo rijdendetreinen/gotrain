@@ -160,5 +160,12 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		departure.TrainWings = append(departure.TrainWings, trainWing)
 	}
 
+	// Check whether departure is cancelled:
+	for _, modification := range departure.Modifications {
+		if modification.ModificationType == models.ModificationCancelledDeparture {
+			departure.Cancelled = true
+		}
+	}
+
 	return
 }
