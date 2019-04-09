@@ -160,10 +160,13 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		departure.TrainWings = append(departure.TrainWings, trainWing)
 	}
 
-	// Check whether departure is cancelled:
+	// Check for flags that may be set:
 	for _, modification := range departure.Modifications {
-		if modification.ModificationType == models.ModificationCancelledDeparture {
+		switch modification.ModificationType {
+		case models.ModificationCancelledDeparture:
 			departure.Cancelled = true
+		case models.ModificationNotActual:
+			departure.NotRealTime = true
 		}
 	}
 
