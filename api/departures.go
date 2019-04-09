@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"net/http"
+	"sort"
 
 	"github.com/gorilla/mux"
 	"github.com/rijdendetreinen/gotrain/models"
@@ -31,6 +32,15 @@ func departuresStation(w http.ResponseWriter, r *http.Request) {
 	verbose := getBooleanQueryParameter(r.URL, "verbose", false)
 
 	departures := stores.Stores.DepartureStore.GetStationDepartures(station)
+
+	// Sort departures on departure time, or on planned destination when departure times are equal
+	sort.Slice(departures, func(i, j int) bool {
+		if departures[i].DepartureTime.Equal(departures[j].DepartureTime) {
+			return departures[i].PlannedDestinationString() < departures[j].PlannedDestinationString()
+		}
+
+		return departures[i].DepartureTime.Before(departures[j].DepartureTime)
+	})
 
 	if departures == nil {
 		w.WriteHeader(http.StatusNotFound)
