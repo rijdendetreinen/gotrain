@@ -189,6 +189,9 @@ func (store *DepartureStore) CleanUp() {
 	// Hide departures which should have departed 10 minutes ago:
 	thresholdHide := time.Now().Add(-10 * time.Minute)
 
+	// Hide departures which should have departed 1 minute ago if they are not realtime:
+	thresholdHideNonRealtime := time.Now().Add(-1 * time.Minute)
+
 	log.Debug("Cleaning up departure store")
 
 	store.RLock()
@@ -199,6 +202,10 @@ func (store *DepartureStore) CleanUp() {
 
 		if !departure.Hidden && departure.RealDepartureTime().Before(thresholdHide) {
 			log.WithField("DepartureID", departureID).Debug("Hiding departure")
+
+			store.hideDeparture(departureID)
+		} else if !departure.Hidden && departure.NotRealTime && departure.RealDepartureTime().Before(thresholdHideNonRealtime) {
+			log.WithField("DepartureID", departureID).Debug("Hiding non-realtime departure")
 
 			store.hideDeparture(departureID)
 		} else if departure.Hidden && departure.RealDepartureTime().Before(thresholdRemove) {
