@@ -21,6 +21,27 @@ func departuresAll(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(stores.Stores.DepartureStore.GetAllDepartures())
 }
 
+func departuresStation(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+
+	vars := mux.Vars(r)
+
+	station := vars["station"]
+	language := getLanguageVar(r.URL)
+	verbose := getBooleanQueryParameter(r.URL, "verbose", false)
+
+	departures := stores.Stores.DepartureStore.GetStationDepartures(station)
+
+	if departures == nil {
+		w.WriteHeader(http.StatusNotFound)
+		json.NewEncoder(w).Encode(nil)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(departuresToJSON(departures, language, verbose))
+}
+
 func departureDetails(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -42,6 +63,16 @@ func departureDetails(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(departureToJSON(*departure, language, verbose))
+}
+
+func departuresToJSON(departures []models.Departure, language string, verbose bool) []map[string]interface{} {
+	var response []map[string]interface{}
+
+	for _, departure := range departures {
+		response = append(response, departureToJSON(departure, language, verbose))
+	}
+
+	return response
 }
 
 func departureToJSON(departure models.Departure, language string, verbose bool) map[string]interface{} {
