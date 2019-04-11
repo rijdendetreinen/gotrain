@@ -1,6 +1,7 @@
 package models
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -114,12 +115,16 @@ func (departure Departure) ViaStationsString() string {
 
 // Translation provides a translation for this tip
 func (tip BoardingTip) Translation(language string) string {
-	return ""
+	translation := Translate("%s %s naar %s (spoor %s) is eerder in %s", "%s %s to %s (platform %s) reaches %s sooner", language)
+
+	return fmt.Sprintf(translation, tip.TrainTypeCode, tip.DepartureTime.Local().Format("15:04"), tip.Destination.NameLong, tip.DeparturePlatform, tip.ExitStation.NameLong)
 }
 
 // Translation provides a translation for this tip
 func (tip ChangeTip) Translation(language string) string {
-	return ""
+	translation := Translate("Voor %s overstappen in %s", "For %s, change at %s", language)
+
+	return fmt.Sprintf(translation, tip.Destination, tip.ChangeStation)
 }
 
 // Translation provides a translation for this tip
