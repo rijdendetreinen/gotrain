@@ -94,8 +94,27 @@ var inspectDepartureCommand = &cobra.Command{
 			fmt.Print("\n")
 		}
 
-		fmt.Println("Service modifications:")
+		fmt.Println("Departure modifications:")
 		displayModifications(departure.Modifications, 1, showModifications, language)
+
+		if showModifications {
+			fmt.Println("Tips:")
+
+			for index, tip := range departure.TravelTips {
+				translation := tip.Translation(language)
+				fmt.Printf(" %d. %s\n", index, translation)
+			}
+
+			for index, tip := range departure.BoardingTips {
+				translation := tip.Translation(language)
+				fmt.Printf(" %d. %s\n", index, translation)
+			}
+
+			for index, tip := range departure.ChangeTips {
+				translation := tip.Translation(language)
+				fmt.Printf(" %d. %s\n", index, translation)
+			}
+		}
 	},
 }
 
@@ -223,7 +242,7 @@ func init() {
 	inspectDepartureCommand.Flags().BoolP("stops", "s", false, "Show stops")
 	inspectDepartureCommand.Flags().StringP("language", "l", "nl", "Language")
 
-	inspectServiceCommand.Flags().BoolP("modifications", "m", false, "Show modifications")
+	inspectServiceCommand.Flags().BoolP("modifications", "m", false, "Show modifications and tips")
 	inspectServiceCommand.Flags().BoolP("stops", "s", false, "Show stops")
 	inspectServiceCommand.Flags().StringP("language", "l", "nl", "Language")
 }
