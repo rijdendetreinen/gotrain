@@ -103,7 +103,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		var travelTip models.TravelTip
 
 		travelTip.TipCode = travelTipNode.SelectElement("ReisTipCode").Text()
-		travelTip.Stations = ParseInfoPlusStations(travelTipNode.SelectElements("InstapTipTreinEindBestemmingReisTipStation"))
+		travelTip.Stations = ParseInfoPlusStations(travelTipNode.SelectElements("ReisTipStation"))
 
 		departure.TravelTips = append(departure.TravelTips, travelTip)
 	}
