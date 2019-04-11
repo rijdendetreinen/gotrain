@@ -100,13 +100,13 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 		"destination_actual":       nullString(departure.ActualDestinationString()),
 		"destination_planned":      nullString(departure.PlannedDestinationString()),
 		"destination_actual_codes": departure.ActualDestinationCodes(),
-		"via":                      nullString(departure.ViaStationsString()),
-		"departure_time":           localTimeString(departure.DepartureTime),
-		"platform_actual":          nullString(departure.PlatformActual),
-		"platform_planned":         nullString(departure.PlatformPlanned),
-		"delay":                    departure.Delay,
-		"cancelled":                departure.Cancelled,
-		"platform_changed":         departure.PlatformChanged(),
+		"via":              nullString(departure.ViaStationsString()),
+		"departure_time":   localTimeString(departure.DepartureTime),
+		"platform_actual":  nullString(departure.PlatformActual),
+		"platform_planned": nullString(departure.PlatformPlanned),
+		"delay":            departure.Delay,
+		"cancelled":        departure.Cancelled,
+		"platform_changed": departure.PlatformChanged(),
 
 		"remarks": []interface{}{},
 		"tips":    []interface{}{},
@@ -119,22 +119,32 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 
 	if !departure.Cancelled {
 		if departure.DoNotBoard {
-			remarks = append(remarks, models.RemarkTranslation("Niet instappen", "Do not board", language))
+			remarks = append(remarks, models.Translate("Niet instappen", "Do not board", language))
 		}
 		if departure.RearPartRemains {
-			remarks = append(remarks, models.RemarkTranslation("Achterste treindeel blijft achter", "Rear train part: do not board", language))
+			remarks = append(remarks, models.Translate("Achterste treindeel blijft achter", "Rear train part: do not board", language))
 		}
 		if departure.ReservationRequired {
-			tips = append(tips, models.RemarkTranslation("Reservering verplicht", "Reservation required", language))
+			tips = append(tips, models.Translate("Reservering verplicht", "Reservation required", language))
 		}
 		if departure.WithSupplement {
-			tips = append(tips, models.RemarkTranslation("Toeslag verplicht", "Supplement required", language))
+			tips = append(tips, models.Translate("Toeslag verplicht", "Supplement required", language))
 		}
 		if departure.SpecialTicket {
-			tips = append(tips, models.RemarkTranslation("Bijzonder ticket", "Special ticket", language))
+			tips = append(tips, models.Translate("Bijzonder ticket", "Special ticket", language))
 		}
 
-		// TODO: boardingtips etc.
+		// Translate all tips:
+		for _, tip := range departure.TravelTips {
+			tips = append(tips, tip.Translation(language))
+		}
+		for _, tip := range departure.BoardingTips {
+			tips = append(tips, tip.Translation(language))
+		}
+		for _, tip := range departure.ChangeTips {
+			tips = append(tips, tip.Translation(language))
+		}
+
 		// TODO: check for material which does not continue to terminal station
 	}
 

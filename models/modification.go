@@ -105,11 +105,11 @@ func (modification Modification) Remark(language string) (string, bool) {
 
 	case ModificationChangedDeparturePlatform:
 		// TODO: pass platform as argument
-		return RemarkTranslation("Gewijzigd vertrekspoor", "Changed departure platform", language), true
+		return Translate("Gewijzigd vertrekspoor", "Changed departure platform", language), true
 
 	case ModificationChangedArrivalPlatform:
 		// TODO: pass platform as argument
-		return RemarkTranslation("Gewijzigd aankomstspoor", "Changed arrival platform", language), true
+		return Translate("Gewijzigd aankomstspoor", "Changed arrival platform", language), true
 
 	case ModificationChangedStopPattern:
 		return modification.remarkWithCause("Gewijzigde dienstregeling", "Schedule changed", language), true
@@ -134,10 +134,10 @@ func (modification Modification) Remark(language string) (string, bool) {
 		return modification.remarkWithStation("Let op, rijdt naar %s", "Attention, train goes to %s", language), true
 
 	case ModificationNotActual:
-		return RemarkTranslation("Geen actuele informatie", "Information is not real-time", language), true
+		return Translate("Geen actuele informatie", "Information is not real-time", language), true
 
 	case ModificationBusReplacement:
-		return RemarkTranslation("Bus in plaats van trein", "Bus replaces train", language), true
+		return Translate("Bus in plaats van trein", "Bus replaces train", language), true
 
 	}
 
@@ -145,7 +145,7 @@ func (modification Modification) Remark(language string) (string, bool) {
 }
 
 func (modification Modification) remarkWithCause(remarkNL, remarkEN, language string) string {
-	remark := RemarkTranslation(remarkNL, remarkEN, language)
+	remark := Translate(remarkNL, remarkEN, language)
 
 	if modification.CauseLong != "" {
 		cause := modification.CauseLong
@@ -155,17 +155,6 @@ func (modification Modification) remarkWithCause(remarkNL, remarkEN, language st
 		}
 
 		remark = remark + " " + cause
-	}
-
-	return remark
-}
-
-// RemarkTranslation returns the appropriate translation based on language
-func RemarkTranslation(remarkNL, remarkEN, language string) string {
-	remark := remarkNL
-
-	if language == "en" {
-		remark = remarkEN
 	}
 
 	return remark

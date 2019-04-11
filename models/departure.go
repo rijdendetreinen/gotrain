@@ -1,6 +1,8 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 // Departure is a train service which departs from a single station
 type Departure struct {
@@ -108,4 +110,39 @@ func (departure Departure) ActualDestinationCodes() []string {
 // ViaStationsString returns a string of all actual via stations (medium name)
 func (departure Departure) ViaStationsString() string {
 	return stationsMediumString(departure.ViaActual, ", ")
+}
+
+// Translation provides a translation for this tip
+func (tip BoardingTip) Translation(language string) string {
+	return ""
+}
+
+// Translation provides a translation for this tip
+func (tip ChangeTip) Translation(language string) string {
+	return ""
+}
+
+// Translation provides a translation for this tip
+func (tip TravelTip) Translation(language string) string {
+	switch tip.TipCode {
+	case "STNS":
+		return TranslateStations("Stopt niet in %s", "Does not call at %s", tip.Stations, language)
+	case "STO":
+		return TranslateStations("Stopt ook in %s", "Also calls at %s", tip.Stations, language)
+	case "STVA":
+		return TranslateStations("Stopt vanaf %s op alle tussengelegen stations", "Calls at all stations after %s", tip.Stations, language)
+	case "STNVA":
+		return TranslateStations("Stopt vanaf %s niet op tussengelegen stations", "Does not call at intermediate stations after %s", tip.Stations, language)
+	case "STT":
+		return TranslateStations("Stopt tot %s op alle tussengelegen stations", "Calls at all stations until %s", tip.Stations, language)
+	case "STNT":
+		return TranslateStations("Stopt tot %s niet op tussengelegen stations", "First stop at %s", tip.Stations, language)
+	case "STAL":
+		return Translate("Stopt op alle tussengelegen stations", "Calls at all stations", language)
+	case "STN":
+		return Translate("Stopt niet op tussengelegen stations", "Does not call at intermediate stations", language)
+	}
+
+	// Fallback:
+	return tip.TipCode
 }
