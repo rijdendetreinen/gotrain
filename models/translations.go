@@ -17,5 +17,26 @@ func Translate(remarkNL, remarkEN, language string) string {
 func TranslateStations(remarkNL, remarkEN string, stations []Station, language string) string {
 	translation := Translate(remarkNL, remarkEN, language)
 
-	return fmt.Sprintf(translation, stationsMediumString(stations, ", "))
+	return fmt.Sprintf(translation, stationsStringTranslated(stations, language))
+}
+
+func stationsStringTranslated(stations []Station, language string) string {
+	stationsText := ""
+
+	for index, station := range stations {
+		if index > 0 {
+			if index < len(stations)-1 {
+				stationsText += ", "
+			} else {
+				if language == "en" {
+					stationsText += " and "
+				} else {
+					stationsText += " en "
+				}
+			}
+		}
+		stationsText += station.NameLong
+	}
+
+	return stationsText
 }
