@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -184,7 +185,35 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 			tips = append(tips, tip.Translation(language))
 		}
 
-		// TODO: check for material which does not continue to terminal station
+		// Check for material destinations:
+		for _, wing := range departure.TrainWings {
+			differentTerminus := make(map[string][]Material)
+
+			for _, material := range wing.Material {
+				if len(wing.DestinationActual) > 0 && material.DestinationActual.Code != wing.DestinationActual[0].Code {
+					// Different terminus:
+					if material.Number != "" {
+						terminus := material.DestinationActual.NameLong
+
+						differentTerminus[terminus] = append(differentTerminus[terminus], material)
+					}
+				}
+			}
+
+			for terminus, units := range differentTerminus {
+				if len(units) == 1 {
+					remarks = append(remarks, fmt.Sprintf(Translate("Treinstel %s rijdt niet verder dan %s", "Coach %s terminates at %s", language), *units[0].NormalizedNumber(), terminus))
+				} else {
+					strs := make([]string, len(units))
+					for i, v := range units {
+						strs[i] = *v.NormalizedNumber()
+					}
+					unitsString := strings.Join(strs, ", ")
+
+					remarks = append(remarks, fmt.Sprintf(Translate("Treinstellen %s rijden niet verder dan %s", "Coaches %s terminate at %s", language), unitsString, terminus))
+				}
+			}
+		}
 	}
 
 	if departure.ServiceName != "" {
