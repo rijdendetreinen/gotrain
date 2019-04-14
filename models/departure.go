@@ -151,3 +151,45 @@ func (tip TravelTip) Translation(language string) string {
 	// Fallback:
 	return tip.TipCode
 }
+
+// GetRemarksTips returns all (translated) remarks and tips, both travel tips and tips based on departure flags
+func (departure Departure) GetRemarksTips(language string) (remarks, tips []string) {
+	remarks = GetRemarks(departure.Modifications, language)
+
+	if !departure.Cancelled {
+		if departure.DoNotBoard {
+			remarks = append(remarks, Translate("Niet instappen", "Do not board", language))
+		}
+		if departure.RearPartRemains {
+			remarks = append(remarks, Translate("Achterste treindeel blijft achter", "Rear train part: do not board", language))
+		}
+		if departure.ReservationRequired {
+			tips = append(tips, Translate("Reservering verplicht", "Reservation required", language))
+		}
+		if departure.WithSupplement {
+			tips = append(tips, Translate("Toeslag verplicht", "Supplement required", language))
+		}
+		if departure.SpecialTicket {
+			tips = append(tips, Translate("Bijzonder ticket", "Special ticket", language))
+		}
+
+		// Translate all tips:
+		for _, tip := range departure.TravelTips {
+			tips = append(tips, tip.Translation(language))
+		}
+		for _, tip := range departure.BoardingTips {
+			tips = append(tips, tip.Translation(language))
+		}
+		for _, tip := range departure.ChangeTips {
+			tips = append(tips, tip.Translation(language))
+		}
+
+		// TODO: check for material which does not continue to terminal station
+	}
+
+	if departure.ServiceName != "" {
+		tips = append(tips, departure.ServiceName)
+	}
+
+	return
+}

@@ -114,46 +114,7 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 		"wings": []interface{}{},
 	}
 
-	remarks := models.GetRemarks(departure.Modifications, language)
-	var tips []string
-
-	if !departure.Cancelled {
-		if departure.DoNotBoard {
-			remarks = append(remarks, models.Translate("Niet instappen", "Do not board", language))
-		}
-		if departure.RearPartRemains {
-			remarks = append(remarks, models.Translate("Achterste treindeel blijft achter", "Rear train part: do not board", language))
-		}
-		if departure.ReservationRequired {
-			tips = append(tips, models.Translate("Reservering verplicht", "Reservation required", language))
-		}
-		if departure.WithSupplement {
-			tips = append(tips, models.Translate("Toeslag verplicht", "Supplement required", language))
-		}
-		if departure.SpecialTicket {
-			tips = append(tips, models.Translate("Bijzonder ticket", "Special ticket", language))
-		}
-
-		// Translate all tips:
-		for _, tip := range departure.TravelTips {
-			tips = append(tips, tip.Translation(language))
-		}
-		for _, tip := range departure.BoardingTips {
-			tips = append(tips, tip.Translation(language))
-		}
-		for _, tip := range departure.ChangeTips {
-			tips = append(tips, tip.Translation(language))
-		}
-
-		// TODO: check for material which does not continue to terminal station
-	}
-
-	if departure.ServiceName != "" {
-		tips = append(tips, departure.ServiceName)
-	}
-
-	response["remarks"] = remarks
-	response["tips"] = tips
+	response["remarks"], response["tips"] = departure.GetRemarksTips(language)
 
 	responseWings := []interface{}{}
 

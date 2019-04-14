@@ -98,21 +98,16 @@ var inspectDepartureCommand = &cobra.Command{
 		displayModifications(departure.Modifications, 1, showModifications, language)
 
 		if showModifications {
-			fmt.Println("Tips:")
+			fmt.Println("Remarks and tips:")
 
-			for index, tip := range departure.TravelTips {
-				translation := tip.Translation(language)
-				fmt.Printf(" %d. %s\n", index, translation)
+			remarks, tips := departure.GetRemarksTips(language)
+
+			for index, remark := range remarks {
+				fmt.Printf("  R%02d> %s\n", index+1, remark)
 			}
 
-			for index, tip := range departure.BoardingTips {
-				translation := tip.Translation(language)
-				fmt.Printf(" %d. %s\n", index, translation)
-			}
-
-			for index, tip := range departure.ChangeTips {
-				translation := tip.Translation(language)
-				fmt.Printf(" %d. %s\n", index, translation)
+			for index, tip := range tips {
+				fmt.Printf("  T%02d> %s\n", index+1, tip)
 			}
 		}
 	},
