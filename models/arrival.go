@@ -28,12 +28,13 @@ type Arrival struct {
 	Cancelled           bool
 	NotRealTime         bool
 
-	OriginActual    Station
-	OriginPlanned   Station
+	OriginActual  []Station
+	OriginPlanned []Station
+	ViaActual     []Station
+	ViaPlanned    []Station
+
 	PlatformActual  string
 	PlatformPlanned string
-
-	// TODO: ViaActual, ViaPlanned, etc.
 
 	Modifications []Modification
 

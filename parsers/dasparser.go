@@ -3,12 +3,13 @@ package parsers
 import (
 	"fmt"
 	"io"
+	"strconv"
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
 )
 
-// ParseDasMessage parses a DVS XML message to an Arrival object
+// ParseDasMessage parses a DAS XML message to an Arrival object
 func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	doc := etree.NewDocument()
 
@@ -39,10 +40,39 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	arrival.ServiceType = trainProduct.SelectElement("TreinSoort").Text()
 	arrival.ServiceTypeCode = trainProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	arrival.Company = trainProduct.SelectElement("Vervoerder").Text()
+	arrival.Status, _ = strconv.Atoi(trainProduct.SelectElement("TreinStatus").Text())
+
+	// Train name, e.g. special trains like the museum train
+	nameNode := trainProduct.SelectElement("TreinNaam")
+	if nameNode != nil {
+		arrival.ServiceName = nameNode.Text()
+	}
 
 	arrival.ArrivalTime = ParseInfoPlusDateTime(ParseWhenAttribute(trainProduct, "AankomstTijd", "InfoStatus", "Gepland"))
+	arrival.Delay = ParseInfoPlusDuration(trainProduct.SelectElement("ExacteAankomstVertraging"))
 
-	// TODO: Parse other fields
+	arrival.OriginActual = ParseInfoPlusStations(ParseWhenAttributeMulti(trainProduct, "TreinHerkomst", "InfoStatus", "Actueel"))
+	arrival.OriginPlanned = ParseInfoPlusStations(ParseWhenAttributeMulti(trainProduct, "TreinHerkomst", "InfoStatus", "Gepland"))
+
+	// Workaround for DAS bug:
+	if arrival.OriginActual[0].Code == arrival.Station.Code {
+		arrival.OriginActual = arrival.OriginPlanned
+	}
+
+	arrival.PlatformActual = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "TreinAankomstSpoor", "InfoStatus", "Actueel"))
+	arrival.PlatformPlanned = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "TreinAankomstSpoor", "InfoStatus", "Gepland"))
+
+	viaNodeActual := ParseWhenAttribute(trainProduct, "VerkorteRouteHerkomst", "InfoStatus", "Actueel")
+	viaNodePlanned := ParseWhenAttribute(trainProduct, "VerkorteRouteHerkomst", "InfoStatus", "Actueel")
+
+	if viaNodeActual != nil {
+		arrival.ViaActual = ParseInfoPlusStations(viaNodeActual.SelectElements("Station"))
+	}
+	if viaNodePlanned != nil {
+		arrival.ViaPlanned = ParseInfoPlusStations(viaNodePlanned.SelectElements("Station"))
+	}
+
+	arrival.Modifications = ParseInfoPlusModificationsByElement(trainProduct, "WijzigingHerkomst")
 
 	return
 }

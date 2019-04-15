@@ -20,9 +20,14 @@ func ParseInfoPlusBoolean(element *etree.Element) bool {
 
 // ParseInfoPlusModifications parses a list of modifications
 func ParseInfoPlusModifications(element *etree.Element) []models.Modification {
+	return ParseInfoPlusModificationsByElement(element, "Wijziging")
+}
+
+// ParseInfoPlusModificationsByElement parses a list of modifications
+func ParseInfoPlusModificationsByElement(element *etree.Element, elementName string) []models.Modification {
 	var modifications []models.Modification
 
-	for _, modificationElement := range element.SelectElements("Wijziging") {
+	for _, modificationElement := range element.SelectElements(elementName) {
 		var modification models.Modification
 
 		modification.ModificationType, _ = strconv.Atoi(modificationElement.SelectElement("WijzigingType").Text())
