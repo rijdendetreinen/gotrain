@@ -113,6 +113,68 @@ var inspectDepartureCommand = &cobra.Command{
 	},
 }
 
+var inspectArrivalCommand = &cobra.Command{
+	Use:   "arrival [filename]",
+	Short: "Inspect an arrival message",
+	Long:  `Inspect an arrival XML message and print a summary of the content to the screen.`,
+	Args:  cobra.ExactArgs(1),
+	Run: func(cmd *cobra.Command, args []string) {
+		showModifications, _ := cmd.Flags().GetBool("modifications")
+		language, _ := cmd.Flags().GetString("language")
+
+		f := openFile(args)
+
+		arrival, err := parsers.ParseDasMessage(f)
+
+		if err != nil {
+			fmt.Println("Error while parsing departure")
+			fmt.Println(err)
+			os.Exit(2)
+		}
+
+		fmt.Printf("Product ID: %s\n", arrival.ProductID)
+		fmt.Printf("Timestamp: %s\n", arrival.Timestamp.Local())
+		fmt.Printf("Arrival ID: %s\n", arrival.ID)
+		fmt.Printf("Service ID: %s\n", arrival.ServiceID)
+		fmt.Printf("Cancelled: %v\n", arrival.Cancelled)
+		fmt.Printf("Arrival station: %s = %s\n", arrival.Station.Code, arrival.Station.NameLong)
+		fmt.Printf("Service number: %s\n", arrival.ServiceNumber)
+		fmt.Printf("Service date: %s\n", arrival.ServiceDate)
+		fmt.Printf("Arrival time: %s\n", arrival.ArrivalTime.Local())
+		fmt.Printf("Delay: %ds\n", arrival.Delay)
+		fmt.Printf("Status: %d\n", arrival.Status)
+		fmt.Printf("Real arrival time: %s\n", arrival.RealArrivalTime().Local())
+		fmt.Printf("Arrival platform: %s = %s*\n", arrival.PlatformPlanned, arrival.PlatformActual)
+		fmt.Print("Actual origin(s): ")
+		displayStations(arrival.OriginActual)
+
+		fmt.Print("\nPlanned destination(s): ")
+		displayStations(arrival.OriginPlanned)
+
+		fmt.Printf("\nType: %s/%s\n", arrival.ServiceTypeCode, arrival.ServiceType)
+		fmt.Printf("Company: %v\n", arrival.Company)
+
+		fmt.Print("Actual route station(s): ")
+		displayStations(arrival.ViaActual)
+		fmt.Print("\nPlanned route station(s): ")
+		displayStations(arrival.ViaPlanned)
+		fmt.Print("\n")
+
+		fmt.Println("Arrival modifications:")
+		displayModifications(arrival.Modifications, 1, showModifications, language)
+
+		if showModifications {
+			fmt.Println("Remarks:")
+
+			remarks := models.GetRemarks(arrival.Modifications, language)
+
+			for index, remark := range remarks {
+				fmt.Printf("  R%02d> %s\n", index+1, remark)
+			}
+		}
+	},
+}
+
 var inspectServiceCommand = &cobra.Command{
 	Use:   "service [filename]",
 	Short: "Inspect a service message",
@@ -232,6 +294,7 @@ func init() {
 	RootCmd.AddCommand(inspectCommand)
 	inspectCommand.AddCommand(inspectDepartureCommand)
 	inspectCommand.AddCommand(inspectServiceCommand)
+	inspectCommand.AddCommand(inspectArrivalCommand)
 
 	inspectDepartureCommand.Flags().BoolP("modifications", "m", false, "Show modifications")
 	inspectDepartureCommand.Flags().BoolP("stops", "s", false, "Show stops")
@@ -240,4 +303,7 @@ func init() {
 	inspectServiceCommand.Flags().BoolP("modifications", "m", false, "Show modifications and tips")
 	inspectServiceCommand.Flags().BoolP("stops", "s", false, "Show stops")
 	inspectServiceCommand.Flags().StringP("language", "l", "nl", "Language")
+
+	inspectArrivalCommand.Flags().BoolP("modifications", "m", false, "Show modifications and tips")
+	inspectArrivalCommand.Flags().StringP("language", "l", "nl", "Language")
 }
