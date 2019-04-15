@@ -18,12 +18,17 @@ func ServeAPI(address string, exit chan bool) {
 	router.HandleFunc("/v1", apiVersion).Methods("GET")
 	router.HandleFunc("/v2", apiVersion).Methods("GET")
 	router.HandleFunc("/v2/version", apiVersion).Methods("GET")
+
 	router.HandleFunc("/v2/arrivals/stats", arrivalCounters).Methods("GET")
 	router.HandleFunc("/v2/arrivals/all", arrivalsAll).Methods("GET")
+	router.HandleFunc("/v2/arrivals/station/{station}", arrivalsStation).Methods("GET")
+	router.HandleFunc("/v2/arrivals/arrival/{id}/{station}/{date}", arrivalDetails).Methods("GET")
+
 	router.HandleFunc("/v2/departures/stats", departureCounters).Methods("GET")
 	router.HandleFunc("/v2/departures/all", departuresAll).Methods("GET")
 	router.HandleFunc("/v2/departures/station/{station}", departuresStation).Methods("GET")
 	router.HandleFunc("/v2/departures/departure/{id}/{station}/{date}", departureDetails).Methods("GET")
+
 	router.HandleFunc("/v2/services/stats", serviceCounters).Methods("GET")
 	router.HandleFunc("/v2/services/all", serviceAll).Methods("GET")
 	router.HandleFunc("/v2/services/service/{id}/{date}", serviceDetails).Methods("GET")
