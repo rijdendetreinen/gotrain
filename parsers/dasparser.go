@@ -74,5 +74,15 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 
 	arrival.Modifications = ParseInfoPlusModificationsByElement(trainProduct, "WijzigingHerkomst")
 
+	// Check for flags that may be set:
+	for _, modification := range arrival.Modifications {
+		switch modification.ModificationType {
+		case models.ModificationCancelledArrival:
+			arrival.Cancelled = true
+		case models.ModificationNotActual:
+			arrival.NotRealTime = true
+		}
+	}
+
 	return
 }
