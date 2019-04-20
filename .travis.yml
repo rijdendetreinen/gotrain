@@ -9,3 +9,8 @@ addons:
       - libzmq3-dev
 
 sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache/go-build
+    - $HOME/gopath/pkg/mod
