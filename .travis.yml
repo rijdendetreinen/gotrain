@@ -1,0 +1,16 @@
+language: go
+
+go:
+- "1.12.x"
+
+addons:
+  apt:
+    packages:
+      - libzmq3-dev
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache/go-build
+    - $HOME/gopath/pkg/mod
