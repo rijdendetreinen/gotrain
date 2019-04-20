@@ -2,3 +2,10 @@ language: go
 
 go:
 - "1.12.x"
+
+addons:
+  apt:
+    packages:
+      - libzmq3-dev
+
+sudo: false
