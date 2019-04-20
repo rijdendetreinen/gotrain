@@ -39,7 +39,7 @@ func TestRealDepartureTime(t *testing.T) {
 	}
 }
 
-func TestPlatformChanged(t *testing.T) {
+func TestDeparturePlatformChanged(t *testing.T) {
 	tables := []struct {
 		planned string
 		actual  string
