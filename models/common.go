@@ -39,6 +39,13 @@ func (material Material) NormalizedNumber() *string {
 	}
 
 	number := strings.TrimRight(strings.TrimLeft(material.Number, "0-"), "0-")
+	number = strings.ReplaceAll(number, "-", "")
+
+	// Translate TRAXX numbers (e.g., 186012 becomes 186.012)
+	if len(number) == 6 {
+		number = number[:3] + "." + number[3:]
+	}
+
 	return &number
 }
 
