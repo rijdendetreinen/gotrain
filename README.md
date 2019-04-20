@@ -1,6 +1,8 @@
 GoTrain
 =======
 
+[![Build Status](https://travis-ci.org/rijdendetreinen/gotrain.svg?branch=master)](https://travis-ci.org/rijdendetreinen/gotrain)
+
 GoTrain is a server application for receiving, processing and distributing
 real-time data about train services in the Netherlands.
 
