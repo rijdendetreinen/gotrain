@@ -29,6 +29,16 @@ type StoreCollection struct {
 	ServiceStore   ServiceStore
 }
 
+// Store is the generic store struct
+type Store struct {
+	sync.RWMutex
+	Counters         Counters
+	Status           string
+	measurements     []Measurement
+	messagesAverage  float64
+	lastStatusChange time.Time
+}
+
 // Counters stores some interesting counters for a store
 type Counters struct {
 	Received   int `json:"received"`
@@ -39,13 +49,10 @@ type Counters struct {
 	TooLate    int `json:"too_late"`
 }
 
-// Store is the generic store struct
-type Store struct {
-	sync.RWMutex
-	Counters         Counters
-	status           string
-	messagesAverage  float32
-	lastStatusChange time.Time
+// Measurement is a struct to store the number of received and processed messages
+type Measurement struct {
+	Time      time.Time
+	Processed int
 }
 
 // ResetCounters resets all store counters
@@ -56,13 +63,65 @@ func (store *Store) ResetCounters() {
 	store.Counters.Duplicates = 0
 	store.Counters.Outdated = 0
 	store.Counters.TooLate = 0
+
+	store.measurements = nil
+}
+
+// TakeMeasurement takes a new measurement. This method is expected to be called approximately every 20s.
+// This function re-calculates the average messages per minute if enough data is available and updates the
+// store status accordingly.
+func (store *Store) TakeMeasurement() {
+	store.newMeasurement(time.Now())
+}
+
+// newMeasurement stores a new measurement, and re-calculates the average messages per minute if enough data is available.
+// The store status is updated based on the average messages that are processed
+func (store *Store) newMeasurement(time time.Time) {
+	var measurement Measurement
+
+	measurement.Time = time
+	measurement.Processed = store.Counters.Processed
+
+	store.measurements = append(store.measurements, measurement)
+
+	if len(store.measurements) > 1 {
+		foundMeasurement := false
+		var firstMeasurement Measurement
+		popMeasurements := 0
+
+		// Loop over measurements, until they do not meet our condition anymore:
+		for index, earlierMeasurement := range store.measurements {
+			duration := measurement.Time.Sub(earlierMeasurement.Time)
+
+			if duration.Seconds() >= 600 {
+				foundMeasurement = true
+				firstMeasurement = earlierMeasurement
+				popMeasurements = index
+			} else {
+				break
+			}
+		}
+
+		if foundMeasurement {
+			duration := measurement.Time.Sub(firstMeasurement.Time)
+			store.messagesAverage = float64(measurement.Processed-firstMeasurement.Processed) / duration.Seconds()
+
+			if popMeasurements > 0 {
+				store.measurements = store.measurements[popMeasurements:]
+			}
+		}
+	}
+}
+
+func (store *Store) updateStatus() {
+	// Update the store status based on the current messagesAverage
 }
 
 // ResetStatus resets the status and counters of a store
 func (store *Store) ResetStatus() {
 	store.ResetCounters()
 
-	store.status = StatusUnknown
+	store.Status = StatusUnknown
 	store.messagesAverage = 0
 	store.lastStatusChange = time.Now()
 }
