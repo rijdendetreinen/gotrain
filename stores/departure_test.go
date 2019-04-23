@@ -20,6 +20,10 @@ func TestDeparturesCount(t *testing.T) {
 	if store.GetNumberOfDepartures() != 1 {
 		t.Error("Wrong number of departures")
 	}
+
+	if store.GetNumberOfDepartures() != len(store.GetAllDepartures()) {
+		t.Error("Reported number of departures does not match with actual inventory count")
+	}
 }
 
 func TestRetrieveDeparture(t *testing.T) {
@@ -159,6 +163,71 @@ func generateDeparture() models.Departure {
 	departure.ServiceDate = "2019-01-27"
 	departure.GenerateID()
 	departure.Timestamp = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
+	departure.DepartureTime = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
 
 	return departure
+}
+
+func TestCleanup(t *testing.T) {
+	var store DepartureStore
+
+	store.InitStore()
+
+	// Fake some departures
+	departure1 := generateDeparture()
+	departure1.Hidden = true
+
+	departure2 := generateDeparture()
+	departure2.ServiceID = "54321"
+	departure2.GenerateID()
+
+	departure3 := generateDeparture()
+	departure3.ServiceID = "99999"
+	departure3.DepartureTime = time.Date(2099, time.January, 27, 12, 34, 56, 78, time.UTC)
+	departure3.GenerateID()
+
+	store.ProcessDeparture(departure1)
+	store.ProcessDeparture(departure2)
+	store.ProcessDeparture(departure3)
+
+	// Verify that we have 3 departures in store:
+	if store.GetNumberOfDepartures() != 3 {
+		t.Error("Wrong number of departures")
+	}
+
+	// Cleanup, first pass:
+	// (We expect that the testing system is already beyond January 27th 2019...)
+	store.CleanUp()
+
+	// Teh hidden departure should be gone by now. The second departure should be hidden by now.
+	// The third departure should still be visible.
+	if store.GetNumberOfDepartures() > 2 {
+		t.Fatal("Hidden departure not removed")
+	} else if store.GetNumberOfDepartures() < 2 {
+		t.Fatal("Non-hidden departure already removed")
+	}
+
+	// Verify departure2 is hidden by now:
+	if store.GetDeparture(departure2.ServiceID, departure2.ServiceDate, departure2.Station.Code).Hidden == false {
+		t.Error("Departed train should be hidden after CleanUp")
+	}
+
+	// Verify departure3 is still visible.
+	// That is, if you're not testing this code in year 2099 or later (hello from the past!)
+	if store.GetDeparture(departure3.ServiceID, departure3.ServiceDate, departure3.Station.Code).Hidden == true {
+		t.Error("Train which departs in 2099 should not be hidden already")
+	}
+
+	// Second pass for cleaning up.
+	// After that, departure2 should be gone, departure3 still be visible.
+	store.CleanUp()
+
+	if store.GetDeparture(departure2.ServiceID, departure2.ServiceDate, departure2.Station.Code) != nil {
+		t.Error("Departure2 should have been deleted by now")
+	}
+
+	if store.GetDeparture(departure3.ServiceID, departure3.ServiceDate, departure3.Station.Code).Hidden == true {
+		t.Error("Train which departs in 2099 should not be hidden already")
+	}
+
 }
