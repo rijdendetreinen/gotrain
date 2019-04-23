@@ -41,7 +41,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	departure.ServiceID = infoProduct.SelectElement("RitId").Text()
 	departure.ServiceDate = infoProduct.SelectElement("RitDatum").Text()
 	departure.Station = ParseInfoPlusStation(infoProduct.SelectElement("RitStation"))
-	departure.ID = departure.ServiceDate + "-" + departure.ServiceID + "-" + departure.Station.Code
+	departure.GenerateID()
 
 	departure.ServiceNumber = trainProduct.SelectElement("TreinNummer").Text()
 	departure.ServiceType = trainProduct.SelectElement("TreinSoort").Text()

@@ -82,6 +82,11 @@ type TrainWing struct {
 	Modifications      []Modification
 }
 
+// GenerateID generates an ID for this departure
+func (departure *Departure) GenerateID() {
+	departure.ID = departure.ServiceDate + "-" + departure.ServiceID + "-" + departure.Station.Code
+}
+
 // RealDepartureTime returns the actual departure time, including delay
 func (departure Departure) RealDepartureTime() time.Time {
 	var delayDuration time.Duration

@@ -94,6 +94,60 @@ func TestDeparturesProcessing(t *testing.T) {
 	}
 }
 
+func TestRetrieveDeparturesFromStation(t *testing.T) {
+	var store DepartureStore
+
+	store.InitStore()
+
+	// Fake some departures
+	departure1 := generateDeparture()
+
+	departure2 := generateDeparture()
+	departure2.ServiceID = "54321"
+	departure2.GenerateID()
+
+	departure3 := generateDeparture()
+	departure3.ServiceID = "23456"
+	departure3.Status = 5 // Departed
+	departure3.GenerateID()
+
+	departure4 := generateDeparture()
+	departure4.ServiceID = "23456"
+	departure4.Station.Code = "UTO"
+	departure4.Station.NameLong = "Utrecht Overvecht"
+	departure4.GenerateID()
+
+	store.ProcessDeparture(departure1)
+	store.ProcessDeparture(departure2)
+	store.ProcessDeparture(departure3)
+	store.ProcessDeparture(departure4)
+
+	departuresUT := store.GetStationDepartures("UT", false)
+
+	if len(departuresUT) != 2 {
+		t.Error("Wrong number of departures for UT")
+	}
+
+	departuresUT = store.GetStationDepartures("UT", true)
+
+	if len(departuresUT) != 3 {
+		t.Error("Wrong number of (hidden+non-hidden) departures for UT")
+	}
+
+	departuresUTO := store.GetStationDepartures("UTO", false)
+
+	if len(departuresUTO) != 1 {
+		t.Error("Wrong number of departures for UTO")
+	}
+
+	// Station without departures:
+	departuresHRY := store.GetStationDepartures("HRY", false)
+
+	if len(departuresHRY) != 0 {
+		t.Error("Wrong number of departures for HRY")
+	}
+}
+
 func generateDeparture() models.Departure {
 	var departure models.Departure
 
@@ -103,7 +157,7 @@ func generateDeparture() models.Departure {
 	departure.Station.Code = "UT"
 	departure.Station.NameLong = "Utrecht Centraal"
 	departure.ServiceDate = "2019-01-27"
-	departure.ID = "2019-01-27-1234-UT"
+	departure.GenerateID()
 	departure.Timestamp = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
 
 	return departure
