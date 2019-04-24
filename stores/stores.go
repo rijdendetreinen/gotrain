@@ -35,8 +35,8 @@ type Store struct {
 	Counters         Counters
 	Status           string
 	measurements     []Measurement
-	messagesAverage  float64
-	lastStatusChange time.Time
+	MessagesAverage  float64
+	LastStatusChange time.Time
 }
 
 // Counters stores some interesting counters for a store
@@ -85,7 +85,7 @@ func (store *Store) newMeasurement(time time.Time) {
 
 	store.measurements = append(store.measurements, measurement)
 
-	store.messagesAverage = -1
+	store.MessagesAverage = -1
 
 	if len(store.measurements) > 1 {
 		foundMeasurement := false
@@ -107,7 +107,7 @@ func (store *Store) newMeasurement(time time.Time) {
 
 		if foundMeasurement {
 			duration := measurement.Time.Sub(firstMeasurement.Time)
-			store.messagesAverage = float64(measurement.Processed-firstMeasurement.Processed) / duration.Seconds()
+			store.MessagesAverage = float64(measurement.Processed-firstMeasurement.Processed) / duration.Seconds()
 
 			if popMeasurements > 0 {
 				store.measurements = store.measurements[popMeasurements:]
@@ -119,38 +119,38 @@ func (store *Store) newMeasurement(time time.Time) {
 // Update the store status based on the current messagesAverage
 func (store *Store) updateStatus(currentTime time.Time) {
 	// Determine whether we are currently receiving messages:
-	isReceiving := store.messagesAverage > 1
+	isReceiving := store.MessagesAverage > 1
 
 	// Determine possible status changes:
 	if isReceiving && (store.Status == StatusUnknown || store.Status == StatusDown) {
 		// Status was DOWN or UNKNOWN, but we are currently receiving.
 		// Change to RECOVERING
 		store.Status = StatusRecovering
-		store.lastStatusChange = currentTime
+		store.LastStatusChange = currentTime
 	} else if isReceiving && store.Status == StatusRecovering {
 		// We are currently receiving and our status is RECOVERING
 		// Check last update time to see if we can change to UP:
-		if currentTime.Sub(store.lastStatusChange).Seconds() >= 70*60 {
+		if currentTime.Sub(store.LastStatusChange).Seconds() >= 70*60 {
 			store.Status = StatusUp
-			store.lastStatusChange = currentTime
+			store.LastStatusChange = currentTime
 		}
 	} else if isReceiving && store.Status == StatusUp {
 		// We are currently receiving and our status was already UP.
 		// Keep up the good job!
 	} else if !isReceiving {
 		// We are not receiving.
-		if store.messagesAverage == -1 {
+		if store.MessagesAverage == -1 {
 			// Average of -1 implies not enough data to determine avg. number of messages
 			// Change status to UNKNOWN (if it wasn't already UNKNOWN):
 			if store.Status != StatusUnknown {
 				store.Status = StatusUnknown
-				store.lastStatusChange = currentTime
+				store.LastStatusChange = currentTime
 			}
 		} else if store.Status != StatusDown {
 			// Average is not -1, so we have valid data about our received messages.
 			// Change status to DOWN (if it wasn't already DOWN):
 			store.Status = StatusDown
-			store.lastStatusChange = currentTime
+			store.LastStatusChange = currentTime
 		}
 	}
 }
@@ -160,8 +160,8 @@ func (store *Store) ResetStatus() {
 	store.ResetCounters()
 
 	store.Status = StatusUnknown
-	store.messagesAverage = 0
-	store.lastStatusChange = time.Now()
+	store.MessagesAverage = 0
+	store.LastStatusChange = time.Now()
 }
 
 // InitializeStores initializes all stores and resets their counters/status
@@ -183,6 +183,13 @@ func CleanUp() {
 	Stores.ArrivalStore.CleanUp()
 	Stores.DepartureStore.CleanUp()
 	Stores.ServiceStore.CleanUp()
+}
+
+// TakeMeasurements takes measurements for all stores and updates downtime status
+func TakeMeasurements() {
+	Stores.ArrivalStore.TakeMeasurement()
+	Stores.DepartureStore.TakeMeasurement()
+	Stores.ServiceStore.TakeMeasurement()
 }
 
 // LoadStores reads all store content files

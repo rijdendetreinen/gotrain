@@ -11,7 +11,13 @@ import (
 )
 
 func departureCounters(w http.ResponseWriter, r *http.Request) {
-	response := Statistics{stores.Stores.DepartureStore.Counters, stores.Stores.DepartureStore.GetNumberOfDepartures()}
+	response := Statistics{
+		stores.Stores.DepartureStore.Counters,
+		stores.Stores.DepartureStore.GetNumberOfDepartures(),
+		stores.Stores.DepartureStore.Status,
+		stores.Stores.DepartureStore.LastStatusChange,
+		stores.Stores.DepartureStore.MessagesAverage,
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
@@ -100,13 +106,13 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 		"destination_actual":       nullString(departure.ActualDestinationString()),
 		"destination_planned":      nullString(departure.PlannedDestinationString()),
 		"destination_actual_codes": departure.ActualDestinationCodes(),
-		"via":              nullString(departure.ViaStationsString()),
-		"departure_time":   localTimeString(departure.DepartureTime),
-		"platform_actual":  nullString(departure.PlatformActual),
-		"platform_planned": nullString(departure.PlatformPlanned),
-		"delay":            departure.Delay,
-		"cancelled":        departure.Cancelled,
-		"platform_changed": departure.PlatformChanged(),
+		"via":                      nullString(departure.ViaStationsString()),
+		"departure_time":           localTimeString(departure.DepartureTime),
+		"platform_actual":          nullString(departure.PlatformActual),
+		"platform_planned":         nullString(departure.PlatformPlanned),
+		"delay":                    departure.Delay,
+		"cancelled":                departure.Cancelled,
+		"platform_changed":         departure.PlatformChanged(),
 
 		"remarks": []interface{}{},
 		"tips":    []interface{}{},

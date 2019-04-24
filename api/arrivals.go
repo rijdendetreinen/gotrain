@@ -11,7 +11,13 @@ import (
 )
 
 func arrivalCounters(w http.ResponseWriter, r *http.Request) {
-	response := Statistics{stores.Stores.ArrivalStore.Counters, stores.Stores.ArrivalStore.GetNumberOfArrivals()}
+	response := Statistics{
+		stores.Stores.ArrivalStore.Counters,
+		stores.Stores.ArrivalStore.GetNumberOfArrivals(),
+		stores.Stores.ArrivalStore.Status,
+		stores.Stores.ArrivalStore.LastStatusChange,
+		stores.Stores.ArrivalStore.MessagesAverage,
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)

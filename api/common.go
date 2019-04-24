@@ -10,8 +10,11 @@ import (
 
 // Statistics includes counters and the inventory
 type Statistics struct {
-	Counters  stores.Counters `json:"counters"`
-	Inventory int             `json:"inventory"`
+	Counters         stores.Counters `json:"counters"`
+	Inventory        int             `json:"inventory"`
+	Status           string          `json:"status"`
+	LastStatusChange time.Time       `json:"last_status_change"`
+	MessagesAverage  float64         `json:"average_messages"`
 }
 
 func getLanguageVar(url *url.URL) string {

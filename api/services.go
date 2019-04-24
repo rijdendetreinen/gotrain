@@ -9,7 +9,13 @@ import (
 )
 
 func serviceCounters(w http.ResponseWriter, r *http.Request) {
-	response := Statistics{stores.Stores.ServiceStore.Counters, stores.Stores.ServiceStore.GetNumberOfServices()}
+	response := Statistics{
+		stores.Stores.ServiceStore.Counters,
+		stores.Stores.ServiceStore.GetNumberOfServices(),
+		stores.Stores.ServiceStore.Status,
+		stores.Stores.ServiceStore.LastStatusChange,
+		stores.Stores.ServiceStore.MessagesAverage,
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(response)
