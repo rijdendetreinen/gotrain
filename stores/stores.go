@@ -72,6 +72,7 @@ func (store *Store) ResetCounters() {
 // store status accordingly.
 func (store *Store) TakeMeasurement() {
 	store.newMeasurement(time.Now())
+	store.updateStatus(time.Now())
 }
 
 // newMeasurement stores a new measurement, and re-calculates the average messages per minute if enough data is available.
@@ -83,6 +84,8 @@ func (store *Store) newMeasurement(time time.Time) {
 	measurement.Processed = store.Counters.Processed
 
 	store.measurements = append(store.measurements, measurement)
+
+	store.messagesAverage = -1
 
 	if len(store.measurements) > 1 {
 		foundMeasurement := false
@@ -113,8 +116,43 @@ func (store *Store) newMeasurement(time time.Time) {
 	}
 }
 
-func (store *Store) updateStatus() {
-	// Update the store status based on the current messagesAverage
+// Update the store status based on the current messagesAverage
+func (store *Store) updateStatus(currentTime time.Time) {
+	// Determine whether we are currently receiving messages:
+	isReceiving := store.messagesAverage > 1
+
+	// Determine possible status changes:
+	if isReceiving && (store.Status == StatusUnknown || store.Status == StatusDown) {
+		// Status was DOWN or UNKNOWN, but we are currently receiving.
+		// Change to RECOVERING
+		store.Status = StatusRecovering
+		store.lastStatusChange = currentTime
+	} else if isReceiving && store.Status == StatusRecovering {
+		// We are currently receiving and our status is RECOVERING
+		// Check last update time to see if we can change to UP:
+		if currentTime.Sub(store.lastStatusChange).Seconds() >= 70*60 {
+			store.Status = StatusUp
+			store.lastStatusChange = currentTime
+		}
+	} else if isReceiving && store.Status == StatusUp {
+		// We are currently receiving and our status was already UP.
+		// Keep up the good job!
+	} else if !isReceiving {
+		// We are not receiving.
+		if store.messagesAverage == -1 {
+			// Average of -1 implies not enough data to determine avg. number of messages
+			// Change status to UNKNOWN (if it wasn't already UNKNOWN):
+			if store.Status != StatusUnknown {
+				store.Status = StatusUnknown
+				store.lastStatusChange = currentTime
+			}
+		} else if store.Status != StatusDown {
+			// Average is not -1, so we have valid data about our received messages.
+			// Change status to DOWN (if it wasn't already DOWN):
+			store.Status = StatusDown
+			store.lastStatusChange = currentTime
+		}
+	}
 }
 
 // ResetStatus resets the status and counters of a store
