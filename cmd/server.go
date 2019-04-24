@@ -30,6 +30,7 @@ func init() {
 var exitReceiverChannel = make(chan bool)
 var exitRestAPI = make(chan bool)
 var cleanupTicker *time.Ticker
+var downtimeDetectorTicker *time.Ticker
 
 func startServer(cmd *cobra.Command) {
 	initLogger(cmd)
@@ -58,6 +59,7 @@ func startServer(cmd *cobra.Command) {
 	go api.ServeAPI(apiAddress, exitRestAPI)
 
 	setupCleanupScheduler()
+	setupDowntimeDetector()
 
 	<-shutdownFinished
 	log.Error("Exiting")
@@ -73,6 +75,22 @@ func setupCleanupScheduler() {
 			select {
 			case <-cleanupTicker.C:
 				stores.CleanUp()
+			}
+		}
+	}()
+}
+
+func setupDowntimeDetector() {
+	// Set up the downtime detector, which measures approximately every 20s the number of messages received
+	// for each store
+	downtimeDetectorTicker := time.NewTicker(20 * time.Second)
+	log.Debug("Downtime detector set up")
+
+	go func() {
+		for {
+			select {
+			case <-downtimeDetectorTicker.C:
+				stores.TakeMeasurements()
 			}
 		}
 	}()
@@ -103,6 +121,10 @@ func shutdown() {
 
 	if cleanupTicker != nil {
 		cleanupTicker.Stop()
+	}
+
+	if downtimeDetectorTicker != nil {
+		downtimeDetectorTicker.Stop()
 	}
 
 	exitRestAPI <- true
