@@ -46,7 +46,7 @@ func serviceDetails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(serviceToJSON(*service, language, verbose))
+	json.NewEncoder(w).Encode(wrapServicesStatus("service", serviceToJSON(*service, language, verbose)))
 }
 
 func serviceToJSON(service models.Service, language string, verbose bool) map[string]interface{} {
@@ -130,4 +130,11 @@ func serviceStopToJSON(stop models.ServiceStop, language string, verbose bool) m
 	}
 
 	return stopResponse
+}
+
+func wrapServicesStatus(key string, data interface{}) map[string]interface{} {
+	return map[string]interface{}{
+		"status": stores.Stores.ServiceStore.Status,
+		key:      data,
+	}
 }

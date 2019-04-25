@@ -54,7 +54,7 @@ func arrivalsStation(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(arrivalsToJSON(arrivals, language))
+	json.NewEncoder(w).Encode(wrapArrivalsStatus("arrivals", arrivalsToJSON(arrivals, language)))
 }
 
 func arrivalDetails(w http.ResponseWriter, r *http.Request) {
@@ -76,7 +76,7 @@ func arrivalDetails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(arrivalToJSON(*arrival, language))
+	json.NewEncoder(w).Encode(wrapArrivalsStatus("arrival", arrivalToJSON(*arrival, language)))
 }
 
 func arrivalsToJSON(arrivals []models.Arrival, language string) []map[string]interface{} {
@@ -118,4 +118,11 @@ func arrivalToJSON(arrival models.Arrival, language string) map[string]interface
 	response["remarks"] = models.GetRemarks(arrival.Modifications, language)
 
 	return response
+}
+
+func wrapArrivalsStatus(key string, data interface{}) map[string]interface{} {
+	return map[string]interface{}{
+		"status": stores.Stores.ArrivalStore.Status,
+		key:      data,
+	}
 }

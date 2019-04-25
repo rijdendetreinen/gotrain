@@ -55,7 +55,7 @@ func departuresStation(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(departuresToJSON(departures, language, verbose))
+	json.NewEncoder(w).Encode(wrapDeparturesStatus("departures", departuresToJSON(departures, language, verbose)))
 }
 
 func departureDetails(w http.ResponseWriter, r *http.Request) {
@@ -78,7 +78,7 @@ func departureDetails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(departureToJSON(*departure, language, verbose))
+	json.NewEncoder(w).Encode(wrapDeparturesStatus("departure", departureToJSON(*departure, language, verbose)))
 }
 
 func departuresToJSON(departures []models.Departure, language string, verbose bool) []map[string]interface{} {
@@ -143,4 +143,11 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 	response["wings"] = responseWings
 
 	return response
+}
+
+func wrapDeparturesStatus(key string, data interface{}) map[string]interface{} {
+	return map[string]interface{}{
+		"status": stores.Stores.DepartureStore.Status,
+		key:      data,
+	}
 }
