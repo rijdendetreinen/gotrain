@@ -10,11 +10,18 @@ addons:
 
 sudo: false
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 script:
   - go test -race -coverprofile=coverage.txt -covermode=atomic ./...
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - ./cc-test-reporter format-coverage --input-type gocov coverage.txt 
+  - ./cc-test-reporter upload-coverage
 
 cache:
   directories:
