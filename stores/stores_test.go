@@ -287,3 +287,32 @@ func TestStatusRecoveryFailure(t *testing.T) {
 		t.Errorf("Last status change should be %s, but is %s", time4, store.LastStatusChange)
 	}
 }
+
+func TestNightDowntimeThreshold(t *testing.T) {
+	var config DowntimeDetectionConfig
+
+	config.MinAverage = 12.34
+	config.MinAverageNight = 4.56
+	config.NightStartHour = 2
+	config.NightEndHour = 5
+
+	tables := []struct {
+		time   time.Time
+		minAvg float64
+	}{
+		{time.Date(2019, time.January, 1, 13, 40, 0, 0, time.UTC), 12.34},
+		{time.Date(2019, time.January, 1, 1, 40, 0, 0, time.UTC), 12.34},
+		{time.Date(2019, time.January, 1, 2, 40, 0, 0, time.UTC), 4.56},
+		{time.Date(2019, time.January, 1, 4, 0, 0, 0, time.UTC), 4.56},
+		{time.Date(2019, time.January, 1, 5, 0, 0, 0, time.UTC), 12.34},
+	}
+
+	for _, table := range tables {
+		minAvg := config.CurrentMinimumAverage(table.time)
+
+		if table.minAvg != minAvg {
+			t.Errorf("Wrong min avg @ %s: expected %f, received: %f", table.time, table.minAvg, minAvg)
+		}
+	}
+
+}

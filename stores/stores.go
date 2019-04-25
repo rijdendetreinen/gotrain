@@ -65,6 +65,15 @@ type Measurement struct {
 	Processed int
 }
 
+// CurrentMinimumAverage returns the minimum average, based on the current time
+func (downtimeDetection DowntimeDetectionConfig) CurrentMinimumAverage(time time.Time) float64 {
+	if time.Hour() >= downtimeDetection.NightStartHour && time.Hour() < downtimeDetection.NightEndHour {
+		return downtimeDetection.MinAverageNight
+	}
+
+	return downtimeDetection.MinAverage
+}
+
 // ResetCounters resets all store counters
 func (store *Store) ResetCounters() {
 	store.Counters.Received = 0
@@ -129,7 +138,7 @@ func (store *Store) newMeasurement(time time.Time) {
 // Update the store status based on the current messagesAverage
 func (store *Store) updateStatus(currentTime time.Time) {
 	// Determine whether we are currently receiving messages:
-	isReceiving := store.MessagesAverage >= store.DowntimeDetection.MinAverage
+	isReceiving := store.MessagesAverage >= store.DowntimeDetection.CurrentMinimumAverage(currentTime)
 
 	// Determine possible status changes:
 	if isReceiving && (store.Status == StatusUnknown || store.Status == StatusDown) {
