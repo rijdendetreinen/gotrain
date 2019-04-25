@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/rijdendetreinen/gotrain/stores"
+
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 )
@@ -18,6 +20,7 @@ func ServeAPI(address string, exit chan bool) {
 	router.HandleFunc("/v1", apiVersion).Methods("GET")
 	router.HandleFunc("/v2", apiVersion).Methods("GET")
 	router.HandleFunc("/v2/version", apiVersion).Methods("GET")
+	router.HandleFunc("/v2/status", apiStatus).Methods("GET")
 
 	router.HandleFunc("/v2/arrivals/stats", arrivalCounters).Methods("GET")
 	router.HandleFunc("/v2/arrivals/all", arrivalsAll).Methods("GET")
@@ -56,6 +59,17 @@ func listenAndServe(srv *http.Server, exit chan bool) {
 func apiVersion(w http.ResponseWriter, r *http.Request) {
 	version := map[string]int{
 		"version": 2,
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(version)
+}
+
+func apiStatus(w http.ResponseWriter, r *http.Request) {
+	version := map[string]string{
+		"arrivals":   stores.Stores.ArrivalStore.Status,
+		"departures": stores.Stores.DepartureStore.Status,
+		"services":   stores.Stores.ServiceStore.Status,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
