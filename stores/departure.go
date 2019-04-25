@@ -76,9 +76,16 @@ func (store *DepartureStore) updateStationReference(station, ID string) {
 }
 
 // InitStore initializes the departure store by creating the departures map
+// and sets the downtime detection config
 func (store *DepartureStore) InitStore() {
 	store.departures = make(map[string]models.Departure)
 	store.stations = make(map[string]map[string]struct{})
+
+	store.DowntimeDetection.MinAverage = float64(1) / 60       // One message per minute
+	store.DowntimeDetection.MinAverageNight = float64(1) / 600 // One message per 10 minutes
+	store.DowntimeDetection.NightStartHour = 2                 // Night starts at 02:00
+	store.DowntimeDetection.NightEndHour = 5                   // Night ends at 05:00
+	store.DowntimeDetection.RecoveryTime = 70                  // 70 mins recovery time
 }
 
 // GetNumberOfDepartures returns the number of departures in the store (unfiltered)

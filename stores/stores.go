@@ -32,11 +32,12 @@ type StoreCollection struct {
 // Store is the generic store struct
 type Store struct {
 	sync.RWMutex
-	Counters         Counters
-	Status           string
-	measurements     []Measurement
-	MessagesAverage  float64
-	LastStatusChange time.Time
+	Counters          Counters
+	Status            string
+	measurements      []Measurement
+	MessagesAverage   float64
+	LastStatusChange  time.Time
+	DowntimeDetection DowntimeDetectionConfig
 }
 
 // Counters stores some interesting counters for a store
@@ -47,6 +48,15 @@ type Counters struct {
 	Duplicates int `json:"duplicate"`
 	Outdated   int `json:"outdated"`
 	TooLate    int `json:"too_late"`
+}
+
+// DowntimeDetectionConfig contains the configuration for this store's downtime detection
+type DowntimeDetectionConfig struct {
+	MinAverage      float64 // Minimum average messages per second
+	MinAverageNight float64 // Minimum average messages per second during night time
+	NightStartHour  int     // Start hour of night
+	NightEndHour    int     // End hour of night
+	RecoveryTime    int     // Recovery time in minutes
 }
 
 // Measurement is a struct to store the number of received and processed messages
@@ -119,7 +129,7 @@ func (store *Store) newMeasurement(time time.Time) {
 // Update the store status based on the current messagesAverage
 func (store *Store) updateStatus(currentTime time.Time) {
 	// Determine whether we are currently receiving messages:
-	isReceiving := store.MessagesAverage > 1
+	isReceiving := store.MessagesAverage >= store.DowntimeDetection.MinAverage
 
 	// Determine possible status changes:
 	if isReceiving && (store.Status == StatusUnknown || store.Status == StatusDown) {
@@ -130,7 +140,7 @@ func (store *Store) updateStatus(currentTime time.Time) {
 	} else if isReceiving && store.Status == StatusRecovering {
 		// We are currently receiving and our status is RECOVERING
 		// Check last update time to see if we can change to UP:
-		if currentTime.Sub(store.LastStatusChange).Seconds() >= 70*60 {
+		if currentTime.Sub(store.LastStatusChange).Seconds() >= float64(store.DowntimeDetection.RecoveryTime*60) {
 			store.Status = StatusUp
 			store.LastStatusChange = currentTime
 		}

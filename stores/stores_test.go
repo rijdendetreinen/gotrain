@@ -87,6 +87,10 @@ func TestStatusRecovery(t *testing.T) {
 	store.ResetCounters()
 	store.ResetStatus()
 
+	// Typical downtime config for departures:
+	store.DowntimeDetection.MinAverage = float64(1) / 60 // One message per minute
+	store.DowntimeDetection.RecoveryTime = 70            // 70 mins recovery time
+
 	// Overrule status (to counter ResetStatus(), which already sets it to UNKNOWN):
 	store.Status = StatusUp
 
@@ -156,6 +160,9 @@ func TestStatusDown(t *testing.T) {
 	store.ResetCounters()
 	store.ResetStatus()
 
+	store.DowntimeDetection.MinAverage = float64(1) / 60 // One message per minute
+	store.DowntimeDetection.RecoveryTime = 40            // 40 mins recovery time
+
 	// Store status is UP:
 	store.Status = StatusUp
 
@@ -165,6 +172,7 @@ func TestStatusDown(t *testing.T) {
 	store.updateStatus(time1)
 
 	if store.Status != StatusDown {
+		t.Errorf("Status should be %f, but is %f", store.DowntimeDetection.MinAverage, store.MessagesAverage)
 		t.Errorf("Status should be %s, but is %s", StatusDown, store.Status)
 	}
 	if !time1.Equal(store.LastStatusChange) {
@@ -195,8 +203,8 @@ func TestStatusDown(t *testing.T) {
 		t.Errorf("Last status change should be %s, but is %s", time2, store.LastStatusChange)
 	}
 
-	// Currently 70 mins in recovery, status should change to UP
-	time4 := time.Date(2019, time.January, 1, 13, 40, 0, 0, time.UTC)
+	// Currently 40 mins in recovery, status should change to UP
+	time4 := time.Date(2019, time.January, 1, 13, 10, 0, 0, time.UTC)
 	store.MessagesAverage = 10
 	store.updateStatus(time4)
 
@@ -213,6 +221,9 @@ func TestStatusRecoveryFailure(t *testing.T) {
 
 	store.ResetCounters()
 	store.ResetStatus()
+
+	store.DowntimeDetection.MinAverage = float64(1) / 60 // One message per minute
+	store.DowntimeDetection.RecoveryTime = 70            // 70 mins recovery time
 
 	// Status should be DOWN
 	time1 := time.Date(2019, time.January, 1, 12, 0, 0, 0, time.UTC)

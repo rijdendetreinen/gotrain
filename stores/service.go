@@ -58,6 +58,12 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 // InitStore initializes the service store by creating the services map
 func (store *ServiceStore) InitStore() {
 	store.services = make(map[string]models.Service)
+
+	store.DowntimeDetection.MinAverage = float64(1) / 60       // One message per minute
+	store.DowntimeDetection.MinAverageNight = float64(1) / 600 // One message per 10 minutes
+	store.DowntimeDetection.NightStartHour = 2                 // Night starts at 02:00
+	store.DowntimeDetection.NightEndHour = 5                   // Night ends at 05:00
+	store.DowntimeDetection.RecoveryTime = 1                   // 1 minute recovery time
 }
 
 // GetNumberOfServices returns the number of services in the store (unfiltered)
