@@ -168,7 +168,7 @@ func (modification Modification) remarkWithStation(remarkNL, remarkEN, language 
 
 // GetRemarks translates a slice of Modification structs to remarks in the requested language
 func GetRemarks(modifications []Modification, language string) []string {
-	var remarks []string
+	remarks := make([]string, 0)
 
 	for _, modification := range modifications {
 		remark, hasRemark := modification.Remark(language)

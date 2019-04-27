@@ -161,6 +161,7 @@ func (tip TravelTip) Translation(language string) string {
 // GetRemarksTips returns all (translated) remarks and tips, both travel tips and tips based on departure flags
 func (departure Departure) GetRemarksTips(language string) (remarks, tips []string) {
 	remarks = GetRemarks(departure.Modifications, language)
+	tips = make([]string, 0)
 
 	if !departure.Cancelled {
 		if departure.DoNotBoard {
