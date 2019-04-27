@@ -47,12 +47,6 @@ func arrivalsStation(w http.ResponseWriter, r *http.Request) {
 		return arrivals[i].ArrivalTime.Before(arrivals[j].ArrivalTime)
 	})
 
-	if arrivals == nil {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(nil)
-		return
-	}
-
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(wrapArrivalsStatus("arrivals", arrivalsToJSON(arrivals, language)))
 }
@@ -80,7 +74,7 @@ func arrivalDetails(w http.ResponseWriter, r *http.Request) {
 }
 
 func arrivalsToJSON(arrivals []models.Arrival, language string) []map[string]interface{} {
-	var response []map[string]interface{}
+	response := make([]map[string]interface{}, 0)
 
 	for _, arrival := range arrivals {
 		response = append(response, arrivalToJSON(arrival, language))

@@ -48,12 +48,6 @@ func departuresStation(w http.ResponseWriter, r *http.Request) {
 		return departures[i].DepartureTime.Before(departures[j].DepartureTime)
 	})
 
-	if departures == nil {
-		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode(nil)
-		return
-	}
-
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(wrapDeparturesStatus("departures", departuresToJSON(departures, language, verbose)))
 }
@@ -82,7 +76,7 @@ func departureDetails(w http.ResponseWriter, r *http.Request) {
 }
 
 func departuresToJSON(departures []models.Departure, language string, verbose bool) []map[string]interface{} {
-	var response []map[string]interface{}
+	response := make([]map[string]interface{}, 0)
 
 	for _, departure := range departures {
 		response = append(response, departureToJSON(departure, language, verbose))
