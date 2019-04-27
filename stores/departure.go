@@ -211,7 +211,7 @@ func (store *DepartureStore) CleanUp() {
 			log.WithField("DepartureID", departureID).Debug("Hiding departure")
 
 			store.hideDeparture(departureID)
-		} else if !departure.Hidden && departure.NotRealTime && departure.RealDepartureTime().Before(thresholdHideNonRealtime) {
+		} else if !departure.Hidden && (departure.NotRealTime || departure.Cancelled) && departure.RealDepartureTime().Before(thresholdHideNonRealtime) {
 			log.WithField("DepartureID", departureID).Debug("Hiding non-realtime departure")
 
 			store.hideDeparture(departureID)
