@@ -38,7 +38,7 @@ type ServicePart struct {
 type ServiceStop struct {
 	Station Station
 
-	StationAccesible    bool
+	StationAccessible   bool
 	AssistanceAvailable bool
 
 	DestinationActual        string

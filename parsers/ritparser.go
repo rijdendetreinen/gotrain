@@ -62,7 +62,7 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 			serviceStop.DoNotBoard = ParseInfoPlusBoolean(stopInfo.SelectElement("NietInstappen"))
 
 			// Accessibility:
-			serviceStop.StationAccesible = ParseInfoPlusBoolean(stopInfo.SelectElement("StationToegankelijk"))
+			serviceStop.StationAccessible = ParseInfoPlusBoolean(stopInfo.SelectElement("StationToegankelijk"))
 			serviceStop.AssistanceAvailable = ParseInfoPlusBoolean(stopInfo.SelectElement("StationReisAssistentie"))
 
 			if stopInfo.SelectElement("Stopt") != nil {

@@ -20,7 +20,7 @@ type Material struct {
 	Position           int     `json:"position"`
 	DestinationActual  Station `json:"destination_actual"`
 	DestinationPlanned Station `json:"destination_planned"`
-	Accessible         bool    `json:"accesible"`
+	Accessible         bool    `json:"accessible"`
 	RemainsBehind      bool    `json:"remains_behind"`
 }
 
