@@ -118,6 +118,11 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 
 	responseWings := []interface{}{}
 
+	if departure.Cancelled {
+		// Override actual destination with planned destination:
+		response["destination_actual"] = response["destination_planned"]
+	}
+
 	if verbose {
 		for _, trainWing := range departure.TrainWings {
 			wingResponse := map[string]interface{}{
