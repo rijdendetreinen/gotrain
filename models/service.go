@@ -68,7 +68,7 @@ type ServiceStop struct {
 // GetStoppingStations filters out ServiceStops which are not called by the service.
 func (servicePart ServicePart) GetStoppingStations() (stops []ServiceStop) {
 	for _, stop := range servicePart.Stops {
-		if stop.StopType != "D" {
+		if stop.IsStopping() {
 			stops = append(stops, stop)
 		}
 	}
@@ -79,4 +79,34 @@ func (servicePart ServicePart) GetStoppingStations() (stops []ServiceStop) {
 // GenerateID generates an ID for this service
 func (service *Service) GenerateID() {
 	service.ID = service.ServiceDate + "-" + service.ServiceNumber
+}
+
+// GetStops returns all stops (from all service parts) as a map, with the station code as key
+func (service *Service) GetStops() map[string]ServiceStop {
+	stops := make(map[string]ServiceStop)
+
+	for _, part := range service.ServiceParts {
+		for _, stop := range part.Stops {
+			if stop.IsStopping() {
+				stops[stop.Station.Code] = stop
+			}
+		}
+	}
+
+	return stops
+}
+
+// IsStopping checks whether the service is stopping at this stop
+func (stop *ServiceStop) IsStopping() bool {
+	return stop.StopType != "D"
+}
+
+// ArrivalPlatformChanged returns true when the planned platform is not the actual one
+func (stop *ServiceStop) ArrivalPlatformChanged() bool {
+	return stop.ArrivalPlatformPlanned != stop.ArrivalPlatformActual
+}
+
+// DeparturePlatformChanged returns true when the planned platform is not the actual one
+func (stop *ServiceStop) DeparturePlatformChanged() bool {
+	return stop.DeparturePlatformPlanned != stop.DeparturePlatformActual
 }

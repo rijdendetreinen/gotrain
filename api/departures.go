@@ -71,21 +71,28 @@ func departureDetails(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	var service *models.Service
+
+	if verbose {
+		// Look up service
+		service = stores.Stores.ServiceStore.GetService(departure.ServiceNumber, departure.ServiceDate)
+	}
+
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(wrapDeparturesStatus("departure", departureToJSON(*departure, language, verbose)))
+	json.NewEncoder(w).Encode(wrapDeparturesStatus("departure", departureToJSON(*departure, language, verbose, service)))
 }
 
 func departuresToJSON(departures []models.Departure, language string, verbose bool) []map[string]interface{} {
 	response := make([]map[string]interface{}, 0)
 
 	for _, departure := range departures {
-		response = append(response, departureToJSON(departure, language, verbose))
+		response = append(response, departureToJSON(departure, language, verbose, nil))
 	}
 
 	return response
 }
 
-func departureToJSON(departure models.Departure, language string, verbose bool) map[string]interface{} {
+func departureToJSON(departure models.Departure, language string, verbose bool, service *models.Service) map[string]interface{} {
 	response := map[string]interface{}{
 		"service_id":               departure.ServiceID,
 		"name":                     nullString(departure.ServiceName),
@@ -124,16 +131,65 @@ func departureToJSON(departure models.Departure, language string, verbose bool) 
 	}
 
 	if verbose {
+		var serviceStops map[string]models.ServiceStop
+
+		if service != nil {
+			serviceStops = service.GetStops()
+		}
+
 		for _, trainWing := range departure.TrainWings {
 			wingResponse := map[string]interface{}{
 				"destination_actual":  trainWing.DestinationActual,
 				"destination_planned": trainWing.DestinationPlanned,
 				"remarks":             models.GetRemarks(trainWing.Modifications, language),
-				"stations":            []interface{}{},
+				"stops":               []interface{}{},
 			}
 
-			wingResponse["stops"] = trainWing.Stations
+			stops := []interface{}{}
+
+			for _, station := range trainWing.Stations {
+				stopData := map[string]interface{}{
+					"code":                       station.Code,
+					"short":                      station.NameShort,
+					"medium":                     station.NameMedium,
+					"long":                       station.NameLong,
+					"assistance_available":       false,
+					"accessible":                 false,
+					"arrival_time":               nil,
+					"arrival_platform":           nil,
+					"arrival_cancelled":          false,
+					"arrival_delay":              0,
+					"arrival_platform_changed":   false,
+					"departure_time":             nil,
+					"departure_platform":         nil,
+					"departure_cancelled":        false,
+					"departure_delay":            0,
+					"departure_platform_changed": false,
+				}
+
+				serviceStop, exists := serviceStops[station.Code]
+				if exists {
+					stopData["assistance_available"] = serviceStop.AssistanceAvailable
+					stopData["accessible"] = serviceStop.StationAccessible
+
+					stopData["arrival_time"] = localTimeString(serviceStop.ArrivalTime)
+					stopData["arrival_platform"] = nullString(serviceStop.ArrivalPlatformActual)
+					stopData["arrival_cancelled"] = serviceStop.ArrivalCancelled
+					stopData["arrival_delay"] = serviceStop.ArrivalDelay
+					stopData["arrival_platform_changed"] = serviceStop.ArrivalPlatformChanged()
+
+					stopData["departure_time"] = localTimeString(serviceStop.DepartureTime)
+					stopData["departure_platform"] = nullString(serviceStop.DeparturePlatformActual)
+					stopData["departure_cancelled"] = serviceStop.DepartureCancelled
+					stopData["departure_delay"] = serviceStop.DepartureDelay
+					stopData["departure_platform_changed"] = serviceStop.DeparturePlatformChanged()
+				}
+
+				stops = append(stops, stopData)
+			}
+
 			wingResponse["material"] = materialsToJSON(trainWing.Material, language, verbose)
+			wingResponse["stops"] = stops
 
 			responseWings = append(responseWings, wingResponse)
 		}
