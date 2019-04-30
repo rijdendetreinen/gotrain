@@ -1,6 +1,7 @@
 package stores
 
 import (
+	"strconv"
 	"testing"
 	"time"
 
@@ -114,7 +115,22 @@ func generateService() models.Service {
 	service.ServiceDate = "2019-01-27"
 	service.GenerateID()
 	service.Timestamp = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
-	// service.ServiceTime = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
+	service.ValidUntil = time.Date(2019, time.January, 27, 13, 34, 56, 78, time.UTC)
+
+	var servicePart models.ServicePart
+	var stop1, stop2 models.ServiceStop
+
+	stop1.Station.Code = "UT"
+	stop1.Station.NameLong = "Utrecht Centraal"
+	stop1.DepartureTime = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
+
+	stop2.Station.Code = "GVC"
+	stop2.Station.NameLong = "Den Haag Centraal"
+	stop2.ArrivalTime = time.Date(2019, time.January, 27, 13, 34, 56, 78, time.UTC)
+
+	servicePart.Stops = append(servicePart.Stops, stop1)
+	servicePart.Stops = append(servicePart.Stops, stop2)
+	service.ServiceParts = append(service.ServiceParts, servicePart)
 
 	return service
 }
@@ -180,5 +196,36 @@ func TestCleanupServices(t *testing.T) {
 	if store.GetService(service3.ServiceNumber, service3.ServiceDate).Hidden == true {
 		t.Error("Train which departs in 2099 should not be hidden already")
 	}
+}
 
+func TestSaveServiceStore(t *testing.T) {
+	var store, store2 ServiceStore
+
+	store.InitStore()
+
+	for i := 0; i < 40000; i++ {
+		service := generateService()
+		service.ServiceNumber = strconv.Itoa(i)
+		service.GenerateID()
+
+		store.ProcessService(service)
+	}
+
+	if store.GetNumberOfServices() != 40000 {
+		t.Error("Wrong number of services")
+	}
+
+	// Save
+	error := store.SaveStore()
+
+	if error != nil {
+		t.Fatalf("%s", error)
+	}
+
+	// Load in empty store:
+	store2.ReadStore()
+
+	if store2.GetNumberOfServices() != 40000 {
+		t.Error("Wrong number of services")
+	}
 }
