@@ -314,5 +314,4 @@ func TestNightDowntimeThreshold(t *testing.T) {
 			t.Errorf("Wrong min avg @ %s: expected %f, received: %f", table.time, table.minAvg, minAvg)
 		}
 	}
-
 }

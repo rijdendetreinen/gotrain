@@ -199,7 +199,7 @@ func TestCleanup(t *testing.T) {
 	// (We expect that the testing system is already beyond January 27th 2019...)
 	store.CleanUp()
 
-	// Teh hidden departure should be gone by now. The second departure should be hidden by now.
+	// The hidden departure should be gone by now. The second departure should be hidden by now.
 	// The third departure should still be visible.
 	if store.GetNumberOfDepartures() > 2 {
 		t.Fatal("Hidden departure not removed")

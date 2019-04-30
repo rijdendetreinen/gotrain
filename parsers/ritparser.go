@@ -32,7 +32,7 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 
 	service.ServiceNumber = infoProduct.SelectElement("TreinNummer").Text()
 	service.ServiceDate = infoProduct.SelectElement("TreinDatum").Text()
-	service.ID = service.ServiceDate + "-" + service.ServiceNumber
+	service.GenerateID()
 
 	service.ServiceType = infoProduct.SelectElement("TreinSoort").Text()
 	service.ServiceTypeCode = infoProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")

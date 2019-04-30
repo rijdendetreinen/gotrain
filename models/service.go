@@ -75,3 +75,8 @@ func (servicePart ServicePart) GetStoppingStations() (stops []ServiceStop) {
 
 	return
 }
+
+// GenerateID generates an ID for this service
+func (service *Service) GenerateID() {
+	service.ID = service.ServiceDate + "-" + service.ServiceNumber
+}

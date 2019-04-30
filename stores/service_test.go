@@ -1,0 +1,184 @@
+package stores
+
+import (
+	"testing"
+	"time"
+
+	"github.com/rijdendetreinen/gotrain/models"
+)
+
+func TestServicesCount(t *testing.T) {
+	var store ServiceStore
+	store.InitStore()
+
+	if store.GetNumberOfServices() != 0 {
+		t.Error("Wrong number of services")
+	}
+
+	store.ProcessService(generateService())
+
+	if store.GetNumberOfServices() != 1 {
+		t.Error("Wrong number of services")
+	}
+
+	if store.GetNumberOfServices() != len(store.GetAllServices()) {
+		t.Error("Reported number of services does not match with actual inventory count")
+	}
+}
+
+func TestRetrieveService(t *testing.T) {
+	var store ServiceStore
+
+	service := generateService()
+
+	store.InitStore()
+	store.ProcessService(service)
+
+	serviceInStore := store.GetService("1234", "2019-01-27")
+
+	if serviceInStore == nil {
+		t.Error("Could not retrieve service from store")
+	}
+}
+
+func TestDuplicateService(t *testing.T) {
+	var store ServiceStore
+
+	service := generateService()
+
+	store.InitStore()
+	store.ProcessService(service)
+
+	if store.Counters.Duplicates != 0 {
+		t.Fatal("Wrong number of services for counters")
+	}
+
+	if store.GetNumberOfServices() != 1 {
+		t.Error("Wrong number of services")
+	}
+
+	// Process again (forcing duplicate)
+	store.ProcessService(service)
+
+	if store.GetNumberOfServices() != 1 {
+		t.Error("Wrong number of services")
+	}
+
+	if store.Counters.Duplicates != 1 {
+		t.Error("Should increment counter for duplicates")
+	}
+}
+
+func TestServiceProcessing(t *testing.T) {
+	var store ServiceStore
+
+	service := generateService()
+
+	store.InitStore()
+	store.ProcessService(service)
+
+	// Older:
+	service2 := service
+
+	// Earlier than previous message, so should be ignored:
+	service2.ProductID = "12344"
+	service2.Timestamp = time.Date(2019, time.January, 27, 12, 34, 56, 68, time.UTC)
+
+	store.ProcessService(service2)
+	serviceInStore := store.GetService("1234", "2019-01-27")
+
+	if serviceInStore.ProductID != "12345" {
+		t.Error("Should not update service with earlier service")
+	}
+	if store.Counters.Outdated != 1 {
+		t.Error("Should increase counter for outdated messages")
+	}
+
+	service3 := service
+	service3.ProductID = "12343"
+	service3.Timestamp = time.Date(2019, time.January, 27, 12, 34, 56, 98, time.UTC)
+
+	store.ProcessService(service3)
+	serviceInStore = store.GetService("1234", "2019-01-27")
+
+	if serviceInStore.ProductID != "12343" {
+		t.Error("Should update service with later message")
+	}
+}
+
+func generateService() models.Service {
+	var service models.Service
+
+	service.ProductID = "12345"
+	service.ServiceNumber = "1234"
+	service.ServiceDate = "2019-01-27"
+	service.GenerateID()
+	service.Timestamp = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
+	// service.ServiceTime = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
+
+	return service
+}
+
+func TestCleanupServices(t *testing.T) {
+	var store ServiceStore
+
+	store.InitStore()
+
+	// Fake some services
+	service1 := generateService()
+	service1.Hidden = true
+
+	service2 := generateService()
+	service2.ServiceNumber = "54321"
+	service2.GenerateID()
+
+	service3 := generateService()
+	service3.ServiceNumber = "99999"
+	service3.ValidUntil = time.Date(2099, time.January, 27, 12, 34, 56, 78, time.UTC)
+	service3.GenerateID()
+
+	store.ProcessService(service1)
+	store.ProcessService(service2)
+	store.ProcessService(service3)
+
+	// Verify that we have 3 services in store:
+	if store.GetNumberOfServices() != 3 {
+		t.Error("Wrong number of services")
+	}
+
+	// Cleanup, first pass:
+	// (We expect that the testing system is already beyond January 27th 2019...)
+	store.CleanUp()
+
+	// Teh hidden service should be gone by now. The second service should be hidden by now.
+	// The third service should still be visible.
+	if store.GetNumberOfServices() > 2 {
+		t.Fatal("Hidden service not removed")
+	} else if store.GetNumberOfServices() < 2 {
+		t.Fatal("Non-hidden service already removed")
+	}
+
+	// Verify service2 is hidden by now:
+	if store.GetService(service2.ServiceNumber, service2.ServiceDate).Hidden == false {
+		t.Error("Departed train should be hidden after CleanUp")
+	}
+
+	// Verify service3 is still visible.
+	// That is, if you're not testing this code in year 2099 or later (hello from the past!)
+	if store.GetService(service3.ServiceNumber, service3.ServiceDate).Hidden == true {
+		t.Error("Train which departs in 2099 should not be hidden already")
+	}
+
+	// Second pass for cleaning up.
+	// After that, service2 should be gone, service3 still be visible.
+	store.CleanUp()
+
+	if store.GetService(service2.ServiceNumber, service2.ServiceDate) != nil {
+		t.Error("Service2 should have been deleted by now")
+	}
+
+	if store.GetService(service3.ServiceNumber, service3.ServiceDate).Hidden == true {
+		t.Error("Train which departs in 2099 should not be hidden already")
+	}
+
+}
