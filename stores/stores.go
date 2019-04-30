@@ -199,9 +199,11 @@ func InitializeStores() *StoreCollection {
 
 // CleanUp cleans all stores and removes outdated items
 func CleanUp() {
-	Stores.ArrivalStore.CleanUp()
-	Stores.DepartureStore.CleanUp()
-	Stores.ServiceStore.CleanUp()
+	currentTime := time.Now()
+
+	Stores.ArrivalStore.CleanUp(currentTime)
+	Stores.DepartureStore.CleanUp(currentTime)
+	Stores.ServiceStore.CleanUp(currentTime)
 }
 
 // TakeMeasurements takes measurements for all stores and updates downtime status

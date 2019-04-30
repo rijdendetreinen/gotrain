@@ -189,15 +189,15 @@ func (store *DepartureStore) deleteDeparture(departure models.Departure) {
 }
 
 // CleanUp removes outdated items
-func (store *DepartureStore) CleanUp() {
+func (store *DepartureStore) CleanUp(currentTime time.Time) {
 	// Remove departures which should have departured 4 hours ago:
-	thresholdRemove := time.Now().Add(-4 * time.Hour)
+	thresholdRemove := currentTime.Add(-4 * time.Hour)
 
 	// Hide departures which should have departed 10 minutes ago:
-	thresholdHide := time.Now().Add(-10 * time.Minute)
+	thresholdHide := currentTime.Add(-10 * time.Minute)
 
 	// Hide departures which should have departed 1 minute ago if they are not realtime:
-	thresholdHideNonRealtime := time.Now().Add(-1 * time.Minute)
+	thresholdHideNonRealtime := currentTime.Add(-1 * time.Minute)
 
 	log.Debug("Cleaning up departure store")
 

@@ -186,48 +186,70 @@ func TestCleanup(t *testing.T) {
 	departure3.DepartureTime = time.Date(2099, time.January, 27, 12, 34, 56, 78, time.UTC)
 	departure3.GenerateID()
 
+	departure4 := generateDeparture()
+	departure4.ServiceID = "66666"
+	departure4.GenerateID()
+	departure4.NotRealTime = true
+	departure4.DepartureTime = time.Date(2019, time.January, 27, 12, 34, 56, 78, time.UTC)
+
 	store.ProcessDeparture(departure1)
 	store.ProcessDeparture(departure2)
 	store.ProcessDeparture(departure3)
+	store.ProcessDeparture(departure4)
 
-	// Verify that we have 3 departures in store:
-	if store.GetNumberOfDepartures() != 3 {
+	// Verify that we have 4 departures in store:
+	if store.GetNumberOfDepartures() != 4 {
 		t.Error("Wrong number of departures")
 	}
 
 	// Cleanup, first pass:
-	// (We expect that the testing system is already beyond January 27th 2019...)
-	store.CleanUp()
+	store.CleanUp(time.Date(2019, time.January, 27, 12, 30, 56, 78, time.UTC))
+
+	// Nothing should be removed just yet (including the hidden departure, whose departure time
+	// is in the future now, and should stay for at least 4 hours)
+
+	// Verify that we have 4 departures in store:
+	if store.GetNumberOfDepartures() != 4 {
+		t.Error("Wrong number of departures")
+	}
+
+	// Cleanup at 12:35. Non-realtime departure should be hidden. The realtime departure should still be visible.
+	store.CleanUp(time.Date(2019, time.January, 27, 12, 36, 56, 78, time.UTC))
+
+	if store.GetDeparture(departure4.ServiceID, departure4.ServiceDate, departure4.Station.Code).Hidden == false {
+		t.Error("Non-realtime train should be hidden after CleanUp #1")
+	}
+	if store.GetDeparture(departure2.ServiceID, departure2.ServiceDate, departure2.Station.Code).Hidden == true {
+		t.Error("Realtime train should not be hidden after CleanUp #1")
+	}
+	if store.GetNumberOfDepartures() != 4 {
+		t.Error("Wrong number of departures")
+	}
+
+	// Now cleanup 10 mins after planned departure, departure2 should be hidden too now
+	store.CleanUp(time.Date(2019, time.January, 27, 12, 45, 56, 78, time.UTC))
+
+	if store.GetDeparture(departure4.ServiceID, departure4.ServiceDate, departure4.Station.Code).Hidden == false {
+		t.Error("Non-realtime train should be hidden after CleanUp #2")
+	}
+	if store.GetDeparture(departure2.ServiceID, departure2.ServiceDate, departure2.Station.Code).Hidden == false {
+		t.Error("Realtime train should be hidden after CleanUp #2")
+	}
+	if store.GetNumberOfDepartures() != 4 {
+		t.Error("Wrong number of departures")
+	}
+
+	// Cleanup #3, everything must be removed
+	store.CleanUp(time.Date(2019, time.January, 27, 16, 45, 56, 78, time.UTC))
 
 	// The hidden departure should be gone by now. The second departure should be hidden by now.
 	// The third departure should still be visible.
-	if store.GetNumberOfDepartures() > 2 {
-		t.Fatal("Hidden departure not removed")
-	} else if store.GetNumberOfDepartures() < 2 {
-		t.Fatal("Non-hidden departure already removed")
-	}
-
-	// Verify departure2 is hidden by now:
-	if store.GetDeparture(departure2.ServiceID, departure2.ServiceDate, departure2.Station.Code).Hidden == false {
-		t.Error("Departed train should be hidden after CleanUp")
+	if store.GetNumberOfDepartures() != 1 {
+		t.Fatal("Hidden departures not removed")
 	}
 
 	// Verify departure3 is still visible.
-	// That is, if you're not testing this code in year 2099 or later (hello from the past!)
 	if store.GetDeparture(departure3.ServiceID, departure3.ServiceDate, departure3.Station.Code).Hidden == true {
 		t.Error("Train which departs in 2099 should not be hidden already")
 	}
-
-	// Second pass for cleaning up.
-	// After that, departure2 should be gone, departure3 still be visible.
-	store.CleanUp()
-
-	if store.GetDeparture(departure2.ServiceID, departure2.ServiceDate, departure2.Station.Code) != nil {
-		t.Error("Departure2 should have been deleted by now")
-	}
-
-	if store.GetDeparture(departure3.ServiceID, departure3.ServiceDate, departure3.Station.Code).Hidden == true {
-		t.Error("Train which departs in 2099 should not be hidden already")
-	}
-
 }

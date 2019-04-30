@@ -183,12 +183,12 @@ func (store *ArrivalStore) deleteArrival(arrival models.Arrival) {
 }
 
 // CleanUp removes outdated items
-func (store *ArrivalStore) CleanUp() {
+func (store *ArrivalStore) CleanUp(currentTime time.Time) {
 	// Remove arrivals which have arrived 4 hours ago:
-	thresholdRemove := time.Now().Add(-4 * time.Hour)
+	thresholdRemove := currentTime.Add(-4 * time.Hour)
 
 	// Hide arrivals which should have arrived 30 minutes ago:
-	thresholdHide := time.Now().Add(-30 * time.Minute)
+	thresholdHide := currentTime.Add(-30 * time.Minute)
 
 	log.Debug("Cleaning up arrival store")
 

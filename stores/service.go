@@ -126,10 +126,10 @@ func (store *ServiceStore) SaveStore() error {
 }
 
 // CleanUp removes outdated items
-func (store *ServiceStore) CleanUp() {
+func (store *ServiceStore) CleanUp(currentTime time.Time) {
 	// Remove all services before date X:
-	thresholdRemove := time.Now().AddDate(0, 0, -2)
-	thresholdHide := time.Now()
+	thresholdRemove := currentTime.AddDate(0, 0, -2)
+	thresholdHide := currentTime
 
 	log.Debug("Cleaning up service store")
 

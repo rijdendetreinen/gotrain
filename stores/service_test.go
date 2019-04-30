@@ -164,9 +164,9 @@ func TestCleanupServices(t *testing.T) {
 
 	// Cleanup, first pass:
 	// (We expect that the testing system is already beyond January 27th 2019...)
-	store.CleanUp()
+	store.CleanUp(time.Date(2019, time.February, 27, 12, 44, 56, 78, time.UTC))
 
-	// Teh hidden service should be gone by now. The second service should be hidden by now.
+	// The hidden service should be gone by now. The second service should be hidden by now.
 	// The third service should still be visible.
 	if store.GetNumberOfServices() > 2 {
 		t.Fatal("Hidden service not removed")
@@ -182,12 +182,12 @@ func TestCleanupServices(t *testing.T) {
 	// Verify service3 is still visible.
 	// That is, if you're not testing this code in year 2099 or later (hello from the past!)
 	if store.GetService(service3.ServiceNumber, service3.ServiceDate).Hidden == true {
-		t.Error("Train which departs in 2099 should not be hidden already")
+		t.Error("Train which is valid until 2099 should not be hidden already")
 	}
 
 	// Second pass for cleaning up.
 	// After that, service2 should be gone, service3 still be visible.
-	store.CleanUp()
+	store.CleanUp(time.Date(2019, time.March, 27, 12, 44, 56, 78, time.UTC))
 
 	if store.GetService(service2.ServiceNumber, service2.ServiceDate) != nil {
 		t.Error("Service2 should have been deleted by now")
