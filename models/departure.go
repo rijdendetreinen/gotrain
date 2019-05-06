@@ -78,6 +78,7 @@ type TrainWing struct {
 	DestinationActual  []Station
 	DestinationPlanned []Station
 	Stations           []Station
+	StationsPlanned    []Station
 	Material           []Material
 	Modifications      []Modification
 }

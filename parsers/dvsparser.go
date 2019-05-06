@@ -126,12 +126,21 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		trainWing.Modifications = ParseInfoPlusModifications(wingInfo)
 
 		stationsNode := ParseWhenAttribute(wingInfo, "StopStations", "InfoStatus", "Actueel")
+		stationsNodePlanned := ParseWhenAttribute(wingInfo, "StopStations", "InfoStatus", "Gepland")
 
 		if stationsNode != nil {
 			for _, stationInfo := range stationsNode.SelectElements("Station") {
 				station := ParseInfoPlusStation(stationInfo)
 
 				trainWing.Stations = append(trainWing.Stations, station)
+			}
+		}
+
+		if stationsNodePlanned != nil {
+			for _, stationInfo := range stationsNodePlanned.SelectElements("Station") {
+				station := ParseInfoPlusStation(stationInfo)
+
+				trainWing.StationsPlanned = append(trainWing.StationsPlanned, station)
 			}
 		}
 

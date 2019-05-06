@@ -40,6 +40,7 @@ var inspectDepartureCommand = &cobra.Command{
 		fmt.Printf("Timestamp: %s\n", departure.Timestamp.Local())
 		fmt.Printf("Departure ID: %s\n", departure.ID)
 		fmt.Printf("Service ID: %s\n", departure.ServiceID)
+		fmt.Printf("Cancelled: %v\n", departure.Cancelled)
 		fmt.Printf("Departure station: %s = %s\n", departure.Station.Code, departure.Station.NameLong)
 		fmt.Printf("Service number: %s\n", departure.ServiceNumber)
 		fmt.Printf("Service date: %s\n", departure.ServiceDate)
@@ -63,9 +64,9 @@ var inspectDepartureCommand = &cobra.Command{
 		fmt.Printf("SpecialTicket: %v\n", departure.SpecialTicket)
 		fmt.Printf("WithSupplement: %v\n", departure.WithSupplement)
 
-		fmt.Print("Actual route station(s): ")
+		fmt.Print("Actual via station(s): ")
 		displayStations(departure.ViaActual)
-		fmt.Print("\nPlanned route station(s): ")
+		fmt.Print("\nPlanned via station(s): ")
 		displayStations(departure.ViaPlanned)
 		fmt.Print("\n")
 
@@ -84,6 +85,17 @@ var inspectDepartureCommand = &cobra.Command{
 				}
 			} else {
 				fmt.Printf("     %d stop(s)\n", len(wing.Stations))
+			}
+
+			if departure.Cancelled {
+				if showStops {
+					fmt.Println("    Original route:")
+					for stopIndex, stop := range wing.StationsPlanned {
+						fmt.Printf("    ** Stop %02d %7s = %s\n", stopIndex+1, stop.Code, stop.NameLong)
+					}
+				} else {
+					fmt.Printf("     Original route: %d stop(s)\n", len(wing.StationsPlanned))
+				}
 			}
 
 			fmt.Print("    Material: ")

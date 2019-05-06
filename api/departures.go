@@ -147,7 +147,13 @@ func departureToJSON(departure models.Departure, language string, verbose bool, 
 
 			stops := []interface{}{}
 
-			for _, station := range trainWing.Stations {
+			wingStops := trainWing.Stations
+
+			if departure.Cancelled {
+				wingStops = trainWing.StationsPlanned
+			}
+
+			for _, station := range wingStops {
 				stopData := map[string]interface{}{
 					"code":                       station.Code,
 					"short":                      station.NameShort,
