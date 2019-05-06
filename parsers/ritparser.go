@@ -55,11 +55,21 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 			var serviceStop models.ServiceStop
 
 			serviceStop.Station = ParseInfoPlusStation(stopInfo.SelectElement("Station"))
-			serviceStop.Modifications = ParseInfoPlusModifications(infoProduct)
+			serviceStop.Modifications = ParseInfoPlusModifications(stopInfo)
 
 			// Stop behavior:
 			serviceStop.StopType = ParseOptionalText(stopInfo.SelectElement("StationnementType"))
 			serviceStop.DoNotBoard = ParseInfoPlusBoolean(stopInfo.SelectElement("NietInstappen"))
+
+			// Check for flags that may be set:
+			for _, modification := range serviceStop.Modifications {
+				switch modification.ModificationType {
+				case models.ModificationCancelledArrival:
+					serviceStop.ArrivalCancelled = true
+				case models.ModificationCancelledDeparture:
+					serviceStop.DepartureCancelled = true
+				}
+			}
 
 			// Accessibility:
 			serviceStop.StationAccessible = ParseInfoPlusBoolean(stopInfo.SelectElement("StationToegankelijk"))

@@ -231,6 +231,8 @@ var inspectServiceCommand = &cobra.Command{
 
 						fmt.Print("\n")
 					}
+					fmt.Printf("       Cancelled arrival:  %v\n", stop.ArrivalCancelled)
+					fmt.Printf("       Cancelled departure: %v\n", stop.DepartureCancelled)
 					fmt.Println("       Stop modifications:")
 					displayModifications(stop.Modifications, 7, showModifications, language)
 				}
