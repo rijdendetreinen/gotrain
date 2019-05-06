@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:PutReisInformatieBoodschapIn xmlns:ns1="urn:ndov:cdm:trein:reisinformatie:messages:5" 
+    xmlns:ns2="urn:ndov:cdm:trein:reisinformatie:data:4">
+    <ns2:ReisInformatieProductDVS TimeStamp="2018-09-04T11:13:04.828Z" Versie="6.2">
+        <ns2:RIPAdministratie>
+            <ns2:ReisInformatieProductID>1809041313042400024</ns2:ReisInformatieProductID>
+            <ns2:AbonnementId>54</ns2:AbonnementId>
+            <ns2:ReisInformatieTijdstip>2018-09-04T12:23:00.000Z</ns2:ReisInformatieTijdstip>
+        </ns2:RIPAdministratie>
+        <ns2:DynamischeVertrekStaat>
+            <ns2:RitId>1153</ns2:RitId>
+            <ns2:RitDatum>2018-09-04</ns2:RitDatum>
+            <ns2:RitStation>
+                <ns2:StationCode>GV</ns2:StationCode>
+                <ns2:Type>5</ns2:Type>
+                <ns2:KorteNaam>Dn Haag HS</ns2:KorteNaam>
+                <ns2:MiddelNaam>Den Haag HS</ns2:MiddelNaam>
+                <ns2:LangeNaam>Den Haag HS</ns2:LangeNaam>
+                <ns2:UICCode>8400280</ns2:UICCode>
+            </ns2:RitStation>
+            <ns2:Trein>
+                <ns2:TreinNummer>1153</ns2:TreinNummer>
+                <ns2:TreinSoort Code="IC">Intercity</ns2:TreinSoort>
+                <ns2:TreinFormule>3</ns2:TreinFormule>
+                <ns2:TreinStatus>0</ns2:TreinStatus>
+                <ns2:Vervoerder>NS</ns2:Vervoerder>
+                <ns2:Reserveren>N</ns2:Reserveren>
+                <ns2:Toeslag>N</ns2:Toeslag>
+                <ns2:NietInstappen>N</ns2:NietInstappen>
+                <ns2:AchterBlijvenAchtersteTreinDeel>N</ns2:AchterBlijvenAchtersteTreinDeel>
+                <ns2:RangeerBeweging>N</ns2:RangeerBeweging>
+                <ns2:SpeciaalKaartje>N</ns2:SpeciaalKaartje>
+                <ns2:TreinEindBestemming InfoStatus="Gepland">
+                    <ns2:StationCode>EHV</ns2:StationCode>
+                    <ns2:Type>6</ns2:Type>
+                    <ns2:KorteNaam>Eindhoven</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Eindhoven</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Eindhoven</ns2:LangeNaam>
+                    <ns2:UICCode>8400206</ns2:UICCode>
+                </ns2:TreinEindBestemming>
+                <ns2:TreinEindBestemming InfoStatus="Actueel">
+                    <ns2:StationCode>GV</ns2:StationCode>
+                    <ns2:Type>5</ns2:Type>
+                    <ns2:KorteNaam>Dn Haag HS</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Den Haag HS</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Den Haag HS</ns2:LangeNaam>
+                    <ns2:UICCode>8400280</ns2:UICCode>
+                </ns2:TreinEindBestemming>
+                <ns2:PresentatieTreinEindBestemming>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>Eindhoven</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinEindBestemming>
+                <ns2:VertrekTijd InfoStatus="Gepland">2018-09-04T12:23:00.000Z</ns2:VertrekTijd>
+                <ns2:VertrekTijd InfoStatus="Actueel">2018-09-04T12:23:00.000Z</ns2:VertrekTijd>
+                <ns2:ExacteVertrekVertraging>PT0S</ns2:ExacteVertrekVertraging>
+                <ns2:GedempteVertrekVertraging>PT0S</ns2:GedempteVertrekVertraging>
+                <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                    <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                </ns2:TreinVertrekSpoor>
+                <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                    <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                </ns2:TreinVertrekSpoor>
+                <ns2:PresentatieTreinVertrekSpoor>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>4</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinVertrekSpoor>
+                <ns2:VertrekRichting>B</ns2:VertrekRichting>
+                <ns2:AfstandPerronEindKopVertrekTrein>0</ns2:AfstandPerronEindKopVertrekTrein>
+                <ns2:VerkorteRoute InfoStatus="Gepland">
+                    <ns2:Station>
+                        <ns2:StationCode>DT</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Delft</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Delft</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Delft</ns2:LangeNaam>
+                        <ns2:UICCode>8400170</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>RTD</ns2:StationCode>
+                        <ns2:Type>6</ns2:Type>
+                        <ns2:KorteNaam>Rotterdam</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Rotterdam C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Rotterdam Centraal</ns2:LangeNaam>
+                        <ns2:UICCode>8400530</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>BD</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Breda</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Breda</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Breda</ns2:LangeNaam>
+                        <ns2:UICCode>8400131</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>TB</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Tilburg</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Tilburg</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Tilburg</ns2:LangeNaam>
+                        <ns2:UICCode>8400597</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRoute>
+                <ns2:PresentatieVerkorteRoute>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>Delft, Rotterdam C., Breda, Tilburg</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieVerkorteRoute>
+                <ns2:TreinVleugel>
+                    <ns2:TreinVleugelVertrekSpoor InfoStatus="Gepland">
+                        <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                    </ns2:TreinVleugelVertrekSpoor>
+                    <ns2:TreinVleugelVertrekSpoor InfoStatus="Actueel">
+                        <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                    </ns2:TreinVleugelVertrekSpoor>
+                    <ns2:PresentatieTreinVleugelVertrekSpoor>
+                        <ns2:Uitingen>
+                            <ns2:Uiting>4</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieTreinVleugelVertrekSpoor>
+                    <ns2:TreinVleugelEindBestemming InfoStatus="Gepland">
+                        <ns2:StationCode>EHV</ns2:StationCode>
+                        <ns2:Type>6</ns2:Type>
+                        <ns2:KorteNaam>Eindhoven</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Eindhoven</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Eindhoven</ns2:LangeNaam>
+                        <ns2:UICCode>8400206</ns2:UICCode>
+                    </ns2:TreinVleugelEindBestemming>
+                    <ns2:TreinVleugelEindBestemming InfoStatus="Actueel">
+                        <ns2:StationCode>GV</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Dn Haag HS</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Den Haag HS</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Den Haag HS</ns2:LangeNaam>
+                        <ns2:UICCode>8400280</ns2:UICCode>
+                    </ns2:TreinVleugelEindBestemming>
+                    <ns2:PresentatieTreinVleugelEindBestemming>
+                        <ns2:Uitingen>
+                            <ns2:Uiting>Eindhoven</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieTreinVleugelEindBestemming>
+                    <ns2:StopStations InfoStatus="Gepland">
+                        <ns2:Station>
+                            <ns2:StationCode>DT</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Delft</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Delft</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Delft</ns2:LangeNaam>
+                            <ns2:UICCode>8400170</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>RTD</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Rotterdam</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Rotterdam C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Rotterdam Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400530</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>BD</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Breda</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Breda</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Breda</ns2:LangeNaam>
+                            <ns2:UICCode>8400131</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>TB</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Tilburg</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Tilburg</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Tilburg</ns2:LangeNaam>
+                            <ns2:UICCode>8400597</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>EHV</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Eindhoven</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Eindhoven</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Eindhoven</ns2:LangeNaam>
+                            <ns2:UICCode>8400206</ns2:UICCode>
+                        </ns2:Station>
+                    </ns2:StopStations>
+                    <ns2:StopStations InfoStatus="Actueel">
+                        <ns2:Station>
+                            <ns2:StationCode>GV</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Dn Haag HS</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Den Haag HS</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Den Haag HS</ns2:LangeNaam>
+                            <ns2:UICCode>8400280</ns2:UICCode>
+                        </ns2:Station>
+                    </ns2:StopStations>
+                </ns2:TreinVleugel>
+                <ns2:Wijziging>
+                    <ns2:WijzigingType>32</ns2:WijzigingType>
+                    <ns2:PresentatieWijziging>
+                        <ns2:Uitingen Taal="nl">
+                            <ns2:Uiting Prioriteit="1">Rijdt niet</ns2:Uiting>
+                        </ns2:Uitingen>
+                        <ns2:Uitingen Taal="en">
+                            <ns2:Uiting Prioriteit="1">Cancelled</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieWijziging>
+                </ns2:Wijziging>
+            </ns2:Trein>
+            <ns2:PresentatieOpmerkingen>
+                <ns2:Uitingen Taal="nl">
+                    <ns2:Uiting Prioriteit="1" ReferentieType="Wijziging" ReferentieWaarde="32">Rijdt niet</ns2:Uiting>
+                </ns2:Uitingen>
+                <ns2:Uitingen Taal="en">
+                    <ns2:Uiting Prioriteit="1" ReferentieType="Wijziging" ReferentieWaarde="32">Cancelled</ns2:Uiting>
+                </ns2:Uitingen>
+            </ns2:PresentatieOpmerkingen>
+        </ns2:DynamischeVertrekStaat>
+    </ns2:ReisInformatieProductDVS>
+</ns1:PutReisInformatieBoodschapIn>

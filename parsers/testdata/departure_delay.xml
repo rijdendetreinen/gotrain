@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:PutReisInformatieBoodschapIn xmlns:ns1="urn:ndov:cdm:trein:reisinformatie:messages:5" 
+    xmlns:ns2="urn:ndov:cdm:trein:reisinformatie:data:4">
+    <ns2:ReisInformatieProductDVS TimeStamp="2018-09-04T11:14:33.713Z" Versie="6.2">
+        <ns2:RIPAdministratie>
+            <ns2:ReisInformatieProductID>1809041314332500007</ns2:ReisInformatieProductID>
+            <ns2:AbonnementId>54</ns2:AbonnementId>
+            <ns2:ReisInformatieTijdstip>2018-09-04T11:13:00.000Z</ns2:ReisInformatieTijdstip>
+        </ns2:RIPAdministratie>
+        <ns2:DynamischeVertrekStaat>
+            <ns2:RitId>547</ns2:RitId>
+            <ns2:RitDatum>2018-09-04</ns2:RitDatum>
+            <ns2:RitStation>
+                <ns2:StationCode>RTA</ns2:StationCode>
+                <ns2:Type>4</ns2:Type>
+                <ns2:KorteNaam>Alexander</ns2:KorteNaam>
+                <ns2:MiddelNaam>Alexander</ns2:MiddelNaam>
+                <ns2:LangeNaam>Rotterdam Alexander</ns2:LangeNaam>
+                <ns2:UICCode>8400507</ns2:UICCode>
+            </ns2:RitStation>
+            <ns2:Trein>
+                <ns2:TreinNummer>547</ns2:TreinNummer>
+                <ns2:TreinSoort Code="IC">Intercity</ns2:TreinSoort>
+                <ns2:TreinFormule>3</ns2:TreinFormule>
+                <ns2:TreinStatus>5</ns2:TreinStatus>
+                <ns2:Vervoerder>NS</ns2:Vervoerder>
+                <ns2:Reserveren>N</ns2:Reserveren>
+                <ns2:Toeslag>N</ns2:Toeslag>
+                <ns2:NietInstappen>N</ns2:NietInstappen>
+                <ns2:AchterBlijvenAchtersteTreinDeel>N</ns2:AchterBlijvenAchtersteTreinDeel>
+                <ns2:RangeerBeweging>N</ns2:RangeerBeweging>
+                <ns2:SpeciaalKaartje>N</ns2:SpeciaalKaartje>
+                <ns2:TreinEindBestemming InfoStatus="Gepland">
+                    <ns2:StationCode>GN</ns2:StationCode>
+                    <ns2:Type>5</ns2:Type>
+                    <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                    <ns2:UICCode>8400263</ns2:UICCode>
+                </ns2:TreinEindBestemming>
+                <ns2:TreinEindBestemming InfoStatus="Actueel">
+                    <ns2:StationCode>GN</ns2:StationCode>
+                    <ns2:Type>5</ns2:Type>
+                    <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                    <ns2:UICCode>8400263</ns2:UICCode>
+                </ns2:TreinEindBestemming>
+                <ns2:PresentatieTreinEindBestemming>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>Groningen</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinEindBestemming>
+                <ns2:VertrekTijd InfoStatus="Gepland">2018-09-04T11:13:00.000Z</ns2:VertrekTijd>
+                <ns2:VertrekTijd InfoStatus="Actueel">2018-09-04T11:14:03.000Z</ns2:VertrekTijd>
+                <ns2:ExacteVertrekVertraging>PT1M3S</ns2:ExacteVertrekVertraging>
+                <ns2:PresentatieVertrekVertraging>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>+1 min.</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieVertrekVertraging>
+                <ns2:GedempteVertrekVertraging>PT0S</ns2:GedempteVertrekVertraging>
+                <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                    <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                </ns2:TreinVertrekSpoor>
+                <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                    <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                </ns2:TreinVertrekSpoor>
+                <ns2:PresentatieTreinVertrekSpoor>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>1</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinVertrekSpoor>
+                <ns2:VertrekRichting>B</ns2:VertrekRichting>
+                <ns2:AfstandPerronEindKopVertrekTrein>0</ns2:AfstandPerronEindKopVertrekTrein>
+                <ns2:VerkorteRoute InfoStatus="Gepland">
+                    <ns2:Station>
+                        <ns2:StationCode>GD</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Gouda</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Gouda</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Gouda</ns2:LangeNaam>
+                        <ns2:UICCode>8400258</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>UT</ns2:StationCode>
+                        <ns2:Type>6</ns2:Type>
+                        <ns2:KorteNaam>Utrecht C</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Utrecht C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Utrecht Centraal</ns2:LangeNaam>
+                        <ns2:UICCode>8400621</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>AMF</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Amersfoort</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Amersfoort</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Amersfoort</ns2:LangeNaam>
+                        <ns2:UICCode>8400055</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>ZL</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                        <ns2:UICCode>8400747</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRoute>
+                <ns2:VerkorteRoute InfoStatus="Actueel">
+                    <ns2:Station>
+                        <ns2:StationCode>GD</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Gouda</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Gouda</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Gouda</ns2:LangeNaam>
+                        <ns2:UICCode>8400258</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>UT</ns2:StationCode>
+                        <ns2:Type>6</ns2:Type>
+                        <ns2:KorteNaam>Utrecht C</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Utrecht C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Utrecht Centraal</ns2:LangeNaam>
+                        <ns2:UICCode>8400621</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>AMF</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Amersfoort</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Amersfoort</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Amersfoort</ns2:LangeNaam>
+                        <ns2:UICCode>8400055</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>ZL</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                        <ns2:UICCode>8400747</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRoute>
+                <ns2:PresentatieVerkorteRoute>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>Gouda, Utrecht C., Amersfoort, Zwolle</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieVerkorteRoute>
+                <ns2:TreinVleugel>
+                    <ns2:TreinVleugelVertrekSpoor InfoStatus="Gepland">
+                        <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                    </ns2:TreinVleugelVertrekSpoor>
+                    <ns2:TreinVleugelVertrekSpoor InfoStatus="Actueel">
+                        <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                    </ns2:TreinVleugelVertrekSpoor>
+                    <ns2:PresentatieTreinVleugelVertrekSpoor>
+                        <ns2:Uitingen>
+                            <ns2:Uiting>1</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieTreinVleugelVertrekSpoor>
+                    <ns2:TreinVleugelEindBestemming InfoStatus="Gepland">
+                        <ns2:StationCode>GN</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                        <ns2:UICCode>8400263</ns2:UICCode>
+                    </ns2:TreinVleugelEindBestemming>
+                    <ns2:TreinVleugelEindBestemming InfoStatus="Actueel">
+                        <ns2:StationCode>GN</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                        <ns2:UICCode>8400263</ns2:UICCode>
+                    </ns2:TreinVleugelEindBestemming>
+                    <ns2:PresentatieTreinVleugelEindBestemming>
+                        <ns2:Uitingen>
+                            <ns2:Uiting>Groningen</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieTreinVleugelEindBestemming>
+                    <ns2:StopStations InfoStatus="Gepland">
+                        <ns2:Station>
+                            <ns2:StationCode>GD</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Gouda</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Gouda</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Gouda</ns2:LangeNaam>
+                            <ns2:UICCode>8400258</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>UT</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Utrecht C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Utrecht C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Utrecht Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400621</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>AMF</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Amersfoort</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Amersfoort</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Amersfoort</ns2:LangeNaam>
+                            <ns2:UICCode>8400055</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ASN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Assen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Assen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Assen</ns2:LangeNaam>
+                            <ns2:UICCode>8400073</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>GN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                            <ns2:UICCode>8400263</ns2:UICCode>
+                        </ns2:Station>
+                    </ns2:StopStations>
+                    <ns2:StopStations InfoStatus="Actueel">
+                        <ns2:Station>
+                            <ns2:StationCode>GD</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Gouda</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Gouda</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Gouda</ns2:LangeNaam>
+                            <ns2:UICCode>8400258</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>UT</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Utrecht C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Utrecht C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Utrecht Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400621</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>AMF</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Amersfoort</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Amersfoort</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Amersfoort</ns2:LangeNaam>
+                            <ns2:UICCode>8400055</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ASN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Assen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Assen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Assen</ns2:LangeNaam>
+                            <ns2:UICCode>8400073</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>GN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                            <ns2:UICCode>8400263</ns2:UICCode>
+                        </ns2:Station>
+                    </ns2:StopStations>
+                    <ns2:MaterieelDeelDVS>
+                        <ns2:MaterieelSoort>DDZ</ns2:MaterieelSoort>
+                        <ns2:MaterieelAanduiding>4</ns2:MaterieelAanduiding>
+                        <ns2:MaterieelLengte>10100</ns2:MaterieelLengte>
+                        <ns2:MaterieelDeelVertrekPositie>1</ns2:MaterieelDeelVertrekPositie>
+                        <ns2:MaterieelDeelVolgordeVertrek>1</ns2:MaterieelDeelVolgordeVertrek>
+                        <ns2:MaterieelNummer>000000-07515-0</ns2:MaterieelNummer>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Zwolle</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieMaterieelDeelEindBestemming>
+                    </ns2:MaterieelDeelDVS>
+                    <ns2:MaterieelDeelDVS>
+                        <ns2:MaterieelSoort>DDZ</ns2:MaterieelSoort>
+                        <ns2:MaterieelAanduiding>6</ns2:MaterieelAanduiding>
+                        <ns2:MaterieelLengte>15400</ns2:MaterieelLengte>
+                        <ns2:MaterieelDeelVertrekPositie>3</ns2:MaterieelDeelVertrekPositie>
+                        <ns2:MaterieelDeelVolgordeVertrek>2</ns2:MaterieelDeelVolgordeVertrek>
+                        <ns2:MaterieelNummer>000000-07608-0</ns2:MaterieelNummer>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>GN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                            <ns2:UICCode>8400263</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>GN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Groningen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Groningen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Groningen</ns2:LangeNaam>
+                            <ns2:UICCode>8400263</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Groningen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieMaterieelDeelEindBestemming>
+                    </ns2:MaterieelDeelDVS>
+                </ns2:TreinVleugel>
+                <ns2:Wijziging>
+                    <ns2:WijzigingType>10</ns2:WijzigingType>
+                    <ns2:PresentatieWijziging>
+                        <ns2:Uitingen Taal="nl">
+                            <ns2:Uiting Prioriteit="10">Later vertrek</ns2:Uiting>
+                        </ns2:Uitingen>
+                        <ns2:Uitingen Taal="en">
+                            <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieWijziging>
+                </ns2:Wijziging>
+                <ns2:Wijziging>
+                    <ns2:WijzigingType>40</ns2:WijzigingType>
+                </ns2:Wijziging>
+            </ns2:Trein>
+            <ns2:PresentatieOpmerkingen>
+                <ns2:Uitingen Taal="nl">
+                    <ns2:Uiting Prioriteit="20" ReferentieType="Wijziging" ReferentieWaarde="10">Later vertrek</ns2:Uiting>
+                </ns2:Uitingen>
+                <ns2:Uitingen Taal="en">
+                    <ns2:Uiting Prioriteit="20" ReferentieType="Wijziging" ReferentieWaarde="10">Delayed</ns2:Uiting>
+                </ns2:Uitingen>
+            </ns2:PresentatieOpmerkingen>
+        </ns2:DynamischeVertrekStaat>
+    </ns2:ReisInformatieProductDVS>
+</ns1:PutReisInformatieBoodschapIn>
