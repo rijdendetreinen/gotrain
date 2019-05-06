@@ -113,6 +113,43 @@ func TestDepartureTrainName(t *testing.T) {
 	}
 }
 
+func TestDepartureModification(t *testing.T) {
+	departure := testParseDeparture(t, "departure_modification-cause.xml")
+
+	if len(departure.Modifications) != 1 {
+		t.Error("Wrong number of modifications")
+	}
+
+	foundModification := false
+
+	for _, modification := range departure.TrainWings[0].Modifications {
+		if modification.ModificationType == models.ModificationRouteShortened {
+			foundModification = true
+			expectedShort := "herstelwerkzaamheden"
+			expectedLong := "door herstelwerkzaamheden"
+			expectedStation := "VNDC"
+
+			if modification.CauseShort != expectedShort {
+				t.Errorf("Wrong CauseShort for modification, expected '%s', but got '%s'", expectedShort, modification.CauseShort)
+			}
+
+			if modification.CauseLong != expectedLong {
+				t.Errorf("Wrong CauseLong for modification, expected '%s', but got '%s'", expectedLong, modification.CauseLong)
+			}
+
+			if modification.Station.Code == "" {
+				t.Error("Should have a station for this modification")
+			} else if modification.Station.Code != expectedStation {
+				t.Errorf("Wrong Station.Code for modification, expected '%s', but got '%s'", expectedStation, modification.Station.Code)
+			}
+		}
+	}
+
+	if !foundModification {
+		t.Error("Did not find modification")
+	}
+}
+
 func TestInvalidDeparture(t *testing.T) {
 	_, err := ParseDvsMessage(testFileReader(t, "departure_invalid.xml"))
 
@@ -124,6 +161,14 @@ func TestInvalidDeparture(t *testing.T) {
 
 	if err == nil {
 		t.Error("Should return an error for an Arrival message")
+	}
+}
+
+func TestDepartureMultiplePlatforms(t *testing.T) {
+	departure := testParseDeparture(t, "departure_multiple-platforms.xml")
+
+	if departure.PlatformActual != "5/6" {
+		t.Errorf("Wrong platform: expected '%s', but got '%s'", "5/6", departure.PlatformActual)
 	}
 }
 
