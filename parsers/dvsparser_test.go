@@ -151,13 +151,13 @@ func TestDepartureModification(t *testing.T) {
 }
 
 func TestInvalidDeparture(t *testing.T) {
-	_, err := ParseDvsMessage(testFileReader(t, "departure_invalid.xml"))
+	_, err := ParseDvsMessage(testFileReader(t, "invalid.xml"))
 
 	if err == nil {
 		t.Error("Should return an error for invalid XML")
 	}
 
-	_, err = ParseDvsMessage(testFileReader(t, "arrival_train-name.xml"))
+	_, err = ParseDvsMessage(testFileReader(t, "arrival.xml"))
 
 	if err == nil {
 		t.Error("Should return an error for an Arrival message")
