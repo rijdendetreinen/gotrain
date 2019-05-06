@@ -1,0 +1,1811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:PutReisInformatieBoodschapIn xmlns:ns1="urn:ndov:cdm:trein:reisinformatie:messages:ritinfo:2" 
+    xmlns:ns2="urn:ndov:cdm:trein:reisinformatie:data:2">
+    <ns2:ReisInformatieProductRitInfo ApplicatieVersie="4.3.0-296" TimeStamp="2019-02-24T08:18:30.292Z" Versie="9.1.7">
+        <ns2:RIPAdministratie>
+            <ns2:ReisInformatieProductID>1902240918302200001</ns2:ReisInformatieProductID>
+            <ns2:AbonnementId>0</ns2:AbonnementId>
+            <ns2:ReisInformatieTijdstip>2019-02-24T08:18:30.260Z</ns2:ReisInformatieTijdstip>
+            <ns2:GeldigTot>2019-02-24T09:03:54.000Z</ns2:GeldigTot>
+        </ns2:RIPAdministratie>
+        <ns2:RitInfo>
+            <ns2:TreinNummer>3322</ns2:TreinNummer>
+            <ns2:TreinDatum>2019-02-24</ns2:TreinDatum>
+            <ns2:TreinNaam>Sprinter</ns2:TreinNaam>
+            <ns2:TreinSoort Code="SPR">Sprinter</ns2:TreinSoort>
+            <ns2:Vervoerder>NS</ns2:Vervoerder>
+            <ns2:Reserveren>N</ns2:Reserveren>
+            <ns2:Toeslag>N</ns2:Toeslag>
+            <ns2:SpeciaalKaartje>N</ns2:SpeciaalKaartje>
+            <ns2:Reisplanner>J</ns2:Reisplanner>
+            <ns2:LogischeRit>
+                <ns2:LogischeRitNummer>3322</ns2:LogischeRitNummer>
+                <ns2:LogischeRitDeel>
+                    <ns2:LogischeRitDeelNummer>3322</ns2:LogischeRitDeelNummer>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>LEDN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Leiden C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Leiden C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Leiden Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400390</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T07:22:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T07:22:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>5</ns2:SpoorNummer>
+                            <ns2:SpoorFase>a</ns2:SpoorFase>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>5</ns2:SpoorNummer>
+                            <ns2:SpoorFase>a</ns2:SpoorFase>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>5a</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>SSH</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Sassenheim</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Sassenheim</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Sassenheim</ns2:LangeNaam>
+                            <ns2:UICCode>8400603</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T07:27:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T07:27:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T07:27:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T07:27:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>NVP</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Nw Vennep</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nieuw Vennep</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nieuw Vennep</ns2:LangeNaam>
+                            <ns2:UICCode>8400460</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T07:34:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T07:34:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T07:34:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T07:34:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>HFD</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoofddorp</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoofddorp</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoofddorp</ns2:LangeNaam>
+                            <ns2:UICCode>8400332</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T07:38:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T07:38:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>4</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T07:39:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T07:39:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>4</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>SHL</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Schiphol</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Schiphol Airport</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Schiphol Airport</ns2:LangeNaam>
+                            <ns2:UICCode>8400561</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T07:43:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T07:43:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T07:44:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T07:44:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>ASDL</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Lelylaan</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Lelylaan</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Amsterdam Lelylaan</ns2:LangeNaam>
+                            <ns2:UICCode>8400079</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T07:52:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T07:52:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T07:52:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T07:52:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>ASS</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Sloterdijk</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Sloterdijk</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Amsterdam Sloterdijk</ns2:LangeNaam>
+                            <ns2:UICCode>8400059</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T07:55:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T07:55:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>9</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>9</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>9</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:02:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T08:02:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>9</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>9</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>9</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>ZD</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zaandam</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zaandam</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zaandam</ns2:LangeNaam>
+                            <ns2:UICCode>8400731</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:08:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T08:19:32.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT11M32S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+11 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT10M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:08:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T08:19:32.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT11M32S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+11 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT10M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>ZDK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Kogerveld</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kogerveld</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zaandam Kogerveld</ns2:LangeNaam>
+                            <ns2:UICCode>8400728</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:12:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T08:23:14.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT11M14S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+11 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT10M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:12:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T08:23:14.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT11M14S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+11 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT10M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>PMW</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Weidevenne</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Weidevenne</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Purmerend Weidevenne</ns2:LangeNaam>
+                            <ns2:UICCode>8400499</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:18:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T08:28:46.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT10M46S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+10 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT10M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:18:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T08:28:46.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT10M46S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+10 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT10M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>PMR</ns2:StationCode>
+                            <ns2:Type>1</ns2:Type>
+                            <ns2:KorteNaam>Purmerend</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Purmerend</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Purmerend</ns2:LangeNaam>
+                            <ns2:UICCode>8400508</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:21:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T08:31:32.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT10M32S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+10 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT10M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:21:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T08:31:32.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT10M32S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+10 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT10M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>PMO</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Overwhere</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Overwhere</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Purmerend Overwhere</ns2:LangeNaam>
+                            <ns2:UICCode>8400506</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:23:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T08:33:24.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT10M24S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+10 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT10M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:23:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-24T08:33:24.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT10M24S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+10 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT10M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:34:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-24T08:43:32.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT9M32S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+9 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT10M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-24T08:37:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>LG2</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>SNG</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>3</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5956</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelNummer>000000-02317-0</ns2:MaterieelNummer>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>HNK</ns2:StationCode>
+                                <ns2:Type>0</ns2:Type>
+                                <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                                <ns2:UICCode>8400336</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>HN</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                                <ns2:UICCode>8400337</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Hoorn</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>32</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="1">Rijdt niet door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="1">Cancelled</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>HNK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Hoorn Kers</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Kersenboogerd</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn Kersenboogerd</ns2:LangeNaam>
+                            <ns2:UICCode>8400336</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Hoorn Kersenboogerd</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">N</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-24T08:40:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>39</ns2:WijzigingType>
+                            <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                            <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="62">Rijdt niet door te grote vertraging</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="62">Cancelled</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:Wijziging>
+                        <ns2:WijzigingType>34</ns2:WijzigingType>
+                        <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                        <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                        <ns2:WijzigingStation>
+                            <ns2:StationCode>HN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                            <ns2:UICCode>8400337</ns2:UICCode>
+                        </ns2:WijzigingStation>
+                        <ns2:PresentatieWijziging>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting Prioriteit="3">Rijdt niet verder dan Hoorn door te grote vertraging</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting Prioriteit="3">Ends at Hoorn</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieWijziging>
+                    </ns2:Wijziging>
+                </ns2:LogischeRitDeel>
+                <ns2:Wijziging>
+                    <ns2:WijzigingType>34</ns2:WijzigingType>
+                    <ns2:WijzigingOorzaakKort>te grote vertraging</ns2:WijzigingOorzaakKort>
+                    <ns2:WijzigingOorzaakLang>door te grote vertraging</ns2:WijzigingOorzaakLang>
+                    <ns2:WijzigingStation>
+                        <ns2:StationCode>HN</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Hoorn</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Hoorn</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Hoorn</ns2:LangeNaam>
+                        <ns2:UICCode>8400337</ns2:UICCode>
+                    </ns2:WijzigingStation>
+                    <ns2:PresentatieWijziging>
+                        <ns2:Uitingen Taal="nl">
+                            <ns2:Uiting Prioriteit="3">Rijdt niet verder dan Hoorn door te grote vertraging</ns2:Uiting>
+                        </ns2:Uitingen>
+                        <ns2:Uitingen Taal="en">
+                            <ns2:Uiting Prioriteit="3">Ends at Hoorn</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieWijziging>
+                </ns2:Wijziging>
+            </ns2:LogischeRit>
+        </ns2:RitInfo>
+    </ns2:ReisInformatieProductRitInfo>
+</ns1:PutReisInformatieBoodschapIn>

@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:PutReisInformatieBoodschapIn xmlns:ns1="urn:ndov:cdm:trein:reisinformatie:messages:ritinfo:2" 
+    xmlns:ns2="urn:ndov:cdm:trein:reisinformatie:data:2">
+    <ns2:ReisInformatieProductRitInfo ApplicatieVersie="4.3.0-296" TimeStamp="2019-02-23T06:02:13.881Z" Versie="9.1.7">
+        <ns2:RIPAdministratie>
+            <ns2:ReisInformatieProductID>1902230702132300006</ns2:ReisInformatieProductID>
+            <ns2:AbonnementId>0</ns2:AbonnementId>
+            <ns2:ReisInformatieTijdstip>2019-02-23T06:02:13.802Z</ns2:ReisInformatieTijdstip>
+            <ns2:GeldigTot>2019-02-23T07:07:00.000Z</ns2:GeldigTot>
+        </ns2:RIPAdministratie>
+        <ns2:RitInfo>
+            <ns2:TreinNummer>32218</ns2:TreinNummer>
+            <ns2:TreinDatum>2019-02-23</ns2:TreinDatum>
+            <ns2:TreinNaam>Stoptrein</ns2:TreinNaam>
+            <ns2:TreinSoort Code="ST">Stoptrein</ns2:TreinSoort>
+            <ns2:Vervoerder>Arriva</ns2:Vervoerder>
+            <ns2:Reserveren>N</ns2:Reserveren>
+            <ns2:Toeslag>N</ns2:Toeslag>
+            <ns2:SpeciaalKaartje>N</ns2:SpeciaalKaartje>
+            <ns2:Reisplanner>J</ns2:Reisplanner>
+            <ns2:LogischeRit>
+                <ns2:LogischeRitNummer>32218</ns2:LogischeRitNummer>
+                <ns2:LogischeRitDeel>
+                    <ns2:LogischeRitDeelNummer>32218</ns2:LogischeRitDeelNummer>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>VL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Venlo</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Venlo</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Venlo</ns2:LangeNaam>
+                            <ns2:UICCode>8400644</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T05:59:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:02:14.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT3M14S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+3 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT5M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                            <ns2:SpoorFase>b</ns2:SpoorFase>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                            <ns2:SpoorFase>b</ns2:SpoorFase>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1b</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>BR</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Blerick</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Blerick</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Blerick</ns2:LangeNaam>
+                            <ns2:UICCode>8400117</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:02:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:05:00.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT3M</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+3 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT5M</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>4</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:02:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:05:00.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT3M</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+3 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT5M</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>4</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>4</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>VRY</ns2:StationCode>
+                            <ns2:Type>1</ns2:Type>
+                            <ns2:KorteNaam>Venray</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Venray</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Venray</ns2:LangeNaam>
+                            <ns2:UICCode>8400646</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:15:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:16:58.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT1M58S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+1 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT0S</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:16:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:17:58.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT1M58S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+1 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT0S</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>VLB</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Vierlingsb</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Vierlingsbeek</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Vierlingsbeek</ns2:LangeNaam>
+                            <ns2:UICCode>8400647</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:21:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:22:34.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT1M34S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+1 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT0S</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:22:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:23:34.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT1M34S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+1 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT0S</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>BMR</ns2:StationCode>
+                            <ns2:Type>1</ns2:Type>
+                            <ns2:KorteNaam>Boxmeer</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Boxmeer</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Boxmeer</ns2:LangeNaam>
+                            <ns2:UICCode>8400128</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:28:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:29:06.000Z</ns2:AankomstTijd>
+                        <ns2:ExacteAankomstVertraging>PT1M6S</ns2:ExacteAankomstVertraging>
+                        <ns2:PresentatieAankomstVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+1 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieAankomstVertraging>
+                        <ns2:GedempteAankomstVertraging>PT0S</ns2:GedempteAankomstVertraging>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:30:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:31:06.000Z</ns2:VertrekTijd>
+                        <ns2:ExacteVertrekVertraging>PT1M6S</ns2:ExacteVertrekVertraging>
+                        <ns2:PresentatieVertrekVertraging>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>+1 min.</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieVertrekVertraging>
+                        <ns2:GedempteVertrekVertraging>PT0S</ns2:GedempteVertrekVertraging>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>10</ns2:WijzigingType>
+                            <ns2:PresentatieWijziging>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting Prioriteit="10">Later vertrek</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting Prioriteit="10">Delayed</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieWijziging>
+                        </ns2:Wijziging>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>11</ns2:WijzigingType>
+                        </ns2:Wijziging>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>CK</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Cuijk</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Cuijk</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Cuijk</ns2:LangeNaam>
+                            <ns2:UICCode>8400155</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:37:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:37:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:38:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:38:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>MMLH</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Mook Molen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Molenhoek</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Mook Molenhoek</ns2:LangeNaam>
+                            <ns2:UICCode>8400446</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:42:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:42:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:42:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:42:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>NMH</ns2:StationCode>
+                            <ns2:Type>0</ns2:Type>
+                            <ns2:KorteNaam>Heyendaal</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nm Heyendaal</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen Heyendaal</ns2:LangeNaam>
+                            <ns2:UICCode>8400468</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>J</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>N</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Geen Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>No Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:48:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:48:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:VertrekTijd InfoStatus="Gepland">2019-02-23T06:48:00.000Z</ns2:VertrekTijd>
+                        <ns2:VertrekTijd InfoStatus="Actueel">2019-02-23T06:48:00.000Z</ns2:VertrekTijd>
+                        <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>2</ns2:SpoorNummer>
+                        </ns2:TreinVertrekSpoor>
+                        <ns2:PresentatieTreinVertrekSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>2</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinVertrekSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                    <ns2:LogischeRitDeelStation>
+                        <ns2:Station>
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:StationToegankelijk>N</ns2:StationToegankelijk>
+                        <ns2:PresentatieStationToegankelijk>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Station is niet toegankelijk</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Station is not accessible</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationToegankelijk>
+                        <ns2:StationReisAssistentie>J</ns2:StationReisAssistentie>
+                        <ns2:PresentatieStationReisAssistentie>
+                            <ns2:Uitingen Taal="nl">
+                                <ns2:Uiting>Reisassistentie beschikbaar op dit station</ns2:Uiting>
+                            </ns2:Uitingen>
+                            <ns2:Uitingen Taal="en">
+                                <ns2:Uiting>Travel Assistance available at this station</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieStationReisAssistentie>
+                        <ns2:TreinEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:TreinEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>NM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                            <ns2:UICCode>8400470</ns2:UICCode>
+                        </ns2:TreinEindBestemming>
+                        <ns2:PresentatieTreinEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Nijmegen</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinEindBestemming>
+                        <ns2:Stopt InfoStatus="Gepland">J</ns2:Stopt>
+                        <ns2:Stopt InfoStatus="Actueel">J</ns2:Stopt>
+                        <ns2:AankomstTijd InfoStatus="Gepland">2019-02-23T06:52:00.000Z</ns2:AankomstTijd>
+                        <ns2:AankomstTijd InfoStatus="Actueel">2019-02-23T06:52:00.000Z</ns2:AankomstTijd>
+                        <ns2:TreinAankomstSpoor InfoStatus="Gepland">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                            <ns2:SpoorFase>b</ns2:SpoorFase>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:TreinAankomstSpoor InfoStatus="Actueel">
+                            <ns2:SpoorNummer>1</ns2:SpoorNummer>
+                            <ns2:SpoorFase>b</ns2:SpoorFase>
+                        </ns2:TreinAankomstSpoor>
+                        <ns2:PresentatieTreinAankomstSpoor>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>1b</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieTreinAankomstSpoor>
+                        <ns2:StationnementType>X</ns2:StationnementType>
+                        <ns2:MaterieelDeel>
+                            <ns2:MaterieelDeelID>ALM54</ns2:MaterieelDeelID>
+                            <ns2:MaterieelDeelSoort>GTW</ns2:MaterieelDeelSoort>
+                            <ns2:MaterieelDeelAanduiding>2/8</ns2:MaterieelDeelAanduiding>
+                            <ns2:MaterieelDeelLengte>5594</ns2:MaterieelDeelLengte>
+                            <ns2:MaterieelDeelToegankelijk>J</ns2:MaterieelDeelToegankelijk>
+                            <ns2:PresentatieMaterieelDeelToegankelijk>
+                                <ns2:Uitingen Taal="nl">
+                                    <ns2:Uiting>Trein is toegankelijk</ns2:Uiting>
+                                </ns2:Uitingen>
+                                <ns2:Uitingen Taal="en">
+                                    <ns2:Uiting>Train is accessible</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelToegankelijk>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                                <ns2:StationCode>NM</ns2:StationCode>
+                                <ns2:Type>5</ns2:Type>
+                                <ns2:KorteNaam>Nijmegen</ns2:KorteNaam>
+                                <ns2:MiddelNaam>Nijmegen</ns2:MiddelNaam>
+                                <ns2:LangeNaam>Nijmegen</ns2:LangeNaam>
+                                <ns2:UICCode>8400470</ns2:UICCode>
+                            </ns2:MaterieelDeelEindBestemming>
+                            <ns2:PresentatieMaterieelDeelEindBestemming>
+                                <ns2:Uitingen>
+                                    <ns2:Uiting>Nijmegen</ns2:Uiting>
+                                </ns2:Uitingen>
+                            </ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:AchterBlijvenMaterieelDeel>N</ns2:AchterBlijvenMaterieelDeel>
+                        </ns2:MaterieelDeel>
+                        <ns2:NietInstappen>N</ns2:NietInstappen>
+                    </ns2:LogischeRitDeelStation>
+                </ns2:LogischeRitDeel>
+            </ns2:LogischeRit>
+        </ns2:RitInfo>
+    </ns2:ReisInformatieProductRitInfo>
+</ns1:PutReisInformatieBoodschapIn>
