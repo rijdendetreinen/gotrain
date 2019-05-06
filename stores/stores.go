@@ -1,6 +1,7 @@
 package stores
 
 import (
+	"bufio"
 	"encoding/gob"
 	"os"
 	"sync"
@@ -250,11 +251,18 @@ func SaveStores() error {
 // Encode a GOB file
 func writeGob(filePath string, object interface{}) error {
 	file, err := os.Create(filePath)
-	if err == nil {
-		encoder := gob.NewEncoder(file)
-		encoder.Encode(object)
+
+	if err != nil {
+		return err
 	}
+
+	w := bufio.NewWriter(file)
+	enc := gob.NewEncoder(w)
+	err = enc.Encode(object)
+
+	w.Flush()
 	file.Close()
+
 	return err
 }
 
