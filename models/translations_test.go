@@ -60,3 +60,23 @@ func TestTranslateStations(t *testing.T) {
 		}
 	}
 }
+
+func TestTranslateCause(t *testing.T) {
+	tables := []struct {
+		cause       string
+		translation string
+	}{
+		{"door werkzaamheden", "due to engineering work"},
+		{"door het onschadelijk maken van een bom uit de Tweede Wereldoorlog", "due to defusing a bomb from World War II"},
+		{"door een onbekende vertaling", "door een onbekende vertaling"},
+		{"", ""},
+	}
+
+	for _, table := range tables {
+		translation := TranslateCause(table.cause)
+
+		if translation != table.translation {
+			t.Errorf("Wrong translation for cause: expected %s, received: %s", table.translation, translation)
+		}
+	}
+}

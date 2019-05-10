@@ -151,7 +151,7 @@ func (modification Modification) remarkWithCause(remarkNL, remarkEN, language st
 		cause := modification.CauseLong
 
 		if language == "en" {
-			// TODO: translate cause
+			cause = TranslateCause(cause)
 		}
 
 		remark = remark + " " + cause
