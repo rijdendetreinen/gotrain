@@ -223,6 +223,7 @@ func TestSaveServiceStore(t *testing.T) {
 	}
 
 	// Load in empty store:
+	store2.InitStore()
 	store2.ReadStore()
 
 	if store2.GetNumberOfServices() != 40000 {

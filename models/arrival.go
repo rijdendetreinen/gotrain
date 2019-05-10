@@ -41,6 +41,11 @@ type Arrival struct {
 	Hidden bool
 }
 
+// GenerateID generates an ID for this arrival
+func (arrival *Arrival) GenerateID() {
+	arrival.ID = arrival.ServiceDate + "-" + arrival.ServiceID + "-" + arrival.Station.Code
+}
+
 // RealArrivalTime returns the actual arrival time, including delay
 func (arrival Arrival) RealArrivalTime() time.Time {
 	var delayDuration time.Duration

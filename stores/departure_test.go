@@ -1,6 +1,7 @@
 package stores
 
 import (
+	"strconv"
 	"testing"
 	"time"
 
@@ -168,7 +169,7 @@ func generateDeparture() models.Departure {
 	return departure
 }
 
-func TestCleanup(t *testing.T) {
+func TestCleanupDepartures(t *testing.T) {
 	var store DepartureStore
 
 	store.InitStore()
@@ -251,5 +252,38 @@ func TestCleanup(t *testing.T) {
 	// Verify departure3 is still visible.
 	if store.GetDeparture(departure3.ServiceID, departure3.ServiceDate, departure3.Station.Code).Hidden == true {
 		t.Error("Train which departs in 2099 should not be hidden already")
+	}
+}
+
+func TestSaveDepartureStore(t *testing.T) {
+	var store, store2 DepartureStore
+
+	store.InitStore()
+
+	for i := 0; i < 40000; i++ {
+		departure := generateDeparture()
+		departure.ServiceID = strconv.Itoa(i)
+		departure.GenerateID()
+
+		store.ProcessDeparture(departure)
+	}
+
+	if store.GetNumberOfDepartures() != 40000 {
+		t.Error("Wrong number of departures")
+	}
+
+	// Save
+	error := store.SaveStore()
+
+	if error != nil {
+		t.Fatalf("%s", error)
+	}
+
+	// Load in empty store:
+	store2.InitStore()
+	store2.ReadStore()
+
+	if store2.GetNumberOfDepartures() != 40000 {
+		t.Error("Wrong number of departures")
 	}
 }

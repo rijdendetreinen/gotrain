@@ -34,7 +34,7 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	arrival.ServiceID = infoProduct.SelectElement("RitId").Text()
 	arrival.ServiceDate = infoProduct.SelectElement("RitDatum").Text()
 	arrival.Station = ParseInfoPlusStation(infoProduct.SelectElement("RitStation"))
-	arrival.ID = arrival.ServiceDate + "-" + arrival.ServiceID + "-" + arrival.Station.Code
+	arrival.GenerateID()
 
 	arrival.ServiceNumber = trainProduct.SelectElement("TreinNummer").Text()
 	arrival.ServiceType = trainProduct.SelectElement("TreinSoort").Text()
