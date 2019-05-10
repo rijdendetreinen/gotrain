@@ -315,3 +315,18 @@ func TestNightDowntimeThreshold(t *testing.T) {
 		}
 	}
 }
+
+func TestInitStores(t *testing.T) {
+	InitializeStores()
+	LoadStores()
+	SaveStores()
+}
+
+func TestCleanUp(t *testing.T) {
+	InitializeStores()
+	CleanUp()
+}
+func TestTakeMeasurements(t *testing.T) {
+	InitializeStores()
+	TakeMeasurements()
+}
