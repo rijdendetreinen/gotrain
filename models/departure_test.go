@@ -68,3 +68,18 @@ func TestDeparturePlatformChanged(t *testing.T) {
 		}
 	}
 }
+
+func TestGetDepartureID(t *testing.T) {
+	var departure Departure
+
+	departure.ServiceDate = "2019-01-27"
+	departure.ServiceNumber = "301234"
+	departure.ServiceID = "1234"
+	departure.Station.Code = "RTD"
+	departure.GenerateID()
+
+	expected := "2019-01-27-1234-RTD"
+	if departure.ID != expected {
+		t.Errorf("Wrong departure ID, expected %s, got %s", expected, departure.ID)
+	}
+}

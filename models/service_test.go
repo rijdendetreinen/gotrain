@@ -37,3 +37,40 @@ func TestGetStoppingStations(t *testing.T) {
 		}
 	}
 }
+
+func TestGetStops(t *testing.T) {
+	var service Service
+	var servicePart ServicePart
+
+	for i := 0; i <= 10; i++ {
+		var stop ServiceStop
+
+		stop.Station.Code = "S" + strconv.Itoa(i)
+		stop.Station.NameLong = "station " + strconv.Itoa(i)
+		servicePart.Stops = append(servicePart.Stops, stop)
+	}
+
+	service.ServiceParts = append(service.ServiceParts, servicePart)
+
+	stops := service.GetStops()
+
+	for i := 0; i <= 10; i++ {
+		_, exists := stops["S"+strconv.Itoa(i)]
+		if !exists {
+			t.Errorf("Station S %d not returned", i)
+		}
+	}
+}
+
+func TestGetServiceID(t *testing.T) {
+	var service Service
+
+	service.ServiceDate = "2019-01-27"
+	service.ServiceNumber = "12345"
+	service.GenerateID()
+
+	expected := "2019-01-27-12345"
+	if service.ID != expected {
+		t.Errorf("Wrong service ID, expected %s, got %s", expected, service.ID)
+	}
+}
