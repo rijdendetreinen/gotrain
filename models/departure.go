@@ -181,6 +181,19 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 			tips = append(tips, Translate("Bijzonder ticket", "Special ticket", language))
 		}
 
+		// Wing remarks:
+		for _, wing := range departure.TrainWings {
+			wingRemarks := GetRemarks(wing.Modifications, language)
+
+			for _, wingRemark := range wingRemarks {
+				if len(departure.TrainWings) > 1 {
+					wingRemark = wing.DestinationPlanned[0].NameMedium + ": " + wingRemark
+				}
+
+				remarks = append(remarks, wingRemark)
+			}
+		}
+
 		// Translate all tips:
 		for _, tip := range departure.TravelTips {
 			tips = append(tips, tip.Translation(language))

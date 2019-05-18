@@ -122,7 +122,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 		var trainWing models.TrainWing
 
 		trainWing.DestinationActual = ParseInfoPlusStations(ParseWhenAttributeMulti(wingInfo, "TreinVleugelEindBestemming", "InfoStatus", "Actueel"))
-		trainWing.DestinationPlanned = ParseInfoPlusStations(ParseWhenAttributeMulti(wingInfo, "TreinVleugelEindBestemming", "InfoStatus", "Actueel"))
+		trainWing.DestinationPlanned = ParseInfoPlusStations(ParseWhenAttributeMulti(wingInfo, "TreinVleugelEindBestemming", "InfoStatus", "Gepland"))
 		trainWing.Modifications = ParseInfoPlusModifications(wingInfo)
 
 		stationsNode := ParseWhenAttribute(wingInfo, "StopStations", "InfoStatus", "Actueel")
