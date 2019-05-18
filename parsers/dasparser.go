@@ -63,7 +63,7 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	arrival.PlatformPlanned = ParseInfoPlusPlatform(ParseWhenAttributeMulti(trainProduct, "TreinAankomstSpoor", "InfoStatus", "Gepland"))
 
 	viaNodeActual := ParseWhenAttribute(trainProduct, "VerkorteRouteHerkomst", "InfoStatus", "Actueel")
-	viaNodePlanned := ParseWhenAttribute(trainProduct, "VerkorteRouteHerkomst", "InfoStatus", "Actueel")
+	viaNodePlanned := ParseWhenAttribute(trainProduct, "VerkorteRouteHerkomst", "InfoStatus", "Gepland")
 
 	if viaNodeActual != nil {
 		arrival.ViaActual = ParseInfoPlusStations(viaNodeActual.SelectElements("Station"))

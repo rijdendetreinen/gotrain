@@ -71,7 +71,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	departure.DoNotBoard = ParseInfoPlusBoolean(trainProduct.SelectElement("NietInstappen"))
 
 	viaNodeActual := ParseWhenAttribute(trainProduct, "VerkorteRoute", "InfoStatus", "Actueel")
-	viaNodePlanned := ParseWhenAttribute(trainProduct, "VerkorteRoute", "InfoStatus", "Actueel")
+	viaNodePlanned := ParseWhenAttribute(trainProduct, "VerkorteRoute", "InfoStatus", "Gepland")
 
 	if viaNodeActual != nil {
 		departure.ViaActual = ParseInfoPlusStations(viaNodeActual.SelectElements("Station"))
