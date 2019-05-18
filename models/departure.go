@@ -115,9 +115,14 @@ func (departure Departure) ActualDestinationCodes() []string {
 	return stationCodes(departure.DestinationActual)
 }
 
-// ViaStationsString returns a string of all actual via stations (medium name)
-func (departure Departure) ViaStationsString() string {
+// ActualViaStationsString returns a string of all actual via stations (medium name)
+func (departure Departure) ActualViaStationsString() string {
 	return stationsMediumString(departure.ViaActual, ", ")
+}
+
+// PlannedViaStationsString returns a string of all planned via stations (medium name)
+func (departure Departure) PlannedViaStationsString() string {
+	return stationsMediumString(departure.ViaPlanned, ", ")
 }
 
 // Translation provides a translation for this tip

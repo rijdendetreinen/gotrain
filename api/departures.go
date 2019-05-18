@@ -107,7 +107,7 @@ func departureToJSON(departure models.Departure, language string, verbose bool, 
 		"destination_actual":       nullString(departure.ActualDestinationString()),
 		"destination_planned":      nullString(departure.PlannedDestinationString()),
 		"destination_actual_codes": departure.ActualDestinationCodes(),
-		"via":                      nullString(departure.ViaStationsString()),
+		"via":                      nullString(departure.ActualViaStationsString()),
 		"departure_time":           localTimeString(departure.DepartureTime),
 		"platform_actual":          nullString(departure.PlatformActual),
 		"platform_planned":         nullString(departure.PlatformPlanned),
@@ -126,8 +126,10 @@ func departureToJSON(departure models.Departure, language string, verbose bool, 
 	responseWings := []interface{}{}
 
 	if departure.Cancelled {
-		// Override actual destination with planned destination:
+		// Override actual destination and via stations with planned destination and via:
 		response["destination_actual"] = response["destination_planned"]
+		response["via"] = nullString(departure.PlannedViaStationsString())
+		response["delay"] = 0
 	}
 
 	if verbose {
