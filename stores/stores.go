@@ -84,7 +84,7 @@ func (store *Store) ResetCounters() {
 	store.Counters.Outdated = 0
 	store.Counters.TooLate = 0
 
-	store.measurements = nil
+	store.measurements = make([]Measurement, 0)
 }
 
 // TakeMeasurement takes a new measurement. This method is expected to be called approximately every 20s.

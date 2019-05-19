@@ -122,7 +122,7 @@ func (store *ServiceStore) ReadStore() error {
 
 // SaveStore saves the service store contents
 func (store *ServiceStore) SaveStore() error {
-	return writeGob("data/services.gob", store.services)
+	return writeGob("data/services.gob", store.GetAllServices())
 }
 
 // CleanUp removes outdated items
