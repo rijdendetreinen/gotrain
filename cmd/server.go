@@ -31,6 +31,7 @@ var exitReceiverChannel = make(chan bool)
 var exitRestAPI = make(chan bool)
 var cleanupTicker *time.Ticker
 var downtimeDetectorTicker *time.Ticker
+var autoSaveTicker *time.Ticker
 
 func startServer(cmd *cobra.Command) {
 	initLogger(cmd)
@@ -60,6 +61,7 @@ func startServer(cmd *cobra.Command) {
 
 	setupCleanupScheduler()
 	setupDowntimeDetector()
+	setupAutoSave()
 
 	<-shutdownFinished
 	log.Error("Exiting")
@@ -96,6 +98,28 @@ func setupDowntimeDetector() {
 	}()
 }
 
+func setupAutoSave() {
+	autoSaveTicker := time.NewTicker(12 * time.Hour)
+	log.Debug("Autosave set up")
+
+	go func() {
+		for {
+			select {
+			case <-autoSaveTicker.C:
+				log.Info("Auto-saving stores")
+				log.Infof("Current inventory: %d arrivals, %d departures, %d services",
+					stores.Stores.ArrivalStore.GetNumberOfArrivals(),
+					stores.Stores.DepartureStore.GetNumberOfDepartures(),
+					stores.Stores.ServiceStore.GetNumberOfServices())
+				err := stores.SaveStores()
+				if err != nil {
+					log.WithError(err).Error("Error while saving stores")
+				}
+			}
+		}
+	}()
+}
+
 func initLogger(cmd *cobra.Command) {
 	// TODO: setup logger
 
@@ -125,6 +149,10 @@ func shutdown() {
 
 	if downtimeDetectorTicker != nil {
 		downtimeDetectorTicker.Stop()
+	}
+
+	if autoSaveTicker != nil {
+		autoSaveTicker.Stop()
 	}
 
 	exitRestAPI <- true
