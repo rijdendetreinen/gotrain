@@ -212,7 +212,7 @@ func TestSaveServiceStore(t *testing.T) {
 	}
 
 	if store.GetNumberOfServices() != 40000 {
-		t.Error("Wrong number of services")
+		t.Errorf("Wrong number of services: expected %d, got %d", 40000, store.GetNumberOfServices())
 	}
 
 	// Save
@@ -227,6 +227,45 @@ func TestSaveServiceStore(t *testing.T) {
 	store2.ReadStore()
 
 	if store2.GetNumberOfServices() != 40000 {
-		t.Error("Wrong number of services")
+		t.Errorf("Wrong number of services: expected %d, got %d", 40000, store2.GetNumberOfServices())
+	}
+}
+
+func TestSaveServiceStore2(t *testing.T) {
+	var store, store2 ServiceStore
+
+	store.InitStore()
+
+	for i := 0; i < 40000; i++ {
+		service := generateService()
+		service.ServiceNumber = strconv.Itoa(i)
+		service.GenerateID()
+
+		store.ProcessService(service)
+	}
+
+	for i := 0; i < 40000; i = i + 2 {
+		serviceID := "2019-01-27-" + strconv.Itoa(i)
+
+		store.deleteService(serviceID)
+	}
+
+	if store.GetNumberOfServices() != 20000 {
+		t.Errorf("Wrong number of services: expected %d, got %d", 20000, store.GetNumberOfServices())
+	}
+
+	// Save
+	error := store.SaveStore()
+
+	if error != nil {
+		t.Fatalf("%s", error)
+	}
+
+	// Load in empty store:
+	store2.InitStore()
+	store2.ReadStore()
+
+	if store2.GetNumberOfServices() != 20000 {
+		t.Errorf("Wrong number of services: expected %d, got %d", 20000, store2.GetNumberOfServices())
 	}
 }
