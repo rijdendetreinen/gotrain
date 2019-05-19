@@ -159,7 +159,12 @@ func (store *DepartureStore) ReadStore() error {
 
 // SaveStore saves the departures store contents
 func (store *DepartureStore) SaveStore() error {
-	return writeGob("data/departures.gob", store.departures)
+	store.RLock()
+
+	err := writeGob("data/departures.gob", store.departures)
+
+	store.RUnlock()
+	return err
 }
 
 // hideDeparture hides a departure

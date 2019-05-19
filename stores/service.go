@@ -122,7 +122,12 @@ func (store *ServiceStore) ReadStore() error {
 
 // SaveStore saves the service store contents
 func (store *ServiceStore) SaveStore() error {
-	return writeGob("data/services.gob", store.GetAllServices())
+	store.RLock()
+
+	err := writeGob("data/services.gob", store.services)
+
+	store.RUnlock()
+	return err
 }
 
 // CleanUp removes outdated items

@@ -153,7 +153,12 @@ func (store *ArrivalStore) ReadStore() error {
 
 // SaveStore saves the arrivals store contents
 func (store *ArrivalStore) SaveStore() error {
-	return writeGob("data/arrivals.gob", store.arrivals)
+	store.RLock()
+
+	err := writeGob("data/arrivals.gob", store.arrivals)
+
+	store.RUnlock()
+	return err
 }
 
 // hideArrival hides an arrival
