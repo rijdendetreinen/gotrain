@@ -1,6 +1,7 @@
 package models
 
 import (
+	"reflect"
 	"testing"
 	"time"
 )
@@ -81,5 +82,97 @@ func TestGetDepartureID(t *testing.T) {
 	expected := "2019-01-27-1234-RTD"
 	if departure.ID != expected {
 		t.Errorf("Wrong departure ID, expected %s, got %s", expected, departure.ID)
+	}
+}
+
+func TestDepartureRemarks(t *testing.T) {
+	tables := []struct {
+		modifications     []Modification
+		wingModifications []Modification
+		remarks           []string
+		tips              []string
+	}{
+		{
+			[]Modification{Modification{ModificationType: ModificationCancelledDeparture}},
+			[]Modification{},
+			[]string{"Trein rijdt niet"},
+			[]string{},
+		},
+		{
+			[]Modification{Modification{ModificationType: ModificationDiverted}, Modification{ModificationType: ModificationChangedDeparturePlatform}},
+			[]Modification{},
+			[]string{"Rijdt via een andere route", "Gewijzigd vertrekspoor"},
+			[]string{},
+		},
+		{
+			[]Modification{Modification{ModificationType: ModificationDiverted}, Modification{ModificationType: ModificationChangedDeparturePlatform}},
+			[]Modification{Modification{ModificationType: ModificationChangedDeparturePlatform}},
+			[]string{"Rijdt via een andere route", "Gewijzigd vertrekspoor"},
+			[]string{},
+		},
+	}
+
+	for _, table := range tables {
+		var departure Departure
+		var wing TrainWing
+
+		departure.Modifications = table.modifications
+		wing.Modifications = table.wingModifications
+
+		departure.TrainWings = append(departure.TrainWings, wing)
+		remarks, tips := departure.GetRemarksTips("nl")
+
+		if !reflect.DeepEqual(table.remarks, remarks) {
+			t.Errorf("Remarks: expected %s, got %s", table.remarks, remarks)
+		}
+
+		if !reflect.DeepEqual(table.tips, tips) {
+			t.Errorf("Remarks: expected %s, got %s", table.tips, tips)
+		}
+	}
+}
+
+func TestDepartureRemarksTips(t *testing.T) {
+	tables := []struct {
+		departure Departure
+		remarks   []string
+		tips      []string
+	}{
+		{
+			Departure{
+				DoNotBoard: true,
+			},
+			[]string{"Niet instappen"},
+			[]string{},
+		},
+		{
+			Departure{
+				RearPartRemains:     true,
+				ReservationRequired: true,
+			},
+			[]string{"Achterste treindeel blijft achter"},
+			[]string{"Reservering verplicht"},
+		},
+		{
+			Departure{
+				ReservationRequired: false,
+				WithSupplement:      true,
+				SpecialTicket:       true,
+			},
+			[]string{},
+			[]string{"Toeslag verplicht", "Bijzonder ticket"},
+		},
+	}
+
+	for _, table := range tables {
+		remarks, tips := table.departure.GetRemarksTips("nl")
+
+		if !reflect.DeepEqual(table.remarks, remarks) {
+			t.Errorf("Remarks: expected %s, got %s", table.remarks, remarks)
+		}
+
+		if !reflect.DeepEqual(table.tips, tips) {
+			t.Errorf("Remarks: expected %s, got %s", table.tips, tips)
+		}
 	}
 }
