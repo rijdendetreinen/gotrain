@@ -188,7 +188,7 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 
 		// Wing remarks:
 		for _, wing := range departure.TrainWings {
-			wingRemarks := GetRemarks(wing.Modifications, language)
+			wingRemarks := GetFilteredRemarks(wing.Modifications, language)
 
 			for _, wingRemark := range wingRemarks {
 				if len(departure.TrainWings) > 1 {

@@ -180,3 +180,22 @@ func GetRemarks(modifications []Modification, language string) []string {
 
 	return remarks
 }
+
+// GetFilteredRemarks filters out modification types for arrival/departure platforms (useful for wings)
+func GetFilteredRemarks(modifications []Modification, language string) []string {
+	remarks := make([]string, 0)
+
+	for _, modification := range modifications {
+		remark, hasRemark := modification.Remark(language)
+
+		if modification.ModificationType == ModificationChangedArrivalPlatform || modification.ModificationType == ModificationChangedDeparturePlatform {
+			continue
+		}
+
+		if hasRemark {
+			remarks = append(remarks, remark)
+		}
+	}
+
+	return remarks
+}
