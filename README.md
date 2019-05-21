@@ -41,6 +41,8 @@ for further development. The main planned improvements are:
 * Better monitoring tools - analyze the data streams, monitor for errors, etc.
 * Archive functionality - allow to store all data to an archive for further
   processing or analysis at a later time
+* Packaging - make it easier to install gotrain on a server by just downloading
+  and installing the binaries
 
 Status
 ------
