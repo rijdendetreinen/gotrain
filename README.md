@@ -9,7 +9,7 @@ GoTrain is a server application for receiving, processing and distributing
 real-time data about train services in the Netherlands.
 
 GoTrain is designed to continuously receive data streams offered as open data
-by the Dutch Railways ([NS](http://www.ns.nl/)). The data is processed and
+by the [Dutch Railways (NS)](http://www.ns.nl/). The data is processed and
 saved in-memory in order to offer a very fast REST API, which can be used by
 numerous clients to show live information about train departures, arrivals etc.
 
@@ -30,11 +30,26 @@ to:
 It is easy to extend GoTrain's functionality or to build your own applications
 using the REST API. For example; create your live departures board.
 
+Development roadmap
+-------------------
+
+The main objectives for GoTrain have now been developed, but there is a roadmap
+for further development. The main planned improvements are:
+
+* Documentation - document the REST API and the setup process
+* Increase test coverage - the API is currently not tested
+* Better monitoring tools - analyze the data streams, monitor for errors, etc.
+* Archive functionality - allow to store all data to an archive for further
+  processing or analysis at a later time
+
 Status
 ------
 
-GoTrain is currently **under development** and is not yet used for production
-workloads.
+GoTrain is currently being used in production by
+[Rijden de Treinen](https://www.rijdendetreinen.nl/) as a source for realtime
+departure times, arrivals and for trip details, both on the website and in the
+mobile app. Please let it known when you use GoTrain for a cool project, a big
+application or for some other purpose!
 
 License
 -------
