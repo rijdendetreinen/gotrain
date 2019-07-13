@@ -30,6 +30,56 @@ to:
 It is easy to extend GoTrain's functionality or to build your own applications
 using the REST API. For example; create your live departures board.
 
+REST API
+--------
+
+GoTrain includes a convenient REST API. 
+
+An example request: Request all departures from Utrecht Centraal: 
+`/v2/departures/station/UT`
+
+Response (shortened)
+
+```json
+{
+    "departures": [
+        {
+            "cancelled": false,
+            "company": "NS",
+            "delay": 0,
+            "departure_time": "2019-07-14T00:49:00+02:00",
+            "destination_actual": "'t Harde",
+            "destination_actual_codes": [
+                "HDE"
+            ],
+            "destination_planned": "'t Harde",
+            "name": null,
+            "platform_actual": "12",
+            "platform_changed": false,
+            "platform_planned": "12",
+            "remarks": [],
+            "service_date": "2019-07-13",
+            "service_id": "591",
+            "service_number": "591",
+            "station": "UT",
+            "status": 2,
+            "timestamp": "2019-07-13T22:49:00Z",
+            "tips": [
+                "Stopt ook in Harderwijk"
+            ],
+            "type": "Intercity",
+            "type_code": "IC",
+            "via": "Amersfoort",
+            "wings": []
+        }
+   ],
+    "status": "UP"
+}
+```
+
+The full API documentation is included in the [GoTrain OpenAPI specification](openapi.yaml).
+
+
 Development roadmap
 -------------------
 

@@ -1,0 +1,737 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: GoTrain
+  description: GoTrain returns information about train departures, arrivals and trip information (service details) about a single train service.
+
+servers:
+  - url: http://{host}:{port}/
+    variables:
+      host:
+        description: Hostname
+        default: 'localhost'
+      port:
+        enum:
+          - '80'
+          - '8080'
+        default: '8080'
+
+paths:
+  /:
+    get:
+      summary: API version
+      tags:
+        - general
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiVersion"
+
+  /v2/status:
+    get:
+      summary: API version
+      tags:
+        - general
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SystemStatus"
+
+  /v2/arrivals/stats:
+    get:
+      summary: Statistics for arrivals
+      tags:
+        - arrivals
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Statistics"
+
+  /v2/arrivals/station/{station}:
+    get:
+      summary: Retrieve arrivals for station
+      tags:
+        - arrivals
+      parameters:
+        - name: station
+          in: path
+          required: true
+          description: Station code (uppercase)
+          schema:
+            type: string
+        - name: language
+          in: query
+          required: false
+          description: Language
+          schema:
+            type: string
+            enum: [nl, en]
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  arrivals:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Arrival"
+                  status:
+                    $ref: "#/components/schemas/StatusField"
+
+  /v2/arrivals/arrival/{id}/{station}/{date}:
+    get:
+      summary: Retrieve single arrival
+      tags:
+        - arrivals
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Service ID
+          schema:
+            type: string
+        - name: station
+          in: path
+          required: true
+          description: Station code (uppercase)
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: true
+          description: Service date
+          schema:
+            type: string
+            format: date
+        - name: language
+          in: query
+          required: false
+          description: Language
+          schema:
+            type: string
+            enum: [nl, en]
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  arrival:
+                    $ref: "#/components/schemas/Arrival"
+                  status:
+                    $ref: "#/components/schemas/StatusField"
+
+  /v2/departures/stats:
+    get:
+      summary: Statistics for departures
+      tags:
+        - departures
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Statistics"
+
+  /v2/departures/station/{station}:
+    get:
+      summary: Retrieve departures for station
+      tags:
+        - departures
+
+      parameters:
+        - name: station
+          in: path
+          required: true
+          description: Station code (uppercase)
+          schema:
+            type: string
+        - name: verbose
+          in: query
+          required: false
+          description: Verbose departures (returns wings and material)
+          schema:
+            type: boolean
+        - name: language
+          in: query
+          required: false
+          description: Language
+          schema:
+            type: string
+            enum: [nl, en]
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  arrivals:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Departure"
+                  status:
+                    $ref: "#/components/schemas/StatusField"
+
+  /v2/departures/departure/{id}/{station}/{date}:
+    get:
+      summary: Retrieve single departure
+      tags:
+        - departures
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Service ID
+          schema:
+            type: string
+        - name: station
+          in: path
+          required: true
+          description: Station code (uppercase)
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: true
+          description: Service date
+          schema:
+            type: string
+            format: date
+        - name: verbose
+          in: query
+          required: false
+          description: Verbose departures (returns wings, material and route stops)
+          schema:
+            type: boolean
+        - name: language
+          in: query
+          required: false
+          description: Language
+          schema:
+            type: string
+            enum: [nl, en]
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  departure:
+                    $ref: "#/components/schemas/Departure"
+                  status:
+                    $ref: "#/components/schemas/StatusField"
+
+  /v2/services/stats:
+    get:
+      summary: Statistics for services
+      tags:
+        - services
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Statistics"
+
+  /v2/services/service/{service_number}/{date}:
+    get:
+      summary: Retrieve service details
+      tags:
+        - services
+      parameters:
+        - name: service_number
+          in: path
+          required: true
+          description: Service number (not ID))
+          schema:
+            type: string
+        - name: date
+          in: path
+          required: true
+          description: Service date
+          schema:
+            type: string
+            format: date
+        - name: language
+          in: query
+          required: false
+          description: Language
+          schema:
+            type: string
+            enum: [nl, en]
+      responses:
+        "200":
+          description: Default response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service:
+                    $ref: "#/components/schemas/Service"
+                  status:
+                    $ref: "#/components/schemas/StatusField"
+
+
+components:
+  schemas:
+    ApiVersion:
+      title: API version
+      type: object
+      properties:
+        version:
+          type: integer
+          example: 2
+    Arrival:
+      title: Arrival
+      type: object
+      properties:
+        arrival_time:
+          type: string
+          format: date-time
+        cancelled:
+          type: boolean
+        company:
+          type: string
+        delay:
+          type: integer
+          minimum: 0
+        origin_actual:
+          type: string
+          example: Amsterdam Centraal
+        origin_actual_codes:
+          type: array
+          items:
+            type: string
+            example: ASD
+        origin_planned:
+          type: string
+          example: Alkmaar
+        platform_actual:
+          type: string
+          example: 14
+        platform_planned:
+          type: string
+          example: 13a
+        platform_changed:
+          type: boolean
+          example: true
+        remarks:
+          type: array
+          items:
+            type: string
+            example: Gewijzigd spoor
+        service_date:
+          type: string
+          format: date
+        service_id:
+          type: string
+          example: 678
+        service_number:
+          type: string
+          example: 678
+        station:
+          type: string
+          example: LEDN
+        status:
+          type: integer
+          example: 5
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+          example: Intercity
+        type_code:
+          type: string
+          example: IC
+        via:
+          type: string
+          example: Haarlem, Schiphol
+
+    Departure:
+      title: Departure
+      type: object
+      properties:
+        cancelled:
+          type: boolean
+        company:
+          type: string
+        delay:
+          type: integer
+          minimum: 0
+        departure_time:
+          type: string
+          format: date-time
+        destination_actual:
+          type: string
+          example: Amsterdam Centraal
+        destination_actual_codes:
+          type: array
+          items:
+            type: string
+            example: ASD
+        destination_planned:
+          type: string
+          example: Alkmaar
+        platform_actual:
+          type: string
+          example: 14
+        platform_planned:
+          type: string
+          example: 13a
+        platform_changed:
+          type: boolean
+          example: true
+        remarks:
+          type: array
+          items:
+            type: string
+            example: Gewijzigd spoor
+        tips:
+          type: array
+          items:
+            type: string
+            example: Stopt op alle tussengelegen stations
+        service_date:
+          type: string
+          format: date
+        service_id:
+          type: string
+          example: 678
+        service_number:
+          type: string
+          example: 678
+        station:
+          type: string
+          example: LEDN
+        status:
+          type: integer
+          example: 5
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+          example: Intercity
+        type_code:
+          type: string
+          example: IC
+        via:
+          type: string
+          example: Haarlem, Schiphol
+        wings:
+          type: array
+          items:
+            $ref: "#/components/schemas/DepartureWing"
+
+    DepartureWing:
+      type: object
+      properties:
+        destination_actual:
+          $ref: "#/components/schemas/StationObject"
+        destination_planned:
+          $ref: "#/components/schemas/StationObject"
+        material:
+          type: array
+          items:
+            type: object
+            properties:
+              accessible:
+                type: boolean
+              destination:
+                type: string
+                example: GVC
+              destination_code:
+                type: string
+                example: Den Haag Centraal
+              number:
+                type: string
+                example: "4024"
+              remains_behind:
+                type: boolean
+              type:
+                type: string
+                example: ICM-3
+        remarks:
+          type: array
+          items:
+            type: string
+        stops:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+                example: GVC
+              short:
+                type: string
+                example: Den Haag C
+              medium:
+                type: string
+                example: Den Haag C.
+              long:
+                type: string
+                example: Den Haag Centraal
+              accessible:
+                type: boolean
+              arrival_cancelled:
+                type: boolean
+              arrival_delay:
+                type: integer
+                minimum: 0
+              arrival_platform:
+                type: string
+                example: "8"
+              arrival_platform_changed:
+                type: boolean
+              arrival_time:
+                type: string
+                format: date-time
+              assistance_available:
+                format: boolean
+              departure_cancelled:
+                type: boolean
+              departure_delay:
+                type: integer
+                minimum: 0
+              departure_platform:
+                type: string
+                example: "8"
+              departure_platform_changed:
+                type: boolean
+              departure_time:
+                type: string
+                format: date-time
+
+    Service:
+      title: Service
+      type: object
+      properties:
+        company:
+          type: string
+        id:
+          type: string
+        journey_planner:
+          type: boolean
+        parts:
+          type: array
+          items:
+            type: object
+            properties:
+              remarks:
+                type: array
+                items:
+                  type: string
+              service_number:
+                type: string
+                example: 6691
+              stops:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    arrival_cancelled:
+                      type: boolean
+                    arrival_delay:
+                      type: integer
+                      minimum: 0
+                    arrival_platform_actual:
+                      type: string
+                      example: "8"
+                    arrival_platform_planned:
+                      type: string
+                      example: "7"
+                    arrival_time:
+                      type: string
+                      format: date-time
+                    assistance_available:
+                      type: boolean
+                    departure_cancelled:
+                      type: boolean
+                    departure_delay:
+                      type: integer
+                      minimum: 0
+                    departure_platform_actual:
+                      type: string
+                      example: "8"
+                    departure_platform_planned:
+                      type: string
+                      example: "7"
+                    departure_time:
+                      type: string
+                      format: date-time
+                    do_not_board:
+                      type: boolean
+                    material:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          accessible:
+                            type: boolean
+                          destination:
+                            type: string
+                            example: GVC
+                          destination_code:
+                            type: string
+                            example: Den Haag Centraal
+                          number:
+                            type: string
+                            example: "4024"
+                          position:
+                            type: integer
+                            minimum: 0
+                          remains_behind:
+                            type: boolean
+                          type:
+                            type: string
+                            example: ICM-3
+                    remarks:
+                      type: array
+                      items:
+                        type: string
+                    station:
+                      $ref: "#/components/schemas/StationObject"
+                    station_accessible:
+                      type: boolean
+                    stop_type:
+                      type: string
+                      example: X
+                    stopping_actual:
+                      type: boolean
+                    stopping_planned:
+                      type: boolean
+                    tips:
+                      type: array
+                      items:
+                        type: string
+              tips:
+                type: array
+                items:
+                  type: string
+        remarks:
+          type: array
+          items:
+            type: string
+            example: Gewijzigd spoor
+        tips:
+          type: array
+          items:
+            type: string
+        reservation_required:
+          type: boolean
+        with_supplement:
+          type: boolean
+        service_date:
+          type: string
+          format: date
+        service_number:
+          type: string
+          example: 678
+        timestamp:
+          type: string
+          format: date-time
+        type:
+          type: string
+          example: Intercity
+        type_code:
+          type: string
+          example: IC
+
+    StationObject:
+      type: object
+      properties:
+        code:
+          type: string
+          example: GVC
+        short:
+          type: string
+          example: Den Haag C
+        medium:
+          type: string
+          example: Den Haag C.
+        long:
+          type: string
+          example: Den Haag Centraal
+
+
+    SystemStatus:
+      title: System status
+      type: object
+      properties:
+        arrivals:
+          $ref: "#/components/schemas/StatusField"
+        departures:
+          $ref: "#/components/schemas/StatusField"
+        services:
+          $ref: "#/components/schemas/StatusField"
+    StatusField:
+      type: string
+      enum:
+        - UNKNOWN
+        - DOWN
+        - RECOVERING
+        - UP
+      description: >
+        System status:
+         * `UNKNOWN` - Insufficient information to determine whether system is UP or DOWN
+         * `DOWN` - Component is down (downtime detected)
+         * `RECOVERING` - Component is receiving data, but not long enough to consider it UP
+         * `UP` - Component is receiving data
+      example: UP
+    Statistics:
+      title: Component statistics
+      type: object
+      properties:
+        counters:
+          type: object
+          properties:
+            received:
+              type: integer
+              minimum: 0
+            processed:
+              type: integer
+              minimum: 0
+            error:
+              type: integer
+              minimum: 0
+            duplicate:
+              type: integer
+              minimum: 0
+            too_late:
+              type: integer
+              minimum: 0
+        inventory:
+          type: integer
+          minimum: 0
+        status:
+          $ref: "#/components/schemas/StatusField"
+        last_status_change:
+          type: string
+          format: date-time
+        average_messages:
+          type: number
+          format: float
+          minimum: 0
