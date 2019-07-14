@@ -94,8 +94,15 @@ Now, configure the application:
 
 4. Go the the `config/` directory
 5. Copy `example.yaml` to `config.yaml`
-6. Modify the configuration parameters. Change at least the 'server' line (which should point to the NDOV ZeroMQ server), and the API port (unless you want to run on port 8080).
+6. Modify the configuration parameters. Change at least the 'server' line (which should point to the NDOV ZeroMQ server - see below), and the API port (unless you want to run on port 8080).
+
+Usage
+-----
+
 7. Start your server by running `./gotrain server`.
+8. GoTrain keeps all information in memory, so you should aim to keep the server running for a long time.
+   Process monitors like [supervisord](http://supervisord.org/) may help with that.
+9. The REST API should be available on the address you have specified in your configuration file.
 
 The CLI interface of GoTrain also allows you to:
 
@@ -107,9 +114,15 @@ The CLI interface of GoTrain also allows you to:
   `./gotrain inspect departure parsers/testdata/departure.xml` 
 * Run `./gotrain help` to show all commands.
 
+Data feed
+---------
+
+You need access to a data feed from NS called InfoPlus. This data feed is distributed freely by the [NDOVloket](https://ndovloket.nl/).
+
 Tip: you can find a public best-effort data feed from the NDOV on this page: [NDOVloket realtime](http://data.ndovloket.nl/REALTIME.TXT).
 You need the address listed for 'NS InfoPlus', likely in the format `tcp://pubsub.besteffort.ndovloket.nl:...` 
 Consider [signing up](https://ndovloket.nl/aanmelden/) for free if you are planning to use this application for production purposes.
+The data feed is the same, but it's covered by a SLA, and it helps NDOVloket to keep track of their users.
 
 Development roadmap
 -------------------
