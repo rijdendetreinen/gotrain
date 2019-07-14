@@ -12,6 +12,16 @@ import (
 var cfgFile string
 var verbose bool
 
+// Version contains the version information
+var Version VersionInformation
+
+// VersionInformation is a simple struct containing the version information
+type VersionInformation struct {
+	Version string
+	Commit  string
+	Date    string
+}
+
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "gotrain",
