@@ -79,6 +79,37 @@ Response (shortened)
 
 The full API documentation is included in the [GoTrain OpenAPI specification](openapi.yaml).
 
+Installation
+------------
+
+Binary packages will be provided in a future update. For now, the best way to install GoTrain is by
+[downloading the source code](https://github.com/rijdendetreinen/gotrain/releases) and manually compile
+the application.
+
+1. Download source code
+2. Install dependencies: `go get`
+3. Compile: `go build`
+
+Now, configure the application:
+
+4. Go the the `config/` directory
+5. Copy `example.yaml` to `config.yaml`
+6. Modify the configuration parameters. Change at least the 'server' line (which should point to the NDOV ZeroMQ server), and the API port (unless you want to run on port 8080).
+7. Start your server by running `./gotrain server`.
+
+The CLI interface of GoTrain also allows you to:
+
+* Request the current status of your server: 
+  `./gotrain status -u http://localhost:8080/` 
+  Initially, your server will have the status UNKNOWN and then RECOVERING, as it slowly starts to build up a complete dataset.
+  Arrivals and departures should be UP after approximately 80 minutes.
+* Inspect a single XML message, for example: 
+  `./gotrain inspect departure parsers/testdata/departure.xml` 
+* Run `./gotrain help` to show all commands.
+
+Tip: you can find a public best-effort data feed from the NDOV on this page: [NDOVloket realtime](http://data.ndovloket.nl/REALTIME.TXT).
+You need the address listed for 'NS InfoPlus', likely in the format `tcp://pubsub.besteffort.ndovloket.nl:...` 
+Consider [signing up](https://ndovloket.nl/aanmelden/) for free if you are planning to use this application for production purposes.
 
 Development roadmap
 -------------------
@@ -86,7 +117,6 @@ Development roadmap
 The main objectives for GoTrain have now been developed, but there is a roadmap
 for further development. The main planned improvements are:
 
-* Documentation - document the REST API and the setup process
 * Increase test coverage - the API is currently not tested
 * Better monitoring tools - analyze the data streams, monitor for errors, etc.
 * Archive functionality - allow to store all data to an archive for further
