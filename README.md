@@ -38,7 +38,7 @@ GoTrain includes a convenient REST API.
 An example request: Request all departures from Utrecht Centraal: 
 `/v2/departures/station/UT`
 
-Response (shortened)
+Response (shortened):
 
 ```json
 {
@@ -77,7 +77,22 @@ Response (shortened)
 }
 ```
 
-The full API documentation is included in the [GoTrain OpenAPI specification](openapi.yaml).
+The following endpoints are available:
+
+* `/` - API version
+* `/v2/status` - System status
+* `/v2/arrivals/stats` - Arrival statistics
+* `/v2/arrivals/station/{station}` - Arrivals for `{station}` (e.g. `UT`)
+* `/v2/arrivals/arrival/{id}/{station}/{date}` - Specific arrival details
+* `/v2/departures/stats` - Departures statistics
+* `/v2/departures/station/{station}` - Departures for `{station}` (e.g. `UT`)
+* `/v2/departures/departure/{id}/{station}/{date}` - Specific departure details
+* `/v2/services/stats` - Services statistics
+* `/v2/services/service/{service_number}/{date}` - Specific service details
+
+The full API documentation, including parameters and response formats, is included
+in the [GoTrain OpenAPI specification](openapi.yaml). Or check out the nicely
+formatted [GoTrain API on Apiary](https://rijdendetreinen.docs.apiary.io/).
 
 Installation
 ------------

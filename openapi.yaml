@@ -32,7 +32,7 @@ paths:
 
   /v2/status:
     get:
-      summary: API version
+      summary: System status
       tags:
         - general
       responses:
