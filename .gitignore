@@ -15,3 +15,4 @@ config/config.yaml
 
 gotrain
 data/
+dist/

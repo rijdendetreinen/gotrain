@@ -1,0 +1,22 @@
+builds:
+- env:
+  - CGO_ENABLED=1
+  goos:
+    - linux
+  goarch:
+    - amd64
+archives:
+ -
+  wrap_in_directory: true
+  files:
+    - LICENSE.txt
+    - README.md
+    - config/example.yaml
+checksum:
+  name_template: 'checksums.txt'
+changelog:
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
