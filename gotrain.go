@@ -12,9 +12,11 @@ var (
 
 func main() {
 	cmd.Version = cmd.VersionInformation{
-		version,
-		commit,
-		date,
+		Version: version,
+		Commit:  commit,
+		Date:    date,
 	}
+	cmd.RootCmd.Version = cmd.Version.Version
+	cmd.RootCmd.SetVersionTemplate("GoTrain " + cmd.Version.VersionStringLong() + "\n")
 	cmd.Execute()
 }

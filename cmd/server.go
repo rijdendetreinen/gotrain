@@ -36,7 +36,7 @@ var autoSaveTicker *time.Ticker
 func startServer(cmd *cobra.Command) {
 	initLogger(cmd)
 
-	log.Infof("GoTrain %v (%v %v) starting", Version.Version, Version.Commit, Version.Date)
+	log.Infof("GoTrain %v starting", Version.VersionStringLong())
 
 	signalChan := make(chan os.Signal, 1)
 	shutdownFinished := make(chan struct{})

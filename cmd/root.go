@@ -22,6 +22,16 @@ type VersionInformation struct {
 	Date    string
 }
 
+// VersionStringLong returns a version string
+func (v VersionInformation) VersionStringLong() string {
+	return fmt.Sprintf("%v (%v; built %v)", v.Version, v.Commit, v.Date)
+}
+
+// VersionStringShort returns a shortened version string
+func (v VersionInformation) VersionStringShort() string {
+	return fmt.Sprintf("%v (%v)", v.Version, v.Commit)
+}
+
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
 	Use:   "gotrain",
