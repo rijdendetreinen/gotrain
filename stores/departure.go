@@ -144,7 +144,7 @@ func (store *DepartureStore) GetDeparture(serviceID, serviceDate string, station
 
 // ReadStore reads the save store contents
 func (store *DepartureStore) ReadStore() error {
-	err := readGob("data/departures.gob", &store.departures)
+	err := readGob("departures.gob", &store.departures)
 
 	if err != nil {
 		return err
@@ -161,7 +161,7 @@ func (store *DepartureStore) ReadStore() error {
 func (store *DepartureStore) SaveStore() error {
 	store.RLock()
 
-	err := writeGob("data/departures.gob", store.departures)
+	err := writeGob("departures.gob", store.departures)
 
 	store.RUnlock()
 	return err

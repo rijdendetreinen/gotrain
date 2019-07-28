@@ -117,14 +117,14 @@ func (store *ServiceStore) deleteService(serviceID string) {
 
 // ReadStore reads the save store contents
 func (store *ServiceStore) ReadStore() error {
-	return readGob("data/services.gob", &store.services)
+	return readGob("services.gob", &store.services)
 }
 
 // SaveStore saves the service store contents
 func (store *ServiceStore) SaveStore() error {
 	store.RLock()
 
-	err := writeGob("data/services.gob", store.services)
+	err := writeGob("services.gob", store.services)
 
 	store.RUnlock()
 	return err

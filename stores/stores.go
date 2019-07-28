@@ -23,6 +23,9 @@ const StatusUp = "UP"
 // Stores is the stores collection. Initialize with InitializeStores()
 var Stores StoreCollection
 
+// StoresDataDirectory is the location where stores are saved
+var StoresDataDirectory = "data/"
+
 // StoreCollection is the collection of all stores
 type StoreCollection struct {
 	ArrivalStore   ArrivalStore
@@ -250,7 +253,7 @@ func SaveStores() error {
 
 // Encode a GOB file
 func writeGob(filePath string, object interface{}) error {
-	file, err := os.Create(filePath)
+	file, err := os.Create(getDataDirectory() + filePath)
 
 	if err != nil {
 		return err
@@ -268,11 +271,15 @@ func writeGob(filePath string, object interface{}) error {
 
 // Read a GOB file
 func readGob(filePath string, object interface{}) error {
-	file, err := os.Open(filePath)
+	file, err := os.Open(getDataDirectory() + filePath)
 	if err == nil {
 		decoder := gob.NewDecoder(file)
 		err = decoder.Decode(object)
 	}
 	file.Close()
 	return err
+}
+
+func getDataDirectory() string {
+	return StoresDataDirectory
 }

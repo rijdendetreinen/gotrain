@@ -132,11 +132,21 @@ func initLogger(cmd *cobra.Command) {
 func initStores() {
 	stores.InitializeStores()
 
-	log.Info("Reading saved store contents...")
-	err := stores.LoadStores()
+	if viper.IsSet("stores.location") {
+		stores.StoresDataDirectory = viper.GetString("stores.location")
+	}
 
-	if err != nil {
-		log.WithError(err).Warn("Error while loading stores")
+	if _, err := os.Stat(stores.StoresDataDirectory); os.IsNotExist(err) {
+		log.WithField("directory", stores.StoresDataDirectory).Error("Data directory does not exist")
+	} else {
+		log.WithField("directory", stores.StoresDataDirectory).Info("Data directory initialized")
+
+		log.Info("Reading saved store contents...")
+		err := stores.LoadStores()
+
+		if err != nil {
+			log.WithError(err).Warn("Error while loading stores")
+		}
 	}
 }
 

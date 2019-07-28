@@ -72,7 +72,7 @@ func initConfig() {
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		log.WithField("file", viper.ConfigFileUsed()).Debug("Using config file:")
+		log.WithField("file", viper.ConfigFileUsed()).Info("Using config file:")
 	}
 
 	log.Debug("Configuration loaded")

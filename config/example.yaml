@@ -7,3 +7,5 @@ source:
     services: "/RIG/InfoPlusRITInterface2"
 api:
   address: ":8080"
+stores:
+  location: /var/cache/gotrain
