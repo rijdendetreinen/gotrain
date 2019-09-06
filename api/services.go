@@ -46,10 +46,10 @@ func serviceDetails(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(wrapServicesStatus("service", serviceToJSON(*service, language, verbose)))
+	json.NewEncoder(w).Encode(wrapServicesStatus("service", ServiceToJSON(*service, language, verbose)))
 }
 
-func serviceToJSON(service models.Service, language string, verbose bool) map[string]interface{} {
+func ServiceToJSON(service models.Service, language string, verbose bool) map[string]interface{} {
 	response := map[string]interface{}{
 		"id":             service.ID,
 		"timestamp":      service.Timestamp,

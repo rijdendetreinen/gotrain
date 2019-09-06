@@ -7,6 +7,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/rijdendetreinen/gotrain/archiver"
+
 	"github.com/pebbe/zmq4"
 	"github.com/rijdendetreinen/gotrain/parsers"
 	"github.com/rijdendetreinen/gotrain/stores"
@@ -131,6 +133,9 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 					} else {
 						if ProcessStores {
 							stores.Stores.ServiceStore.ProcessService(service)
+						}
+						if ArchiveServices {
+							archiver.ProcessService(service)
 						}
 
 						log.WithFields(log.Fields{

@@ -5,6 +5,8 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/rijdendetreinen/gotrain/archiver"
+
 	"github.com/rijdendetreinen/gotrain/receiver"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -43,6 +45,14 @@ func startArchiver(cmd *cobra.Command) {
 		shutdownArchiver()
 		close(shutdownArchiverFinished)
 	}()
+
+	connectionError := archiver.Connect()
+
+	if connectionError != nil {
+		log.WithError(connectionError).Error("Error while connecting to archive queue")
+
+		return
+	}
 
 	receiver.ProcessStores = false
 	receiver.ArchiveServices = true

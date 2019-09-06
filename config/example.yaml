@@ -9,3 +9,7 @@ api:
   address: ":8080"
 stores:
   location: /var/cache/gotrain
+archive:
+  address: :6379
+  password: ""
+  db: 0
