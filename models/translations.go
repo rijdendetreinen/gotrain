@@ -115,6 +115,12 @@ var causeTranslations = map[string]string{
 	"door een object op het spoor":                                       "due to an object on the track",
 	"door een voertuig op het spoor":                                     "due to a vehicle on the track",
 	"door nog onbekende oorzaak":                                         "due to a yet unknown reason",
+	"door de inzet van ander materieel":                                  "due to a replacement train",
+	"door personen op het spoor":                                         "due to persons on the railway",
+	"door personen langs het spoor":                                      "due to persons along the railway",
+	"door een staking":                                                   "due to a strike",
+	"door een tekort aan beschikbaar personeel":                          "due to staff shortage",
+	"door een versperring op het spoor":                                  "due to an obstruction on the line",
 }
 
 // Translate returns the appropriate translation based on language
