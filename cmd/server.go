@@ -54,6 +54,9 @@ func startServer(cmd *cobra.Command) {
 		close(shutdownFinished)
 	}()
 
+	receiver.ProcessStores = true
+	receiver.ArchiveServices = false
+
 	go receiver.ReceiveData(exitReceiverChannel)
 
 	apiAddress := viper.GetString("api.address")

@@ -14,6 +14,9 @@ import (
 	"github.com/spf13/viper"
 )
 
+var ArchiveServices bool
+var ProcessStores bool
+
 // ReceiveData connects to the ZMQ server and starts receiving data
 func ReceiveData(exit chan bool) {
 	subscriber, _ := zmq4.NewSocket(zmq4.SUB)
@@ -30,7 +33,16 @@ func ReceiveData(exit chan bool) {
 	log.WithField("host", zmqHost).Info("Connect to server")
 
 	// Subscribe to all envelopes:
+	if !ProcessStores && ArchiveServices {
+		log.Info("Archiver enabled, not processing departures and arrivals. Only subscribing to services")
+	}
+
 	for key, envelope := range envelopes {
+		if !ProcessStores && ArchiveServices {
+			if key != "services" {
+				continue
+			}
+		}
 		log.WithFields(log.Fields{
 			"system":   key,
 			"envelope": envelope,
@@ -83,7 +95,9 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 						log.WithError(err).Error("Could not parse departure message")
 						stores.Stores.DepartureStore.Counters.Error++
 					} else {
-						stores.Stores.DepartureStore.ProcessDeparture(departure)
+						if ProcessStores {
+							stores.Stores.DepartureStore.ProcessDeparture(departure)
+						}
 
 						log.WithFields(log.Fields{
 							"ProductID":   departure.ProductID,
@@ -98,7 +112,9 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 						log.WithError(err).Error("Could not parse arrival message")
 						stores.Stores.ArrivalStore.Counters.Error++
 					} else {
-						stores.Stores.ArrivalStore.ProcessArrival(arrival)
+						if ProcessStores {
+							stores.Stores.ArrivalStore.ProcessArrival(arrival)
+						}
 
 						log.WithFields(log.Fields{
 							"ProductID": arrival.ProductID,
@@ -113,7 +129,9 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 						log.WithError(err).Error("Could not parse service message")
 						stores.Stores.ServiceStore.Counters.Error++
 					} else {
-						stores.Stores.ServiceStore.ProcessService(service)
+						if ProcessStores {
+							stores.Stores.ServiceStore.ProcessService(service)
+						}
 
 						log.WithFields(log.Fields{
 							"ProductID": service.ProductID,
