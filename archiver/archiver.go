@@ -2,7 +2,6 @@ package archiver
 
 import (
 	"encoding/json"
-	"fmt"
 	"time"
 
 	"github.com/go-redis/redis"
@@ -38,8 +37,6 @@ func Connect() error {
 // ProcessService adds a service object to the queue
 func ProcessService(service models.Service) {
 	serviceJSON, _ := json.Marshal(serviceToJSON(service))
-
-	fmt.Println(string(serviceJSON))
 
 	if serviceJSON != nil {
 		redisDb.LPush("services-queue", string(serviceJSON))
