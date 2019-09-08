@@ -27,8 +27,12 @@ to:
 * All upcoming arrivals for a single station
 * Detailed information about a single train journey
 
+You can also use GoTrain to store all services to a Redis queue for further
+processing (archive function).
+
 It is easy to extend GoTrain's functionality or to build your own applications
-using the REST API. For example; create your live departures board.
+using the REST API. For example: create your live departures board, or analyze
+which trains are currently delayed or cancelled on the Dutch rail network.
 
 REST API
 --------
@@ -94,6 +98,13 @@ The full API documentation, including parameters and response formats, is includ
 in the [GoTrain OpenAPI specification](openapi.yaml). Or check out the nicely
 formatted [GoTrain API on Apiary](https://rijdendetreinen.docs.apiary.io/).
 
+Archiver
+--------
+
+The archive function allows you to store all data to an archive for further
+processing or analysis at a later time. When running `gotrain archiver`,
+GoTrain simply pushes all received services to a Redis queue (in JSON format).
+
 Installation
 ------------
 
@@ -147,8 +158,6 @@ for further development. The main planned improvements are:
 
 * Increase test coverage - the API is currently not tested
 * Better monitoring tools - analyze the data streams, monitor for errors, etc.
-* Archive functionality - allow to store all data to an archive for further
-  processing or analysis at a later time
 * Packaging - make it easier to install gotrain on a server by just downloading
   and installing the binaries
 
