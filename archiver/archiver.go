@@ -39,7 +39,7 @@ func ProcessService(service models.Service) {
 	serviceJSON, _ := json.Marshal(serviceToJSON(service))
 
 	if serviceJSON != nil {
-		redisDb.LPush("services-queue", string(serviceJSON))
+		redisDb.LPush("services", string(serviceJSON))
 	}
 }
 
