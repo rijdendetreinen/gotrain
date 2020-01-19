@@ -75,11 +75,11 @@ func (store *ArrivalStore) InitStore() {
 	store.arrivals = make(map[string]models.Arrival)
 	store.stations = make(map[string]map[string]struct{})
 
-	store.DowntimeDetection.MinAverage = float64(1) / 60       // One message per minute
-	store.DowntimeDetection.MinAverageNight = float64(1) / 600 // One message per 10 minutes
-	store.DowntimeDetection.NightStartHour = 2                 // Night starts at 02:00
-	store.DowntimeDetection.NightEndHour = 5                   // Night ends at 05:00
-	store.DowntimeDetection.RecoveryTime = 70                  // 70 mins recovery time
+	store.DowntimeDetection.MinAverage = float64(1) / 60        // One message per minute
+	store.DowntimeDetection.MinAverageNight = float64(1) / 1200 // One message per 20 minutes
+	store.DowntimeDetection.NightStartHour = 2                  // Night starts at 02:00
+	store.DowntimeDetection.NightEndHour = 5                    // Night ends at 05:00
+	store.DowntimeDetection.RecoveryTime = 70                   // 70 mins recovery time
 }
 
 // GetNumberOfArrivals returns the number of arrivals in the store (unfiltered)
