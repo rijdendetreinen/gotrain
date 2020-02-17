@@ -22,11 +22,6 @@ func serviceCounters(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func serviceAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(stores.Stores.ServiceStore.GetAllServices())
-}
-
 func serviceDetails(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -49,6 +44,7 @@ func serviceDetails(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(wrapServicesStatus("service", ServiceToJSON(*service, language, verbose)))
 }
 
+// ServiceToJSON generates an interface (convertible to JSON) with all service details
 func ServiceToJSON(service models.Service, language string, verbose bool) map[string]interface{} {
 	response := map[string]interface{}{
 		"id":             service.ID,

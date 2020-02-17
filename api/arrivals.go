@@ -23,11 +23,6 @@ func arrivalCounters(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-func arrivalsAll(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(stores.Stores.ArrivalStore.GetAllArrivals())
-}
-
 func arrivalsStation(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
