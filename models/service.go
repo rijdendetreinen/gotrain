@@ -96,9 +96,9 @@ func (service *Service) GetStops() map[string]ServiceStop {
 	return stops
 }
 
-// IsStopping checks whether the service is stopping at this stop
+// IsStopping checks whether the service is stopping at this stop or whether is was planned to do so
 func (stop *ServiceStop) IsStopping() bool {
-	return stop.StopType != "D"
+	return stop.StoppingActual || stop.StoppingPlanned
 }
 
 // ArrivalPlatformChanged returns true when the planned platform is not the actual one

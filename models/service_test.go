@@ -15,9 +15,9 @@ func TestGetStoppingStations(t *testing.T) {
 		stop.Station.NameLong = "station " + strconv.Itoa(i)
 
 		if i%2 == 0 {
-			stop.StopType = "X"
+			stop.StoppingActual = true
 		} else {
-			stop.StopType = "D"
+			stop.StoppingActual = false
 		}
 
 		servicePart.Stops = append(servicePart.Stops, stop)
@@ -32,7 +32,7 @@ func TestGetStoppingStations(t *testing.T) {
 
 	// Ensure that only StopType X is present:
 	for _, stopStation := range stopStations {
-		if stopStation.StopType == "D" {
+		if stopStation.StoppingActual == false && stopStation.StoppingPlanned == false {
 			t.Error("Through station in GetStoppingStations")
 		}
 	}
@@ -47,6 +47,7 @@ func TestGetStops(t *testing.T) {
 
 		stop.Station.Code = "S" + strconv.Itoa(i)
 		stop.Station.NameLong = "station " + strconv.Itoa(i)
+		stop.StoppingPlanned = true
 		servicePart.Stops = append(servicePart.Stops, stop)
 	}
 
