@@ -1,7 +1,7 @@
 GoTrain
 =======
 
-[![Build Status](https://travis-ci.org/rijdendetreinen/gotrain.svg?branch=master)](https://travis-ci.org/rijdendetreinen/gotrain)
+![Go](https://github.com/rijdendetreinen/gotrain/workflows/Go/badge.svg)
 [![codecov](https://codecov.io/gh/rijdendetreinen/gotrain/branch/master/graph/badge.svg)](https://codecov.io/gh/rijdendetreinen/gotrain)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e35ed750fa4facc99e92/maintainability)](https://codeclimate.com/github/rijdendetreinen/gotrain/maintainability)
 
