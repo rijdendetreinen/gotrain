@@ -24,17 +24,14 @@ jobs:
     - name: Get dependencies
       run: |
         go get -v -t -d ./...
-        if [ -f Gopkg.toml ]; then
-            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-            dep ensure
-        fi
 
     - name: Build
       run: go build -v .
 
     - name: Test
       run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+      working-directory: github.com/rijdendetreinen/gotrain
 
     - uses: codecov/codecov-action@v1
       with:
-        file: ./coverage.txt
+        file: ./github.com/rijdendetreinen/gotrain/coverage.txt
