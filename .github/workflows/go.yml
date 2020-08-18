@@ -1,10 +1,6 @@
 name: Go
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
 
@@ -16,7 +12,7 @@ jobs:
     - name: Set up Go 1.x
       uses: actions/setup-go@v2
       with:
-        go-version: ^1.12
+        go-version: ^1.15
       id: go
     
     - name: Install libzmq
@@ -28,13 +24,16 @@ jobs:
     - name: Get dependencies
       run: |
         go get -v -t -d ./...
-        if [ -f Gopkg.toml ]; then
-            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-            dep ensure
-        fi
 
     - name: Build
       run: go build -v .
 
+    - name: Make data directories
+      run: mkdir stores/data
+
     - name: Test
-      run: go test -v .
+      run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+
+    - uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.txt

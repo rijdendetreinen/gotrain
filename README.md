@@ -1,7 +1,7 @@
 GoTrain
 =======
 
-[![Build Status](https://travis-ci.org/rijdendetreinen/gotrain.svg?branch=master)](https://travis-ci.org/rijdendetreinen/gotrain)
+![Go](https://github.com/rijdendetreinen/gotrain/workflows/Go/badge.svg)
 [![codecov](https://codecov.io/gh/rijdendetreinen/gotrain/branch/master/graph/badge.svg)](https://codecov.io/gh/rijdendetreinen/gotrain)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e35ed750fa4facc99e92/maintainability)](https://codeclimate.com/github/rijdendetreinen/gotrain/maintainability)
 
@@ -173,7 +173,7 @@ application or for some other purpose!
 License
 -------
 
-Copyright (c) 2019 Geert Wirken, Rijden de Treinen
+Copyright (c) 2019-2020 Geert Wirken, Rijden de Treinen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
