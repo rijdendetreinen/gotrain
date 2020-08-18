@@ -28,10 +28,12 @@ jobs:
     - name: Build
       run: go build -v .
 
+    - name: Make data directories
+      run: mkdir data
+
     - name: Test
       run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
-      working-directory: github.com/rijdendetreinen/gotrain
 
     - uses: codecov/codecov-action@v1
       with:
-        file: ./github.com/rijdendetreinen/gotrain/coverage.txt
+        file: ./coverage.txt
