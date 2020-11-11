@@ -136,7 +136,7 @@ func (tip BoardingTip) Translation(language string) string {
 func (tip ChangeTip) Translation(language string) string {
 	translation := Translate("Voor %s overstappen in %s", "For %s, change at %s", language)
 
-	return fmt.Sprintf(translation, tip.Destination, tip.ChangeStation)
+	return fmt.Sprintf(translation, tip.Destination.NameLong, tip.ChangeStation.NameLong)
 }
 
 // Translation provides a translation for this tip
