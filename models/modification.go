@@ -8,6 +8,12 @@ const ModificationDelayedDeparture = 10
 // ModificationDelayedArrival is the status for delays on arriving trains
 const ModificationDelayedArrival = 11
 
+// ModificationChangedDepartureTime when the departure time has been changed
+const ModificationChangedDepartureTime = 12
+
+// ModificationChangedArrivalTime when the arrival time has been changed
+const ModificationChangedArrivalTime = 13
+
 // ModificationChangedDeparturePlatform is for changed departure platforms (compared to the schedule)
 const ModificationChangedDeparturePlatform = 20
 
@@ -99,6 +105,12 @@ func (modification Modification) Remark(language string) (string, bool) {
 			// Only translate when there is a cause for the delay:
 			return modification.remarkWithCause("Latere aankomst", "Delayed", language), true
 		}
+
+	case ModificationChangedDepartureTime:
+		return modification.remarkWithCause("Vertrektijd gewijzigd", "Departure time changed", language), true
+
+	case ModificationChangedArrivalTime:
+		return modification.remarkWithCause("Aankomsttijd gewijzigd", "Arrival time changed", language), true
 
 	case ModificationCancelledArrival, ModificationCancelledDeparture, ModificationCancelledTrain:
 		return modification.remarkWithCause("Trein rijdt niet", "Cancelled", language), true
