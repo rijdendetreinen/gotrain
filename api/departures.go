@@ -136,8 +136,8 @@ func departureToJSON(departure models.Departure, language string, verbose bool, 
 
 		for _, trainWing := range departure.TrainWings {
 			wingResponse := map[string]interface{}{
-				"destination_actual":  trainWing.DestinationActual,
-				"destination_planned": trainWing.DestinationPlanned,
+				"destination_actual":  trainWing.DestinationActualString(),
+				"destination_planned": trainWing.DestinationPlannedString(),
 				"remarks":             models.GetRemarks(trainWing.Modifications, language),
 				"stops":               []interface{}{},
 			}

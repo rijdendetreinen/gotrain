@@ -125,6 +125,16 @@ func (departure Departure) PlannedViaStationsString() string {
 	return stationsMediumString(departure.ViaPlanned, ", ")
 }
 
+// DestinationActualString returns a string of all actual destination stations (medium name)
+func (wing TrainWing) DestinationActualString() string {
+	return stationsMediumString(wing.DestinationActual, ", ")
+}
+
+// DestinationPlannedString returns a string of all planned destination stations (medium name)
+func (wing TrainWing) DestinationPlannedString() string {
+	return stationsMediumString(wing.DestinationPlanned, ", ")
+}
+
 // Translation provides a translation for this tip
 func (tip BoardingTip) Translation(language string) string {
 	translation := Translate("%s %s naar %s (spoor %s) is eerder in %s", "%s %s to %s (platform %s) reaches %s sooner", language)
