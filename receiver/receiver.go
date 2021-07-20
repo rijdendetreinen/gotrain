@@ -28,6 +28,9 @@ func ReceiveData(exit chan bool) {
 	subscriber.SetLinger(0)
 	subscriber.SetRcvtimeo(1 * time.Second)
 
+	replacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(replacer)
+
 	zmqHost := viper.GetString("source.server")
 	envelopes := viper.GetStringMapString("source.envelopes")
 

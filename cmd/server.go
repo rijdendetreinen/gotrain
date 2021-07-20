@@ -3,6 +3,7 @@ package cmd
 import (
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 	"time"
 
@@ -37,6 +38,9 @@ func startServer(cmd *cobra.Command) {
 	initLogger(cmd)
 
 	log.Infof("GoTrain %v starting", Version.VersionStringLong())
+
+	replacer := strings.NewReplacer(".", "_")
+	viper.SetEnvKeyReplacer(replacer)
 
 	signalChan := make(chan os.Signal, 1)
 	shutdownFinished := make(chan struct{})
