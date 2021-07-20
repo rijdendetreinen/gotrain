@@ -122,6 +122,15 @@ Now, configure the application:
 5. Copy `example.yaml` to `config.yaml`
 6. Modify the configuration parameters. Change at least the 'server' line (which should point to the NDOV ZeroMQ server - see below), and the API port (unless you want to run on port 8080).
 
+Configuration is also possible with environment variables. Example:
+```bash
+API_ADDRESS=:8080
+SOURCE_SERVER=tcp://pubsub.besteffort.ndovloket.nl:7664
+SOURCE_ENVELOPES_ARRIVALS=/RIG/InfoPlusDASInterface4
+SOURCE_ENVELOPES_DEPARTURES=/RIG/InfoPlusDVSInterface4
+SOURCE_ENVELOPES_SERVICES=/RIG/InfoPlusRITInterface2
+```
+
 Usage
 -----
 
@@ -139,6 +148,18 @@ The CLI interface of GoTrain also allows you to:
 * Inspect a single XML message, for example: 
   `./gotrain inspect departure parsers/testdata/departure.xml` 
 * Run `./gotrain help` to show all commands.
+
+Docker
+------
+It is also possible to deploy GoTrain with Docker.
+```bash
+docker build -t gotrain
+```
+Running the container:
+```bash
+docker run gotrain
+```
+(To use environment variables with docker, add them with `-e KEY=VALUE`)
 
 Data feed
 ---------
