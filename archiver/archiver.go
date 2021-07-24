@@ -19,7 +19,6 @@ func Connect() error {
 	redisDbNumber := viper.GetInt("archive.db")
 
 	log.WithField("address", redisAddress).
-		WithField("password", redisPassword).
 		WithField("db", redisDbNumber).
 		Info("Connecting to Redis server")
 
