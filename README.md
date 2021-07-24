@@ -161,6 +161,8 @@ docker run gotrain
 ```
 (To use environment variables with docker, add them with `-e KEY=VALUE`)
 
+You can also use the official [GoTrain Docker image](https://hub.docker.com/r/rijdendetreinen/gotrain) which is updated with the latest release.
+
 Data feed
 ---------
 
