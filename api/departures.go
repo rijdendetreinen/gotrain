@@ -91,6 +91,7 @@ func departureToJSON(departure models.Departure, language string, verbose bool, 
 	response := map[string]interface{}{
 		"service_id":               departure.ServiceID,
 		"name":                     nullString(departure.ServiceName),
+		"line_number":              nullString(departure.LineNumber),
 		"timestamp":                departure.Timestamp,
 		"status":                   departure.Status,
 		"service_date":             departure.ServiceDate,

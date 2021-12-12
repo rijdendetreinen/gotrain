@@ -10,6 +10,7 @@ type Arrival struct {
 	ServiceDate string
 	ServiceName string
 	Station     Station
+	LineNumber  string
 
 	Status          int
 	ServiceNumber   string

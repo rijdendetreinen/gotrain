@@ -13,6 +13,7 @@ type Service struct {
 	ServiceDate     string
 	ServiceType     string
 	ServiceTypeCode string
+	LineNumber      string
 	Company         string
 
 	ServiceParts []ServicePart

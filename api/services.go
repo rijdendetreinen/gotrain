@@ -53,6 +53,7 @@ func ServiceToJSON(service models.Service, language string, verbose bool) map[st
 		"service_number": service.ServiceNumber,
 		"type":           service.ServiceType,
 		"type_code":      service.ServiceTypeCode,
+		"line_number":    nullString(service.LineNumber),
 		"company":        service.Company,
 
 		"journey_planner":      service.JourneyPlanner,

@@ -38,6 +38,11 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 	service.ServiceTypeCode = infoProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	service.Company = infoProduct.SelectElement("Vervoerder").Text()
 
+	lineNumberNode := infoProduct.SelectElement("LijnNummer")
+	if lineNumberNode != nil {
+		service.LineNumber = lineNumberNode.Text()
+	}
+
 	service.ReservationRequired = ParseInfoPlusBoolean(infoProduct.SelectElement("Reserveren"))
 	service.WithSupplement = ParseInfoPlusBoolean(infoProduct.SelectElement("Toeslag"))
 	service.SpecialTicket = ParseInfoPlusBoolean(infoProduct.SelectElement("SpeciaalKaartje"))

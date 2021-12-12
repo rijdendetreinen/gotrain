@@ -49,6 +49,11 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	departure.Company = trainProduct.SelectElement("Vervoerder").Text()
 	departure.Status, _ = strconv.Atoi(trainProduct.SelectElement("TreinStatus").Text())
 
+	lineNumberNode := trainProduct.SelectElement("LijnNummer")
+	if lineNumberNode != nil {
+		departure.LineNumber = lineNumberNode.Text()
+	}
+
 	// Train name, e.g. special trains like the museum train
 	nameNode := trainProduct.SelectElement("TreinNaam")
 	if nameNode != nil {

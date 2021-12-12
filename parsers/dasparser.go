@@ -42,6 +42,11 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	arrival.Company = trainProduct.SelectElement("Vervoerder").Text()
 	arrival.Status, _ = strconv.Atoi(trainProduct.SelectElement("TreinStatus").Text())
 
+	lineNumberNode := trainProduct.SelectElement("LijnNummer")
+	if lineNumberNode != nil {
+		arrival.LineNumber = lineNumberNode.Text()
+	}
+
 	// Train name, e.g. special trains like the museum train
 	nameNode := trainProduct.SelectElement("TreinNaam")
 	if nameNode != nil {

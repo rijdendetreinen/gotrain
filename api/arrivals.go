@@ -82,6 +82,7 @@ func arrivalToJSON(arrival models.Arrival, language string) map[string]interface
 	response := map[string]interface{}{
 		"service_id":          arrival.ServiceID,
 		"name":                nullString(arrival.ServiceName),
+		"line_number":         nullString(arrival.LineNumber),
 		"timestamp":           arrival.Timestamp,
 		"status":              arrival.Status,
 		"service_date":        arrival.ServiceDate,
