@@ -83,6 +83,12 @@ const ModificationNotActual = 50
 // ModificationBusReplacement service is a bus replacement service
 const ModificationBusReplacement = 51
 
+// ModificationSprinterRunsAsIntercity when an intercity train is running with Sprinter stock
+const ModificationSprinterRunsAsIntercity = 80
+
+// ModificationSprinterRunsAsIntercity when an Sprinter train is running with intercity stock
+const ModificationIntercityRunsAsSprinter = 81
+
 // Modification is a change (to the schedule) which is communicated to travellers
 type Modification struct {
 	ModificationType int     `json:"type"`
@@ -150,6 +156,12 @@ func (modification Modification) Remark(language string) (string, bool) {
 
 	case ModificationBusReplacement:
 		return Translate("Bus in plaats van trein", "Bus replaces train", language), true
+
+	case ModificationSprinterRunsAsIntercity:
+		return Translate("Trein rijdt met sprintermaterieel", "This train runs with Sprinter stock", language), true
+
+	case ModificationIntercityRunsAsSprinter:
+		return Translate("Trein rijdt met intercity-materieel", "This train runs with intercity stock", language), true
 
 	}
 
