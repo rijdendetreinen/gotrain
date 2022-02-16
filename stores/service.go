@@ -25,14 +25,19 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 	if serviceExists {
 		// Check for duplicate:
 		if existingService.ProductID == newService.ProductID {
-			store.Counters.Duplicates++
-			store.Counters.Processed++
+			log.WithField("ProductID", newService.ProductID).Info("Service is duplicate")
 
+			store.Counters.Duplicates++
 			// We process duplicates anyway, just in case there was a mess-up somewhere.
 		}
 
 		// Check whether newService is actually newer:
 		if existingService.Timestamp.After(newService.Timestamp) {
+			log.WithField("ProductID", newService.ProductID).
+				WithField("ExistingTimestamp", existingService.Timestamp).
+				WithField("NewTimestamp", newService.Timestamp).
+				Info("Service is outdated")
+
 			store.Counters.Outdated++
 			store.Counters.Processed++
 			return
@@ -46,6 +51,7 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 	threshold = threshold.Add(-10 * time.Second)
 
 	if newService.Timestamp.Before(threshold) {
+		log.WithField("ProductID", newService.ProductID).Debug("Service is outdated")
 		store.Counters.TooLate++
 	}
 

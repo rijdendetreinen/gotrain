@@ -26,13 +26,18 @@ func (store *ArrivalStore) ProcessArrival(newArrival models.Arrival) {
 	if arrivalExists {
 		// Check for duplicate:
 		if existingArrival.ProductID == newArrival.ProductID {
+			log.WithField("ProductID", newArrival.ProductID).Info("Arrival is duplicate")
+
 			store.Counters.Duplicates++
-			store.Counters.Processed++
-			return
 		}
 
 		// Check whether newArrival is actually newer:
 		if existingArrival.Timestamp.After(newArrival.Timestamp) {
+			log.WithField("ProductID", newArrival.ProductID).
+				WithField("ExistingTimestamp", existingArrival.Timestamp).
+				WithField("NewTimestamp", newArrival.Timestamp).
+				Info("Arrival is outdated")
+
 			store.Counters.Outdated++
 			store.Counters.Processed++
 			return
@@ -46,6 +51,7 @@ func (store *ArrivalStore) ProcessArrival(newArrival models.Arrival) {
 	threshold = threshold.Add(-10 * time.Second)
 
 	if newArrival.Timestamp.Before(threshold) {
+		log.WithField("ProductID", newArrival.ProductID).Debug("Arrival is outdated")
 		store.Counters.TooLate++
 	}
 

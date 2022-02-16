@@ -26,13 +26,17 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 	if departureExists {
 		// Check for duplicate:
 		if existingDeparture.ProductID == newDeparture.ProductID {
+			log.WithField("ProductID", newDeparture.ProductID).Info("Departure is duplicate")
+
 			store.Counters.Duplicates++
-			store.Counters.Processed++
-			return
 		}
 
 		// Check whether newDeparture is actually newer:
 		if existingDeparture.Timestamp.After(newDeparture.Timestamp) {
+			log.WithField("ProductID", newDeparture.ProductID).
+				WithField("ExistingTimestamp", existingDeparture.Timestamp).
+				WithField("NewTimestamp", newDeparture.Timestamp).
+				Info("Departure is outdated")
 			store.Counters.Outdated++
 			store.Counters.Processed++
 			return
@@ -46,6 +50,7 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 	threshold = threshold.Add(-10 * time.Second)
 
 	if newDeparture.Timestamp.Before(threshold) {
+		log.WithField("ProductID", newDeparture.ProductID).Debug("Departure is outdated")
 		store.Counters.TooLate++
 	}
 
