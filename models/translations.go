@@ -121,6 +121,8 @@ var causeTranslations = map[string]string{
 	"door een staking":                                                   "due to a strike",
 	"door een tekort aan beschikbaar personeel":                          "due to staff shortage",
 	"door een versperring op het spoor":                                  "due to an obstruction on the line",
+	"door logistieke beperkingen":                                        "due to logistical limitations",
+	"tekort aan verkeersleiders":                                         "due to shortage of traffic controllers",
 }
 
 // Translate returns the appropriate translation based on language
