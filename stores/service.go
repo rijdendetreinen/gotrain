@@ -27,7 +27,8 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 		if existingService.ProductID == newService.ProductID {
 			store.Counters.Duplicates++
 			store.Counters.Processed++
-			return
+
+			// We process duplicates anyway, just in case there was a mess-up somewhere.
 		}
 
 		// Check whether newService is actually newer:

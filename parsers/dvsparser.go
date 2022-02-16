@@ -20,14 +20,14 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 
 	defer func() {
 		if r := recover(); r != nil {
-			err = fmt.Errorf("Parser error: %+v", r)
+			err = fmt.Errorf("parser error: %+v", r)
 		}
 	}()
 
 	product := doc.SelectElement("PutReisInformatieBoodschapIn").SelectElement("ReisInformatieProductDVS")
 
 	if product == nil {
-		err = errors.New("Missing DVS element")
+		err = errors.New("missing DVS element")
 		return
 	}
 
@@ -35,7 +35,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	infoProduct := product.SelectElement("DynamischeVertrekStaat")
 	trainProduct := infoProduct.SelectElement("Trein")
 
-	departure.Timestamp = ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
+	departure.Timestamp = ParseIsoTime(product.SelectAttrValue("TimeStamp", ""))
 	departure.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
 
 	departure.ServiceID = infoProduct.SelectElement("RitId").Text()

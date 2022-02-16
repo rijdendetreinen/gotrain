@@ -19,7 +19,7 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 
 	defer func() {
 		if r := recover(); r != nil {
-			err = fmt.Errorf("Parser error: %+v", r)
+			err = fmt.Errorf("parser error: %+v", r)
 		}
 	}()
 
@@ -28,7 +28,7 @@ func ParseDasMessage(reader io.Reader) (arrival models.Arrival, err error) {
 	infoProduct := product.SelectElement("DynamischeAankomstStaat")
 	trainProduct := infoProduct.SelectElement("TreinAankomst")
 
-	arrival.Timestamp = ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
+	arrival.Timestamp = ParseIsoTime(product.SelectAttrValue("TimeStamp", ""))
 	arrival.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
 
 	arrival.ServiceID = infoProduct.SelectElement("RitId").Text()

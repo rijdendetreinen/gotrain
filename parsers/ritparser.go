@@ -18,7 +18,7 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 
 	defer func() {
 		if r := recover(); r != nil {
-			err = fmt.Errorf("Parser error: %+v", r)
+			err = fmt.Errorf("parser error: %+v", r)
 		}
 	}()
 
@@ -26,7 +26,7 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 	productAdministration := product.SelectElement("RIPAdministratie")
 	infoProduct := product.SelectElement("RitInfo")
 
-	service.Timestamp = ParseInfoPlusDateTime(productAdministration.SelectElement("ReisInformatieTijdstip"))
+	service.Timestamp = ParseIsoTime(product.SelectAttrValue("TimeStamp", ""))
 	service.ProductID = productAdministration.SelectElement("ReisInformatieProductID").Text()
 	service.ValidUntil = ParseInfoPlusDateTime(productAdministration.SelectElement("GeldigTot"))
 

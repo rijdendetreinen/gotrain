@@ -112,7 +112,12 @@ func ParseInfoPlusDateTime(element *etree.Element) time.Time {
 		return time.Time{}
 	}
 
-	datetime, error := time.Parse(time.RFC3339, element.Text())
+	return ParseIsoTime(element.Text())
+}
+
+// ParseIsoTime translates a string with a date/time to a time.Time struct
+func ParseIsoTime(timestamp string) time.Time {
+	datetime, error := time.Parse(time.RFC3339, timestamp)
 
 	if error != nil {
 		return time.Time{}
