@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/evalphobia/logrus_sentry"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
@@ -80,10 +81,39 @@ func initConfig() {
 
 // Initialize logger
 func initLogger(cmd *cobra.Command) {
-	// TODO: setup logger
-
 	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
 		log.SetLevel(log.DebugLevel)
 		log.Debug("Verbose logging enabled")
+	}
+
+	if viper.GetString("sentry.dsn") != "" {
+		// Set log levels. Logging warnings is optional
+		logLevels := []log.Level{
+			log.PanicLevel,
+			log.FatalLevel,
+			log.ErrorLevel,
+		}
+
+		if viper.GetBool("sentry.warnings") {
+			logLevels = append(logLevels, log.WarnLevel)
+		}
+
+		hook, err := logrus_sentry.NewSentryHook(viper.GetString("sentry.dsn"), logLevels)
+
+		// Set release version:
+		hook.SetRelease(Version.Version)
+
+		// Set environment:
+		hook.SetEnvironment(viper.GetString("sentry.environment"))
+
+		// We want these errors in our log but not in Sentry
+		hook.SetIgnoreErrors("Shutting down", "Received signal: interrupt, shutting down", "Exiting")
+
+		if err == nil {
+			log.AddHook(hook)
+			log.WithField("dsn", viper.GetString("sentry.dsn")).Debug("Sentry logging enabled")
+		} else {
+			log.WithError(err).Error("Failed to initialize Sentry logging")
+		}
 	}
 }

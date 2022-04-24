@@ -13,3 +13,7 @@ archive:
   address: :6379
   password: ""
   db: 0
+#sentry:
+#  dsn: https://example@sentry.io/123456
+#  warnings: true
+#  environment: production

@@ -52,7 +52,7 @@ func startServer(cmd *cobra.Command) {
 
 	go func() {
 		sig := <-signalChan
-		log.Errorf("Received signal: %+v, shutting down", sig)
+		log.Warnf("Received signal: %+v, shutting down", sig)
 		signal.Reset()
 		shutdown()
 		close(shutdownFinished)
@@ -71,7 +71,7 @@ func startServer(cmd *cobra.Command) {
 	setupAutoSave()
 
 	<-shutdownFinished
-	log.Error("Exiting")
+	log.Warn("Exiting")
 }
 
 func setupCleanupScheduler() {
@@ -143,7 +143,7 @@ func initStores() {
 		err := stores.LoadStores()
 
 		if err != nil {
-			log.WithError(err).Warn("Error while loading stores")
+			log.WithError(err).Error("Error while loading stores")
 		}
 	}
 }
