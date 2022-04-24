@@ -6,6 +6,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // StatusUnknown for when no status has been determined (not enough information)
@@ -218,37 +220,37 @@ func TakeMeasurements() {
 }
 
 // LoadStores reads all store content files
-func LoadStores() error {
+func LoadStores() {
 	servicesError := Stores.ServiceStore.ReadStore()
 	departuresError := Stores.DepartureStore.ReadStore()
 	arrivalsError := Stores.ArrivalStore.ReadStore()
 
 	if servicesError != nil {
-		return servicesError
-	} else if departuresError != nil {
-		return departuresError
-	} else if arrivalsError != nil {
-		return arrivalsError
+		log.WithError(servicesError).Error("Can't load services store")
 	}
-
-	return nil
+	if departuresError != nil {
+		log.WithError(departuresError).Error("Can't load departures store")
+	}
+	if arrivalsError != nil {
+		log.WithError(arrivalsError).Error("Can't load arrivals store")
+	}
 }
 
 // SaveStores saves all stores
-func SaveStores() error {
+func SaveStores() {
 	servicesError := Stores.ServiceStore.SaveStore()
 	departuresError := Stores.DepartureStore.SaveStore()
 	arrivalsError := Stores.ArrivalStore.SaveStore()
 
 	if servicesError != nil {
-		return servicesError
-	} else if departuresError != nil {
-		return departuresError
-	} else if arrivalsError != nil {
-		return arrivalsError
+		log.WithError(servicesError).Error("Can't save services store")
 	}
-
-	return nil
+	if departuresError != nil {
+		log.WithError(departuresError).Error("Can't save departures store")
+	}
+	if arrivalsError != nil {
+		log.WithError(arrivalsError).Error("Can't save arrivals store")
+	}
 }
 
 // Encode a GOB file

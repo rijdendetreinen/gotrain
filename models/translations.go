@@ -152,7 +152,7 @@ func TranslateCause(causeLong string) string {
 	}
 
 	// Unknown translation, return original
-	log.WithField("cause", causeLong).Info("No translation for cause")
+	log.WithField("cause", causeLong).Warn("No translation for cause")
 	return causeLong
 }
 

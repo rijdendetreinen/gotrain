@@ -52,7 +52,7 @@ func startServer(cmd *cobra.Command) {
 
 	go func() {
 		sig := <-signalChan
-		log.Errorf("Received signal: %+v, shutting down", sig)
+		log.Warnf("Received signal: %+v, shutting down", sig)
 		signal.Reset()
 		shutdown()
 		close(shutdownFinished)
@@ -71,7 +71,7 @@ func startServer(cmd *cobra.Command) {
 	setupAutoSave()
 
 	<-shutdownFinished
-	log.Error("Exiting")
+	log.Warn("Exiting")
 }
 
 func setupCleanupScheduler() {
@@ -81,10 +81,8 @@ func setupCleanupScheduler() {
 
 	go func() {
 		for {
-			select {
-			case <-cleanupTicker.C:
-				stores.CleanUp()
-			}
+			<-cleanupTicker.C
+			stores.CleanUp()
 		}
 	}()
 }
@@ -97,10 +95,8 @@ func setupDowntimeDetector() {
 
 	go func() {
 		for {
-			select {
-			case <-downtimeDetectorTicker.C:
-				stores.TakeMeasurements()
-			}
+			<-downtimeDetectorTicker.C
+			stores.TakeMeasurements()
 		}
 	}()
 }
@@ -111,29 +107,15 @@ func setupAutoSave() {
 
 	go func() {
 		for {
-			select {
-			case <-autoSaveTicker.C:
-				log.Info("Auto-saving stores")
-				log.Infof("Current inventory: %d arrivals, %d departures, %d services",
-					stores.Stores.ArrivalStore.GetNumberOfArrivals(),
-					stores.Stores.DepartureStore.GetNumberOfDepartures(),
-					stores.Stores.ServiceStore.GetNumberOfServices())
-				err := stores.SaveStores()
-				if err != nil {
-					log.WithError(err).Error("Error while saving stores")
-				}
-			}
+			<-autoSaveTicker.C
+			log.Info("Auto-saving stores")
+			log.Infof("Current inventory: %d arrivals, %d departures, %d services",
+				stores.Stores.ArrivalStore.GetNumberOfArrivals(),
+				stores.Stores.DepartureStore.GetNumberOfDepartures(),
+				stores.Stores.ServiceStore.GetNumberOfServices())
+			stores.SaveStores()
 		}
 	}()
-}
-
-func initLogger(cmd *cobra.Command) {
-	// TODO: setup logger
-
-	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
-		log.SetLevel(log.DebugLevel)
-		log.Debug("Verbose logging enabled")
-	}
 }
 
 func initStores() {
@@ -144,16 +126,12 @@ func initStores() {
 	}
 
 	if _, err := os.Stat(stores.StoresDataDirectory); os.IsNotExist(err) {
-		log.WithField("directory", stores.StoresDataDirectory).Error("Data directory does not exist")
+		log.WithField("directory", stores.StoresDataDirectory).Error("Data directory does not exist; not loading stores")
 	} else {
 		log.WithField("directory", stores.StoresDataDirectory).Info("Data directory initialized")
 
 		log.Info("Reading saved store contents...")
-		err := stores.LoadStores()
-
-		if err != nil {
-			log.WithError(err).Warn("Error while loading stores")
-		}
+		stores.LoadStores()
 	}
 }
 
@@ -179,9 +157,5 @@ func shutdown() {
 	<-exitReceiverChannel
 
 	log.Info("Saving store contents...")
-	err := stores.SaveStores()
-
-	if err != nil {
-		log.WithError(err).Error("Error while saving stores")
-	}
+	stores.SaveStores()
 }

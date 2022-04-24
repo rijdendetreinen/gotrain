@@ -40,7 +40,7 @@ func startArchiver(cmd *cobra.Command) {
 
 	go func() {
 		sig := <-signalChan
-		log.Errorf("Received signal: %+v, shutting down", sig)
+		log.Warnf("Received signal: %+v, shutting down", sig)
 		signal.Reset()
 		shutdownArchiver()
 		close(shutdownArchiverFinished)
@@ -60,7 +60,7 @@ func startArchiver(cmd *cobra.Command) {
 	go receiver.ReceiveData(exitArchiverReceiverChannel)
 
 	<-shutdownArchiverFinished
-	log.Error("Exiting")
+	log.Warn("Exiting")
 }
 
 func shutdownArchiver() {

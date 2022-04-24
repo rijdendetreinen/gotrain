@@ -38,7 +38,12 @@ func ProcessService(service models.Service) {
 	serviceJSON, _ := json.Marshal(serviceToJSON(service))
 
 	if serviceJSON != nil {
-		redisDb.LPush("services", string(serviceJSON))
+		result := redisDb.LPush("services", string(serviceJSON))
+		err := result.Err()
+
+		if err != nil {
+			log.WithField("error", err).WithField("ServiceID", service.ID).WithField("ProductID", service.ProductID).Error("Archiver: could not add service to queue")
+		}
 	}
 }
 
