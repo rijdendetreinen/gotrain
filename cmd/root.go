@@ -77,3 +77,13 @@ func initConfig() {
 
 	log.Debug("Configuration loaded")
 }
+
+// Initialize logger
+func initLogger(cmd *cobra.Command) {
+	// TODO: setup logger
+
+	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
+		log.SetLevel(log.DebugLevel)
+		log.Debug("Verbose logging enabled")
+	}
+}
