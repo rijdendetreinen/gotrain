@@ -81,10 +81,8 @@ func setupCleanupScheduler() {
 
 	go func() {
 		for {
-			select {
-			case <-cleanupTicker.C:
-				stores.CleanUp()
-			}
+			<-cleanupTicker.C
+			stores.CleanUp()
 		}
 	}()
 }
@@ -97,10 +95,8 @@ func setupDowntimeDetector() {
 
 	go func() {
 		for {
-			select {
-			case <-downtimeDetectorTicker.C:
-				stores.TakeMeasurements()
-			}
+			<-downtimeDetectorTicker.C
+			stores.TakeMeasurements()
 		}
 	}()
 }
@@ -111,15 +107,13 @@ func setupAutoSave() {
 
 	go func() {
 		for {
-			select {
-			case <-autoSaveTicker.C:
-				log.Info("Auto-saving stores")
-				log.Infof("Current inventory: %d arrivals, %d departures, %d services",
-					stores.Stores.ArrivalStore.GetNumberOfArrivals(),
-					stores.Stores.DepartureStore.GetNumberOfDepartures(),
-					stores.Stores.ServiceStore.GetNumberOfServices())
-				stores.SaveStores()
-			}
+			<-autoSaveTicker.C
+			log.Info("Auto-saving stores")
+			log.Infof("Current inventory: %d arrivals, %d departures, %d services",
+				stores.Stores.ArrivalStore.GetNumberOfArrivals(),
+				stores.Stores.DepartureStore.GetNumberOfDepartures(),
+				stores.Stores.ServiceStore.GetNumberOfServices())
+			stores.SaveStores()
 		}
 	}()
 }
