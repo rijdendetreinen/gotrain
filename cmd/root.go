@@ -110,9 +110,6 @@ func initLogger(cmd *cobra.Command) {
 		// Set environment:
 		hook.SetEnvironment(viper.GetString("sentry.environment"))
 
-		// We want these errors in our log but not in Sentry
-		hook.SetIgnoreErrors("Shutting down", "Received signal: interrupt, shutting down", "Exiting")
-
 		if err == nil {
 			log.AddHook(hook)
 			log.WithField("dsn", viper.GetString("sentry.dsn")).Debug("Sentry logging enabled")
