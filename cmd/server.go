@@ -126,16 +126,12 @@ func initStores() {
 	}
 
 	if _, err := os.Stat(stores.StoresDataDirectory); os.IsNotExist(err) {
-		log.WithField("directory", stores.StoresDataDirectory).Error("Data directory does not exist")
+		log.WithField("directory", stores.StoresDataDirectory).Error("Data directory does not exist; not loading stores")
 	} else {
 		log.WithField("directory", stores.StoresDataDirectory).Info("Data directory initialized")
 
 		log.Info("Reading saved store contents...")
-		err := stores.LoadStores()
-
-		if err != nil {
-			log.WithError(err).Error("Error while loading stores")
-		}
+		stores.LoadStores()
 	}
 }
 

@@ -220,20 +220,20 @@ func TakeMeasurements() {
 }
 
 // LoadStores reads all store content files
-func LoadStores() error {
+func LoadStores() {
 	servicesError := Stores.ServiceStore.ReadStore()
 	departuresError := Stores.DepartureStore.ReadStore()
 	arrivalsError := Stores.ArrivalStore.ReadStore()
 
 	if servicesError != nil {
-		return servicesError
-	} else if departuresError != nil {
-		return departuresError
-	} else if arrivalsError != nil {
-		return arrivalsError
+		log.WithError(servicesError).Error("Can't load services store")
 	}
-
-	return nil
+	if departuresError != nil {
+		log.WithError(departuresError).Error("Can't load departures store")
+	}
+	if arrivalsError != nil {
+		log.WithError(arrivalsError).Error("Can't load arrivals store")
+	}
 }
 
 // SaveStores saves all stores
@@ -243,13 +243,13 @@ func SaveStores() {
 	arrivalsError := Stores.ArrivalStore.SaveStore()
 
 	if servicesError != nil {
-		log.WithError(servicesError).Error("Error while saving services store")
+		log.WithError(servicesError).Error("Can't save services store")
 	}
 	if departuresError != nil {
-		log.WithError(departuresError).Error("Error while saving departures store")
+		log.WithError(departuresError).Error("Can't save departures store")
 	}
 	if arrivalsError != nil {
-		log.WithError(arrivalsError).Error("Error while saving arrivals store")
+		log.WithError(arrivalsError).Error("Can't save arrivals store")
 	}
 }
 
