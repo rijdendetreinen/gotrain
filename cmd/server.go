@@ -118,10 +118,7 @@ func setupAutoSave() {
 					stores.Stores.ArrivalStore.GetNumberOfArrivals(),
 					stores.Stores.DepartureStore.GetNumberOfDepartures(),
 					stores.Stores.ServiceStore.GetNumberOfServices())
-				err := stores.SaveStores()
-				if err != nil {
-					log.WithError(err).Error("Error while saving stores")
-				}
+				stores.SaveStores()
 			}
 		}
 	}()
@@ -170,9 +167,5 @@ func shutdown() {
 	<-exitReceiverChannel
 
 	log.Info("Saving store contents...")
-	err := stores.SaveStores()
-
-	if err != nil {
-		log.WithError(err).Error("Error while saving stores")
-	}
+	stores.SaveStores()
 }

@@ -3,6 +3,7 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/evalphobia/logrus_sentry"
 	log "github.com/sirupsen/logrus"
@@ -99,6 +100,9 @@ func initLogger(cmd *cobra.Command) {
 		}
 
 		hook, err := logrus_sentry.NewSentryHook(viper.GetString("sentry.dsn"), logLevels)
+
+		// 5s timeout seems reasonable
+		hook.Timeout = 5 * time.Second
 
 		// Set release version:
 		hook.SetRelease(Version.Version)

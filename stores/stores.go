@@ -6,6 +6,8 @@ import (
 	"os"
 	"sync"
 	"time"
+
+	log "github.com/sirupsen/logrus"
 )
 
 // StatusUnknown for when no status has been determined (not enough information)
@@ -235,20 +237,20 @@ func LoadStores() error {
 }
 
 // SaveStores saves all stores
-func SaveStores() error {
+func SaveStores() {
 	servicesError := Stores.ServiceStore.SaveStore()
 	departuresError := Stores.DepartureStore.SaveStore()
 	arrivalsError := Stores.ArrivalStore.SaveStore()
 
 	if servicesError != nil {
-		return servicesError
-	} else if departuresError != nil {
-		return departuresError
-	} else if arrivalsError != nil {
-		return arrivalsError
+		log.WithError(servicesError).Error("Error while saving services store")
 	}
-
-	return nil
+	if departuresError != nil {
+		log.WithError(departuresError).Error("Error while saving departures store")
+	}
+	if arrivalsError != nil {
+		log.WithError(arrivalsError).Error("Error while saving arrivals store")
+	}
 }
 
 // Encode a GOB file
