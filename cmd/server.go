@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/api"
+	"github.com/rijdendetreinen/gotrain/prometheus_interface"
 	"github.com/rijdendetreinen/gotrain/receiver"
 	"github.com/rijdendetreinen/gotrain/stores"
 	log "github.com/sirupsen/logrus"
@@ -41,6 +42,11 @@ func startServer(cmd *cobra.Command) {
 
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
+
+	if viper.GetBool("prometheus.enabled") {
+		prometheus_interface.SetupPrometheus()
+		prometheus_interface.StartPrometheusInterface()
+	}
 
 	signalChan := make(chan os.Signal, 1)
 	shutdownFinished := make(chan struct{})
