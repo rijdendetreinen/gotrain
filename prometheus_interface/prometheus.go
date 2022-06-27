@@ -84,7 +84,7 @@ func registerStoreMetrics() {
 		prometheus.CounterOpts{
 			Namespace: "gotrain",
 			Subsystem: "departures",
-			Name:      "outdated",
+			Name:      "late",
 			Help:      "Number of too late messages",
 		},
 		func() float64 { return float64(stores.Stores.DepartureStore.Counters.TooLate) },
@@ -155,7 +155,7 @@ func registerStoreMetrics() {
 		prometheus.CounterOpts{
 			Namespace: "gotrain",
 			Subsystem: "arrivals",
-			Name:      "outdated",
+			Name:      "late",
 			Help:      "Number of too late messages",
 		},
 		func() float64 { return float64(stores.Stores.ArrivalStore.Counters.TooLate) },
@@ -226,7 +226,7 @@ func registerStoreMetrics() {
 		prometheus.CounterOpts{
 			Namespace: "gotrain",
 			Subsystem: "services",
-			Name:      "outdated",
+			Name:      "late",
 			Help:      "Number of too late messages",
 		},
 		func() float64 { return float64(stores.Stores.ServiceStore.Counters.TooLate) },
@@ -237,7 +237,7 @@ func registerStoreMetrics() {
 			Namespace: "gotrain",
 			Subsystem: "services",
 			Name:      "inventory",
-			Help:      "Number of arrivals in memory",
+			Help:      "Number of services in memory",
 		},
 		func() float64 { return float64(stores.Stores.ServiceStore.GetNumberOfServices()) },
 	))
