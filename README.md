@@ -105,6 +105,12 @@ The archive function allows you to store all data to an archive for further
 processing or analysis at a later time. When running `gotrain archiver`,
 GoTrain simply pushes all received services to a Redis queue (in JSON format).
 
+Prometheus
+----------
+
+A [Prometheus](https://prometheus.io/) integration is included to expose metrics about recieved messages
+and API requests. This integration can be enabled optionally on a separate port.
+
 Installation
 ------------
 
@@ -180,7 +186,6 @@ The main objectives for GoTrain have now been developed, but there is a roadmap
 for further development. The main planned improvements are:
 
 * Increase test coverage - the API is currently not tested
-* Better monitoring tools - analyze the data streams, monitor for errors, etc.
 * Packaging - make it easier to install gotrain on a server by just downloading
   and installing the binaries
 
