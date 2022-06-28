@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/api"
+	"github.com/rijdendetreinen/gotrain/prometheus_interface"
 	"github.com/rijdendetreinen/gotrain/receiver"
 	"github.com/rijdendetreinen/gotrain/stores"
 	log "github.com/sirupsen/logrus"
@@ -65,6 +66,11 @@ func startServer(cmd *cobra.Command) {
 
 	apiAddress := viper.GetString("api.address")
 	go api.ServeAPI(apiAddress, exitRestAPI)
+
+	if viper.GetBool("prometheus.enabled") {
+		prometheus_interface.SetupPrometheus()
+		prometheus_interface.StartPrometheusInterface()
+	}
 
 	setupCleanupScheduler()
 	setupDowntimeDetector()

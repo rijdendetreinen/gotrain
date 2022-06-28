@@ -13,6 +13,9 @@ archive:
   address: :6379
   password: ""
   db: 0
+prometheus:
+  enabled: true
+  address: :2121
 #sentry:
 #  dsn: https://example@sentry.io/123456
 #  warnings: true
