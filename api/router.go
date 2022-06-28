@@ -4,11 +4,43 @@ import (
 	"encoding/json"
 	"net/http"
 
+	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promauto"
 	"github.com/rijdendetreinen/gotrain/stores"
 
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 )
+
+var (
+	httpDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
+		Namespace: "gotrain",
+		Subsystem: "http",
+		Name:      "duration",
+		Help:      "Duration of HTTP requests.",
+	}, []string{"path"})
+)
+
+var (
+	httpReqs = promauto.NewCounterVec(prometheus.CounterOpts{
+		Namespace: "gotrain",
+		Subsystem: "http",
+		Name:      "requests",
+		Help:      "HTTP requests",
+	}, []string{"path", "url"})
+)
+
+// prometheusMiddleware implements mux.MiddlewareFunc.
+func prometheusMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		route := mux.CurrentRoute(r)
+		path, _ := route.GetPathTemplate()
+		timer := prometheus.NewTimer(httpDuration.WithLabelValues(path))
+		next.ServeHTTP(w, r)
+		timer.ObserveDuration()
+		httpReqs.WithLabelValues(path, r.URL.Path).Add(1)
+	})
+}
 
 // ServeAPI serves the REST API on the given address
 func ServeAPI(address string, exit chan bool) {
@@ -33,6 +65,7 @@ func ServeAPI(address string, exit chan bool) {
 	router.HandleFunc("/v2/services/stats", serviceCounters).Methods("GET")
 	router.HandleFunc("/v2/services/service/{id}/{date}", serviceDetails).Methods("GET")
 
+	router.Use(prometheusMiddleware)
 	srv.Handler = router
 
 	go listenAndServe(srv, exit)

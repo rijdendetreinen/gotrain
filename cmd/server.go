@@ -43,11 +43,6 @@ func startServer(cmd *cobra.Command) {
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
 
-	if viper.GetBool("prometheus.enabled") {
-		prometheus_interface.SetupPrometheus()
-		prometheus_interface.StartPrometheusInterface()
-	}
-
 	signalChan := make(chan os.Signal, 1)
 	shutdownFinished := make(chan struct{})
 
@@ -71,6 +66,11 @@ func startServer(cmd *cobra.Command) {
 
 	apiAddress := viper.GetString("api.address")
 	go api.ServeAPI(apiAddress, exitRestAPI)
+
+	if viper.GetBool("prometheus.enabled") {
+		prometheus_interface.SetupPrometheus()
+		prometheus_interface.StartPrometheusInterface()
+	}
 
 	setupCleanupScheduler()
 	setupDowntimeDetector()
