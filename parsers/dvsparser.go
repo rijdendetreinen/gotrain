@@ -167,6 +167,19 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 
 			material.DestinationActual = ParseInfoPlusStation(ParseWhenAttribute(materialInfo, "MaterieelDeelEindBestemming", "InfoStatus", "Actueel"))
 			material.DestinationPlanned = ParseInfoPlusStation(ParseWhenAttribute(materialInfo, "MaterieelDeelEindBestemming", "InfoStatus", "Gepland"))
+			material.Modifications = ParseInfoPlusModifications(materialInfo)
+
+			// Check for flags that may be set:
+			for _, modification := range material.Modifications {
+				switch modification.ModificationType {
+				case models.ModificationMaterialClosed:
+					material.Closed = true
+				case models.ModificationMaterialAdded:
+					material.Added = true
+				case models.ModificationMaterialLeftBehind:
+					material.RemainsBehind = true
+				}
+			}
 
 			trainWing.Material = append(trainWing.Material, material)
 		}

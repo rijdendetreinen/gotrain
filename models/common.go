@@ -21,7 +21,12 @@ type Material struct {
 	DestinationActual  Station `json:"destination_actual"`
 	DestinationPlanned Station `json:"destination_planned"`
 	Accessible         bool    `json:"accessible"`
-	RemainsBehind      bool    `json:"remains_behind"`
+
+	Closed        bool `json:"closed"`
+	RemainsBehind bool `json:"remains_behind"`
+	Added         bool `json:"added"`
+
+	Modifications []Modification
 }
 
 // StoreItem is for shared fields like ID, timestamp etc.

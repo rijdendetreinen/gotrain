@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:PutReisInformatieBoodschapIn xmlns:ns1="urn:ndov:cdm:trein:reisinformatie:messages:5"
+    xmlns:ns2="urn:ndov:cdm:trein:reisinformatie:data:4">
+    <ns2:ReisInformatieProductDVS TimeStamp="2022-07-16T19:33:00.376Z" Versie="6.2">
+        <ns2:RIPAdministratie>
+            <ns2:ReisInformatieProductID>2197001887282001</ns2:ReisInformatieProductID>
+            <ns2:AbonnementId>54</ns2:AbonnementId>
+            <ns2:ReisInformatieTijdstip>2022-07-16T21:03:00.000Z</ns2:ReisInformatieTijdstip>
+        </ns2:RIPAdministratie>
+        <ns2:DynamischeVertrekStaat>
+            <ns2:RitId>1887</ns2:RitId>
+            <ns2:RitDatum>2022-07-16</ns2:RitDatum>
+            <ns2:RitStation>
+                <ns2:StationCode>GVC</ns2:StationCode>
+                <ns2:Type>6</ns2:Type>
+                <ns2:KorteNaam>Den Haag C</ns2:KorteNaam>
+                <ns2:MiddelNaam>Den Haag C.</ns2:MiddelNaam>
+                <ns2:LangeNaam>Den Haag Centraal</ns2:LangeNaam>
+                <ns2:UICCode>8400282</ns2:UICCode>
+            </ns2:RitStation>
+            <ns2:Trein>
+                <ns2:TreinNummer>1887</ns2:TreinNummer>
+                <ns2:TreinSoort Code="IC">Intercity</ns2:TreinSoort>
+                <ns2:TreinFormule>3</ns2:TreinFormule>
+                <ns2:TreinStatus>0</ns2:TreinStatus>
+                <ns2:Vervoerder>NS</ns2:Vervoerder>
+                <ns2:Reserveren>N</ns2:Reserveren>
+                <ns2:Toeslag>N</ns2:Toeslag>
+                <ns2:NietInstappen>N</ns2:NietInstappen>
+                <ns2:AchterBlijvenAchtersteTreinDeel>N</ns2:AchterBlijvenAchtersteTreinDeel>
+                <ns2:RangeerBeweging>N</ns2:RangeerBeweging>
+                <ns2:SpeciaalKaartje>N</ns2:SpeciaalKaartje>
+                <ns2:TreinEindBestemming InfoStatus="Gepland">
+                    <ns2:StationCode>ZL</ns2:StationCode>
+                    <ns2:Type>5</ns2:Type>
+                    <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                    <ns2:UICCode>8400747</ns2:UICCode>
+                </ns2:TreinEindBestemming>
+                <ns2:TreinEindBestemming InfoStatus="Actueel">
+                    <ns2:StationCode>ZL</ns2:StationCode>
+                    <ns2:Type>5</ns2:Type>
+                    <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                    <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                    <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                    <ns2:UICCode>8400747</ns2:UICCode>
+                </ns2:TreinEindBestemming>
+                <ns2:PresentatieTreinEindBestemming>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>Zwolle</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinEindBestemming>
+                <ns2:VertrekTijd InfoStatus="Gepland">2022-07-16T21:03:00.000Z</ns2:VertrekTijd>
+                <ns2:VertrekTijd InfoStatus="Actueel">2022-07-16T21:03:00.000Z</ns2:VertrekTijd>
+                <ns2:ExacteVertrekVertraging>PT0S</ns2:ExacteVertrekVertraging>
+                <ns2:GedempteVertrekVertraging>PT0S</ns2:GedempteVertrekVertraging>
+                <ns2:TreinVertrekSpoor InfoStatus="Gepland">
+                    <ns2:SpoorNummer>10</ns2:SpoorNummer>
+                </ns2:TreinVertrekSpoor>
+                <ns2:TreinVertrekSpoor InfoStatus="Actueel">
+                    <ns2:SpoorNummer>10</ns2:SpoorNummer>
+                </ns2:TreinVertrekSpoor>
+                <ns2:PresentatieTreinVertrekSpoor>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>10</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieTreinVertrekSpoor>
+                <ns2:VertrekRichting>B</ns2:VertrekRichting>
+                <ns2:AfstandPerronEindKopVertrekTrein>0</ns2:AfstandPerronEindKopVertrekTrein>
+                <ns2:VerkorteRoute InfoStatus="Gepland">
+                    <ns2:Station>
+                        <ns2:StationCode>LEDN</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Leiden C</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Leiden C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Leiden Centraal</ns2:LangeNaam>
+                        <ns2:UICCode>8400390</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>SHL</ns2:StationCode>
+                        <ns2:Type>6</ns2:Type>
+                        <ns2:KorteNaam>Schiphol</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Schiphol Airport</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Schiphol Airport</ns2:LangeNaam>
+                        <ns2:UICCode>8400561</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>ASDZ</ns2:StationCode>
+                        <ns2:Type>4</ns2:Type>
+                        <ns2:KorteNaam>Amsterdm Z</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Amsterdam Zuid</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Amsterdam Zuid</ns2:LangeNaam>
+                        <ns2:UICCode>8400061</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>ALM</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Almere C</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Almere C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Almere Centrum</ns2:LangeNaam>
+                        <ns2:UICCode>8400080</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRoute>
+                <ns2:VerkorteRoute InfoStatus="Actueel">
+                    <ns2:Station>
+                        <ns2:StationCode>LEDN</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Leiden C</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Leiden C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Leiden Centraal</ns2:LangeNaam>
+                        <ns2:UICCode>8400390</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>SHL</ns2:StationCode>
+                        <ns2:Type>6</ns2:Type>
+                        <ns2:KorteNaam>Schiphol</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Schiphol Airport</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Schiphol Airport</ns2:LangeNaam>
+                        <ns2:UICCode>8400561</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>ASDZ</ns2:StationCode>
+                        <ns2:Type>4</ns2:Type>
+                        <ns2:KorteNaam>Amsterdm Z</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Amsterdam Zuid</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Amsterdam Zuid</ns2:LangeNaam>
+                        <ns2:UICCode>8400061</ns2:UICCode>
+                    </ns2:Station>
+                    <ns2:Station>
+                        <ns2:StationCode>ALM</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Almere C</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Almere C.</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Almere Centrum</ns2:LangeNaam>
+                        <ns2:UICCode>8400080</ns2:UICCode>
+                    </ns2:Station>
+                </ns2:VerkorteRoute>
+                <ns2:PresentatieVerkorteRoute>
+                    <ns2:Uitingen>
+                        <ns2:Uiting>Leiden C., Schiphol Airport, Amsterdam Zuid, Almere C.</ns2:Uiting>
+                    </ns2:Uitingen>
+                </ns2:PresentatieVerkorteRoute>
+                <ns2:TreinVleugel>
+                    <ns2:TreinVleugelVertrekSpoor InfoStatus="Gepland">
+                        <ns2:SpoorNummer>10</ns2:SpoorNummer>
+                    </ns2:TreinVleugelVertrekSpoor>
+                    <ns2:TreinVleugelVertrekSpoor InfoStatus="Actueel">
+                        <ns2:SpoorNummer>10</ns2:SpoorNummer>
+                    </ns2:TreinVleugelVertrekSpoor>
+                    <ns2:PresentatieTreinVleugelVertrekSpoor>
+                        <ns2:Uitingen>
+                            <ns2:Uiting>10</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieTreinVleugelVertrekSpoor>
+                    <ns2:TreinVleugelEindBestemming InfoStatus="Gepland">
+                        <ns2:StationCode>ZL</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                        <ns2:UICCode>8400747</ns2:UICCode>
+                    </ns2:TreinVleugelEindBestemming>
+                    <ns2:TreinVleugelEindBestemming InfoStatus="Actueel">
+                        <ns2:StationCode>ZL</ns2:StationCode>
+                        <ns2:Type>5</ns2:Type>
+                        <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                        <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                        <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                        <ns2:UICCode>8400747</ns2:UICCode>
+                    </ns2:TreinVleugelEindBestemming>
+                    <ns2:PresentatieTreinVleugelEindBestemming>
+                        <ns2:Uitingen>
+                            <ns2:Uiting>Zwolle</ns2:Uiting>
+                        </ns2:Uitingen>
+                    </ns2:PresentatieTreinVleugelEindBestemming>
+                    <ns2:StopStations InfoStatus="Gepland">
+                        <ns2:Station>
+                            <ns2:StationCode>LEDN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Leiden C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Leiden C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Leiden Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400390</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>SHL</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Schiphol</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Schiphol Airport</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Schiphol Airport</ns2:LangeNaam>
+                            <ns2:UICCode>8400561</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ASDZ</ns2:StationCode>
+                            <ns2:Type>4</ns2:Type>
+                            <ns2:KorteNaam>Amsterdm Z</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Amsterdam Zuid</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Amsterdam Zuid</ns2:LangeNaam>
+                            <ns2:UICCode>8400061</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ALM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Almere C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Almere C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Almere Centrum</ns2:LangeNaam>
+                            <ns2:UICCode>8400080</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>LLS</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Lelystad C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Lelystad C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Lelystad Centrum</ns2:LangeNaam>
+                            <ns2:UICCode>8400394</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:Station>
+                    </ns2:StopStations>
+                    <ns2:StopStations InfoStatus="Actueel">
+                        <ns2:Station>
+                            <ns2:StationCode>LEDN</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Leiden C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Leiden C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Leiden Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400390</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>SHL</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Schiphol</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Schiphol Airport</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Schiphol Airport</ns2:LangeNaam>
+                            <ns2:UICCode>8400561</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ASDZ</ns2:StationCode>
+                            <ns2:Type>4</ns2:Type>
+                            <ns2:KorteNaam>Amsterdm Z</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Amsterdam Zuid</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Amsterdam Zuid</ns2:LangeNaam>
+                            <ns2:UICCode>8400061</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ALM</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Almere C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Almere C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Almere Centrum</ns2:LangeNaam>
+                            <ns2:UICCode>8400080</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>LLS</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Lelystad C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Lelystad C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Lelystad Centrum</ns2:LangeNaam>
+                            <ns2:UICCode>8400394</ns2:UICCode>
+                        </ns2:Station>
+                        <ns2:Station>
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:Station>
+                    </ns2:StopStations>
+                    <ns2:MaterieelDeelDVS>
+                        <ns2:MaterieelSoort>ICM</ns2:MaterieelSoort>
+                        <ns2:MaterieelAanduiding>3</ns2:MaterieelAanduiding>
+                        <ns2:MaterieelLengte>8100</ns2:MaterieelLengte>
+                        <ns2:MaterieelDeelVertrekPositie>1</ns2:MaterieelDeelVertrekPositie>
+                        <ns2:MaterieelDeelVolgordeVertrek>1</ns2:MaterieelDeelVolgordeVertrek>
+                        <ns2:MaterieelNummer>000000-04067-0</ns2:MaterieelNummer>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>GVC</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Den Haag C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Den Haag C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Den Haag Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400282</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>GVC</ns2:StationCode>
+                            <ns2:Type>6</ns2:Type>
+                            <ns2:KorteNaam>Den Haag C</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Den Haag C.</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Den Haag Centraal</ns2:LangeNaam>
+                            <ns2:UICCode>8400282</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Den Haag Centraal</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieMaterieelDeelEindBestemming>
+                        <ns2:Wijziging>
+                            <ns2:WijzigingType>84</ns2:WijzigingType>
+                        </ns2:Wijziging>
+                    </ns2:MaterieelDeelDVS>
+                    <ns2:MaterieelDeelDVS>
+                        <ns2:MaterieelSoort>ICM</ns2:MaterieelSoort>
+                        <ns2:MaterieelAanduiding>4</ns2:MaterieelAanduiding>
+                        <ns2:MaterieelLengte>10700</ns2:MaterieelLengte>
+                        <ns2:MaterieelDeelVertrekPositie>3</ns2:MaterieelDeelVertrekPositie>
+                        <ns2:MaterieelDeelVolgordeVertrek>2</ns2:MaterieelDeelVolgordeVertrek>
+                        <ns2:MaterieelNummer>000000-04208-0</ns2:MaterieelNummer>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Gepland">
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:MaterieelDeelEindBestemming InfoStatus="Actueel">
+                            <ns2:StationCode>ZL</ns2:StationCode>
+                            <ns2:Type>5</ns2:Type>
+                            <ns2:KorteNaam>Zwolle</ns2:KorteNaam>
+                            <ns2:MiddelNaam>Zwolle</ns2:MiddelNaam>
+                            <ns2:LangeNaam>Zwolle</ns2:LangeNaam>
+                            <ns2:UICCode>8400747</ns2:UICCode>
+                        </ns2:MaterieelDeelEindBestemming>
+                        <ns2:PresentatieMaterieelDeelEindBestemming>
+                            <ns2:Uitingen>
+                                <ns2:Uiting>Zwolle</ns2:Uiting>
+                            </ns2:Uitingen>
+                        </ns2:PresentatieMaterieelDeelEindBestemming>
+                    </ns2:MaterieelDeelDVS>
+                </ns2:TreinVleugel>
+            </ns2:Trein>
+        </ns2:DynamischeVertrekStaat>
+    </ns2:ReisInformatieProductDVS>
+</ns1:PutReisInformatieBoodschapIn>

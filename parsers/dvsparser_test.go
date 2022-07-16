@@ -181,3 +181,19 @@ func testParseDeparture(t *testing.T, name string) models.Departure {
 
 	return departure
 }
+
+func TestParseMaterialLeftBehind(t *testing.T) {
+	departure := testParseDeparture(t, "departure_material-left-behind.xml")
+
+	if departure.TrainWings[0].Material[0].RemainsBehind != true {
+		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].RemainsBehind)
+	}
+}
+
+func TestParseMaterialModifications(t *testing.T) {
+	departure := testParseDeparture(t, "departure_material-added.xml")
+
+	if departure.TrainWings[0].Material[0].Added != true {
+		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].Added)
+	}
+}

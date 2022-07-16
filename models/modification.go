@@ -89,6 +89,15 @@ const ModificationSprinterRunsAsIntercity = 80
 // ModificationSprinterRunsAsIntercity when an Sprinter train is running with intercity stock
 const ModificationIntercityRunsAsSprinter = 81
 
+// ModificationMaterialClosed when material is closed for passengers
+const ModificationMaterialClosed = 82
+
+// ModificationMaterialAdded when material is added on a station
+const ModificationMaterialAdded = 83
+
+// ModificationMaterialLeftBehind when material is left behind on a station
+const ModificationMaterialLeftBehind = 84
+
 // Modification is a change (to the schedule) which is communicated to travellers
 type Modification struct {
 	ModificationType int     `json:"type"`
