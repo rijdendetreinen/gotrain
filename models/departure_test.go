@@ -93,20 +93,20 @@ func TestDepartureRemarks(t *testing.T) {
 		tips              []string
 	}{
 		{
-			[]Modification{Modification{ModificationType: ModificationCancelledDeparture}},
+			[]Modification{{ModificationType: ModificationCancelledDeparture}},
 			[]Modification{},
 			[]string{"Trein rijdt niet"},
 			[]string{},
 		},
 		{
-			[]Modification{Modification{ModificationType: ModificationDiverted}, Modification{ModificationType: ModificationChangedDeparturePlatform}},
+			[]Modification{{ModificationType: ModificationDiverted}, {ModificationType: ModificationChangedDeparturePlatform}},
 			[]Modification{},
 			[]string{"Rijdt via een andere route", "Gewijzigd vertrekspoor"},
 			[]string{},
 		},
 		{
-			[]Modification{Modification{ModificationType: ModificationDiverted}, Modification{ModificationType: ModificationChangedDeparturePlatform}},
-			[]Modification{Modification{ModificationType: ModificationChangedDeparturePlatform}},
+			[]Modification{{ModificationType: ModificationDiverted}, {ModificationType: ModificationChangedDeparturePlatform}},
+			[]Modification{{ModificationType: ModificationChangedDeparturePlatform}},
 			[]string{"Rijdt via een andere route", "Gewijzigd vertrekspoor"},
 			[]string{},
 		},

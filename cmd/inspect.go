@@ -100,7 +100,11 @@ var inspectDepartureCommand = &cobra.Command{
 
 			fmt.Print("    Material: ")
 			for _, material := range wing.Material {
-				fmt.Printf("%s[%s]>%s ", material.NaterialType, *material.NormalizedNumber(), material.DestinationActual.Code)
+				unitNumber := "(none)"
+				if material.Number != "" {
+					unitNumber = *material.NormalizedNumber()
+				}
+				fmt.Printf("%s[%s]>%s ", material.NaterialType, unitNumber, material.DestinationActual.Code)
 			}
 
 			fmt.Print("\n")

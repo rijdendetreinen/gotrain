@@ -91,8 +91,7 @@ func (departure *Departure) GenerateID() {
 
 // RealDepartureTime returns the actual departure time, including delay
 func (departure Departure) RealDepartureTime() time.Time {
-	var delayDuration time.Duration
-	delayDuration = time.Second * time.Duration(departure.Delay)
+	delayDuration := time.Second * time.Duration(departure.Delay)
 	return departure.DepartureTime.Add(delayDuration)
 }
 
@@ -221,14 +220,62 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 			tips = append(tips, tip.Translation(language))
 		}
 
+		// Check for closed material:
+		var closedMaterialUnits = make([]string, 0)
+		var leftBehindMaterialUnits = make([]string, 0)
+		var addedMaterialUnits = make([]string, 0)
+
+		for _, wing := range departure.TrainWings {
+			for _, material := range wing.Material {
+				if material.Number == "" {
+					continue
+				}
+
+				if material.Closed {
+					closedMaterialUnits = append(closedMaterialUnits, *material.NormalizedNumber())
+				}
+				if material.RemainsBehind {
+					leftBehindMaterialUnits = append(leftBehindMaterialUnits, *material.NormalizedNumber())
+				}
+				if material.Added {
+					addedMaterialUnits = append(addedMaterialUnits, *material.NormalizedNumber())
+				}
+			}
+		}
+
+		if len(closedMaterialUnits) > 0 {
+			if len(closedMaterialUnits) == 1 {
+				remarks = append(remarks, fmt.Sprintf(Translate("Treinstel %s: niet instappen", "Coach %s: do not board", language), strings.Join(closedMaterialUnits, ", ")))
+			} else {
+				remarks = append(remarks, fmt.Sprintf(Translate("Treinstellen %s: niet instappen", "Coaches %s: do not board", language), strings.Join(closedMaterialUnits, ", ")))
+			}
+		}
+
+		if len(leftBehindMaterialUnits) > 0 {
+			if len(leftBehindMaterialUnits) == 1 {
+				remarks = append(remarks, fmt.Sprintf(Translate("Treinstel %s blijft achter in %s", "Coach %s remains at %s", language), strings.Join(leftBehindMaterialUnits, ", "), departure.Station.NameMedium))
+			} else {
+				remarks = append(remarks, fmt.Sprintf(Translate("Treinstellen %s blijven in %s", "Coaches %s remain at %s", language), strings.Join(leftBehindMaterialUnits, ", "), departure.Station.NameMedium))
+			}
+		}
+
+		if len(addedMaterialUnits) > 0 {
+			if len(addedMaterialUnits) == 1 {
+				tips = append(tips, "Hoi")
+				// tips = append(tips, fmt.Sprintf(Translate("Trein wordt op dit station verlengd. Treinstel %s wordt op dit station bijgeplaatst", "Coach %s is added to the train at this station", language), strings.Join(addedMaterialUnits, ", ")))
+			} else {
+				tips = append(tips, fmt.Sprintf(Translate("Trein wordt op dit station verlengd. Treinstellen %s worden op dit station bijgeplaatst", "Coaches %s are added to the train at this station", language), strings.Join(addedMaterialUnits, ", ")))
+			}
+		}
+
 		// Check for material destinations:
 		for _, wing := range departure.TrainWings {
 			differentTerminus := make(map[string][]Material)
 
 			for _, material := range wing.Material {
 				if len(wing.DestinationActual) > 0 && material.DestinationActual.Code != wing.DestinationActual[0].Code {
-					// Different terminus:
-					if material.Number != "" {
+					// Different terminus, and not explained by modifications 82-84:
+					if material.Number != "" && !material.Closed && !material.RemainsBehind {
 						terminus := material.DestinationActual.NameLong
 
 						differentTerminus[terminus] = append(differentTerminus[terminus], material)
