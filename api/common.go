@@ -62,6 +62,8 @@ func materialToJSON(material models.Material, language string, verbose bool) map
 		"number":           material.NormalizedNumber(),
 		"position":         material.Position,
 		"remains_behind":   material.RemainsBehind,
+		"closed":           material.Closed,
+		"added":            material.Added,
 		"destination":      material.DestinationActual.NameLong,
 		"destination_code": material.DestinationActual.Code,
 	}
