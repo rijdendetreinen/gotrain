@@ -183,9 +183,6 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 		if departure.DoNotBoard {
 			remarks = append(remarks, Translate("Niet instappen", "Do not board", language))
 		}
-		if departure.RearPartRemains {
-			remarks = append(remarks, Translate("Achterste treindeel blijft achter", "Rear train part: do not board", language))
-		}
 		if departure.ReservationRequired {
 			tips = append(tips, Translate("Reservering verplicht", "Reservation required", language))
 		}
