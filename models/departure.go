@@ -258,8 +258,7 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 
 		if len(addedMaterialUnits) > 0 {
 			if len(addedMaterialUnits) == 1 {
-				tips = append(tips, "Hoi")
-				// tips = append(tips, fmt.Sprintf(Translate("Trein wordt op dit station verlengd. Treinstel %s wordt op dit station bijgeplaatst", "Coach %s is added to the train at this station", language), strings.Join(addedMaterialUnits, ", ")))
+				tips = append(tips, fmt.Sprintf(Translate("Trein wordt op dit station verlengd. Treinstel %s wordt op dit station bijgeplaatst", "Coach %s is added to the train at this station", language), strings.Join(addedMaterialUnits, ", ")))
 			} else {
 				tips = append(tips, fmt.Sprintf(Translate("Trein wordt op dit station verlengd. Treinstellen %s worden op dit station bijgeplaatst", "Coaches %s are added to the train at this station", language), strings.Join(addedMaterialUnits, ", ")))
 			}
