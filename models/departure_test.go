@@ -176,7 +176,7 @@ func TestDepartureRemarksTips(t *testing.T) {
 	}
 }
 
-func TestDepartureMaterialRemarks(t *testing.T) {
+func TestDepartureMaterialRemarksRemainsBehind(t *testing.T) {
 	var departure Departure = Departure{
 		Station: Station{
 			Code:       "RTD",
@@ -233,5 +233,125 @@ func TestDepartureMaterialRemarks(t *testing.T) {
 
 	if remarks[0] != "Treinstellen 1234, 2345 blijven in Rotterdam C." {
 		t.Errorf("Remarks: expected %s, got %s", "Treinstellen 1234, 2345 blijven in Rotterdam C.", remarks[0])
+	}
+}
+
+func TestDepartureMaterialTipsAdded(t *testing.T) {
+	var departure Departure = Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		TrainWings: []TrainWing{
+			{
+				Material: []Material{
+					{
+						NaterialType: "ICM",
+						Number:       "1234",
+						Added:        true,
+					},
+				},
+			},
+		},
+	}
+
+	_, tips := departure.GetRemarksTips("nl")
+
+	if tips[0] != "Trein wordt op dit station verlengd. Treinstel 1234 wordt op dit station bijgeplaatst" {
+		t.Errorf("Tips: expected %s, got %s", "Trein wordt op dit station verlengd. Treinstel 1234 wordt op dit station bijgeplaatst", tips[0])
+	}
+
+	departure = Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		TrainWings: []TrainWing{
+			{
+				Material: []Material{
+					{
+						NaterialType: "ICM",
+						Number:       "1234",
+						Added:        true,
+					},
+					{
+						NaterialType: "ICM",
+						Number:       "4321",
+						Added:        false,
+					},
+					{
+						NaterialType: "ICM",
+						Number:       "2345",
+						Added:        true,
+					},
+				},
+			},
+		},
+	}
+
+	_, tips = departure.GetRemarksTips("nl")
+
+	if tips[0] != "Trein wordt op dit station verlengd. Treinstellen 1234, 2345 worden op dit station bijgeplaatst" {
+		t.Errorf("Tips: expected %s, got %s", "Trein wordt op dit station verlengd. Treinstellen 1234, 2345 worden op dit station bijgeplaatst", tips[0])
+	}
+}
+
+func TestDepartureMaterialRemarksClosed(t *testing.T) {
+	var departure Departure = Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		TrainWings: []TrainWing{
+			{
+				Material: []Material{
+					{
+						NaterialType: "ICM",
+						Number:       "1234",
+						Closed:       true,
+					},
+				},
+			},
+		},
+	}
+
+	remarks, _ := departure.GetRemarksTips("nl")
+
+	if remarks[0] != "Treinstel 1234: niet instappen" {
+		t.Errorf("Remarks: expected %s, got %s", "Treinstel 1234: niet instappen", remarks[0])
+	}
+
+	departure = Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		TrainWings: []TrainWing{
+			{
+				Material: []Material{
+					{
+						NaterialType: "ICM",
+						Number:       "1234",
+						Closed:       true,
+					},
+					{
+						NaterialType: "ICM",
+						Number:       "4321",
+						Closed:       false,
+					},
+					{
+						NaterialType: "ICM",
+						Number:       "2345",
+						Closed:       true,
+					},
+				},
+			},
+		},
+	}
+
+	remarks, _ = departure.GetRemarksTips("nl")
+
+	if remarks[0] != "Treinstellen 1234, 2345: niet instappen" {
+		t.Errorf("Remarks: expected %s, got %s", "Treinstellen 1234, 2345: niet instappen", remarks[0])
 	}
 }
