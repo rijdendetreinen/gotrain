@@ -147,10 +147,9 @@ func TestDepartureRemarksTips(t *testing.T) {
 		},
 		{
 			Departure{
-				RearPartRemains:     true,
 				ReservationRequired: true,
 			},
-			[]string{"Achterste treindeel blijft achter"},
+			[]string{},
 			[]string{"Reservering verplicht"},
 		},
 		{
