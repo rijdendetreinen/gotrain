@@ -231,7 +231,7 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 				if material.Closed {
 					closedMaterialUnits = append(closedMaterialUnits, *material.NormalizedNumber())
 				}
-				if material.RemainsBehind {
+				if material.RemainsBehind && !material.AlreadyRemoved {
 					leftBehindMaterialUnits = append(leftBehindMaterialUnits, *material.NormalizedNumber())
 				}
 				if material.Added {

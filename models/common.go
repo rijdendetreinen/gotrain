@@ -22,9 +22,10 @@ type Material struct {
 	DestinationPlanned Station `json:"destination_planned"`
 	Accessible         bool    `json:"accessible"`
 
-	Closed        bool `json:"closed"`
-	RemainsBehind bool `json:"remains_behind"`
-	Added         bool `json:"added"`
+	Closed         bool `json:"closed"`
+	RemainsBehind  bool `json:"remains_behind"`
+	Added          bool `json:"added"`
+	AlreadyRemoved bool `json:"already_removed"`
 
 	Modifications []Modification
 }

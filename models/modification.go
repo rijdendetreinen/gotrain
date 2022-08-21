@@ -98,6 +98,9 @@ const ModificationMaterialAdded = 83
 // ModificationMaterialLeftBehind when material is left behind on a station
 const ModificationMaterialLeftBehind = 84
 
+// ModificationMaterialAlreadyRemoved when the material that was left behind has already been removed (driven away)
+const ModificationMaterialAlreadyRemoved = 85
+
 // Modification is a change (to the schedule) which is communicated to travellers
 type Modification struct {
 	ModificationType int     `json:"type"`

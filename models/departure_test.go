@@ -355,3 +355,65 @@ func TestDepartureMaterialRemarksClosed(t *testing.T) {
 		t.Errorf("Remarks: expected %s, got %s", "Treinstellen 1234, 2345: niet instappen", remarks[0])
 	}
 }
+
+func TestDepartureMaterialRemarksRemainsBehindAlreadyRemoved(t *testing.T) {
+	var departure Departure = Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		TrainWings: []TrainWing{
+			{
+				Material: []Material{
+					{
+						NaterialType:   "ICM",
+						Number:         "1234",
+						RemainsBehind:  true,
+						AlreadyRemoved: true,
+					},
+				},
+			},
+		},
+	}
+
+	remarks, _ := departure.GetRemarksTips("nl")
+
+	if len(remarks) > 0 {
+		t.Errorf("Remarks: expected no remarks, got %d", len(remarks))
+	}
+
+	departure = Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		TrainWings: []TrainWing{
+			{
+				Material: []Material{
+					{
+						NaterialType:   "ICM",
+						Number:         "1234",
+						RemainsBehind:  true,
+						AlreadyRemoved: true,
+					},
+					{
+						NaterialType:  "ICM",
+						Number:        "4321",
+						RemainsBehind: false,
+					},
+					{
+						NaterialType:  "ICM",
+						Number:        "2345",
+						RemainsBehind: true,
+					},
+				},
+			},
+		},
+	}
+
+	remarks, _ = departure.GetRemarksTips("nl")
+
+	if remarks[0] != "Treinstel 2345 blijft achter in Rotterdam C." {
+		t.Errorf("Remarks: expected %s, got %s", "Treinstel 2345 blijft achter in Rotterdam C.", remarks[0])
+	}
+}

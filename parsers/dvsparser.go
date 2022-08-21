@@ -178,6 +178,8 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 					material.Added = true
 				case models.ModificationMaterialLeftBehind:
 					material.RemainsBehind = true
+				case models.ModificationMaterialAlreadyRemoved:
+					material.AlreadyRemoved = true
 				}
 			}
 
