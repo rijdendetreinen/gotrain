@@ -257,8 +257,8 @@ func TestDepartureMaterialTipsAdded(t *testing.T) {
 
 	_, tips := departure.GetRemarksTips("nl")
 
-	if tips[0] != "Trein wordt op dit station verlengd. Treinstel 1234 wordt op dit station bijgeplaatst" {
-		t.Errorf("Tips: expected %s, got %s", "Trein wordt op dit station verlengd. Treinstel 1234 wordt op dit station bijgeplaatst", tips[0])
+	if tips[0] != "Treinstel 1234 wordt op dit station bijgeplaatst" {
+		t.Errorf("Tips: expected %s, got %s", "Treinstel 1234 wordt op dit station bijgeplaatst", tips[0])
 	}
 
 	departure = Departure{
@@ -291,8 +291,8 @@ func TestDepartureMaterialTipsAdded(t *testing.T) {
 
 	_, tips = departure.GetRemarksTips("nl")
 
-	if tips[0] != "Trein wordt op dit station verlengd. Treinstellen 1234, 2345 worden op dit station bijgeplaatst" {
-		t.Errorf("Tips: expected %s, got %s", "Trein wordt op dit station verlengd. Treinstellen 1234, 2345 worden op dit station bijgeplaatst", tips[0])
+	if tips[0] != "Treinstellen 1234, 2345 worden op dit station bijgeplaatst" {
+		t.Errorf("Tips: expected %s, got %s", "Treinstellen 1234, 2345 worden op dit station bijgeplaatst", tips[0])
 	}
 }
 
