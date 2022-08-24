@@ -15,19 +15,19 @@ import (
 var (
 	httpDuration = promauto.NewHistogramVec(prometheus.HistogramOpts{
 		Namespace: "gotrain",
-		Subsystem: "http",
+		Subsystem: "api",
 		Name:      "duration",
-		Help:      "Duration of HTTP requests.",
+		Help:      "Duration of HTTP API requests.",
 	}, []string{"path"})
 )
 
 var (
 	httpReqs = promauto.NewCounterVec(prometheus.CounterOpts{
 		Namespace: "gotrain",
-		Subsystem: "http",
+		Subsystem: "api",
 		Name:      "requests",
-		Help:      "HTTP requests",
-	}, []string{"path", "url"})
+		Help:      "HTTP API requests",
+	}, []string{"path"})
 )
 
 // prometheusMiddleware implements mux.MiddlewareFunc.
@@ -38,7 +38,7 @@ func prometheusMiddleware(next http.Handler) http.Handler {
 		timer := prometheus.NewTimer(httpDuration.WithLabelValues(path))
 		next.ServeHTTP(w, r)
 		timer.ObserveDuration()
-		httpReqs.WithLabelValues(path, r.URL.Path).Add(1)
+		httpReqs.WithLabelValues(path).Add(1)
 	})
 }
 
