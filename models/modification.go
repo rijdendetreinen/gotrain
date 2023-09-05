@@ -50,10 +50,10 @@ const ModificationRouteShortened = 34
 // ModificationRouteExtended train continues beyond normal destination
 const ModificationRouteExtended = 35
 
-// ModificationOriginRouteShortened departed from a later stop than usual
+// ModificationOriginRouteShortened departs from a later stop than usual
 const ModificationOriginRouteShortened = 36
 
-// ModificationOriginRouteExtended train departed from an earlier stop than the normal origin station
+// ModificationOriginRouteExtended train departs from an earlier stop than the normal origin station
 const ModificationOriginRouteExtended = 37
 
 // ModificationExtraArrival extra arrival, i.e. train doesn't normally arrive at this station
@@ -156,7 +156,10 @@ func (modification Modification) Remark(language string) (string, bool) {
 	case ModificationRouteExtended:
 		return modification.remarkWithStation("Rijdt verder naar %s", "Continues to %s", language), true
 
-	case ModificationOriginRouteExtended, ModificationChangedOrigin, ModificationOriginRouteShortened:
+	case ModificationOriginRouteShortened:
+		return modification.remarkWithStation("Trein begint op %s", "Train starts at %s", language), true
+
+	case ModificationOriginRouteExtended, ModificationChangedOrigin:
 		// TODO: pass origin station
 		return modification.remarkWithCause("Afwijkende herkomst", "Different origin", language), true
 
