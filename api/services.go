@@ -101,13 +101,14 @@ func ServiceToJSON(service models.Service, language string, verbose bool) map[st
 
 func serviceStopToJSON(stop models.ServiceStop, language string, verbose bool) map[string]interface{} {
 	stopResponse := map[string]interface{}{
-		"station":              stop.Station,
-		"station_accessible":   stop.StationAccessible,
-		"assistance_available": stop.AssistanceAvailable,
-		"stopping_actual":      stop.StoppingActual,
-		"stopping_planned":     stop.StoppingPlanned,
-		"stop_type":            stop.StopType,
-		"do_not_board":         stop.DoNotBoard,
+		"station":                  stop.Station,
+		"recognizable_destination": stop.RecognizableDestination,
+		"station_accessible":       stop.StationAccessible,
+		"assistance_available":     stop.AssistanceAvailable,
+		"stopping_actual":          stop.StoppingActual,
+		"stopping_planned":         stop.StoppingPlanned,
+		"stop_type":                stop.StopType,
+		"do_not_board":             stop.DoNotBoard,
 
 		"arrival_time":             localTimeString(stop.ArrivalTime),
 		"arrival_platform_actual":  nullString(stop.ArrivalPlatformActual),
@@ -124,6 +125,14 @@ func serviceStopToJSON(stop models.ServiceStop, language string, verbose bool) m
 		"remarks":  models.GetRemarks(stop.Modifications, language),
 		"tips":     []interface{}{},
 		"material": materialsToJSON(stop.Material, language, verbose),
+	}
+
+	if stop.DoNotBoard {
+		if language == "nl" {
+			stopResponse["remarks"] = append(stopResponse["tips"].([]interface{}), "Niet instappen")
+		} else {
+			stopResponse["remarks"] = append(stopResponse["tips"].([]interface{}), "Do not board")
+		}
 	}
 
 	return stopResponse

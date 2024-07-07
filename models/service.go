@@ -37,7 +37,8 @@ type ServicePart struct {
 
 // ServiceStop is a stops which is called by a train service.
 type ServiceStop struct {
-	Station Station
+	Station                 Station
+	RecognizableDestination *Station
 
 	StationAccessible   bool
 	AssistanceAvailable bool

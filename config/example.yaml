@@ -4,7 +4,7 @@ source:
   envelopes:
     arrivals: "/RIG/InfoPlusDASInterface4"
     departures: "/RIG/InfoPlusDVSInterface4"
-    services: "/RIG/InfoPlusRITInterface2"
+    services: "/RIG/InfoPlusRITInterface5"
 api:
   address: ":8080"
 stores:

@@ -76,6 +76,12 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 				}
 			}
 
+			// Check for recognizable destination:
+			if stopInfo.SelectElement("HerkenbareBestemming") != nil {
+				recognizableDestination := ParseInfoPlusStation(stopInfo.SelectElement("HerkenbareBestemming").SelectElement("Station"))
+				serviceStop.RecognizableDestination = &recognizableDestination
+			}
+
 			// Accessibility:
 			serviceStop.StationAccessible = ParseInfoPlusBoolean(stopInfo.SelectElement("StationToegankelijk"))
 			serviceStop.AssistanceAvailable = ParseInfoPlusBoolean(stopInfo.SelectElement("StationReisAssistentie"))
