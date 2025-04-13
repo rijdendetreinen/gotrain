@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 // The DepartureStore contains all departures
@@ -26,17 +26,18 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 	if departureExists {
 		// Check for duplicate:
 		if existingDeparture.ProductID == newDeparture.ProductID {
-			log.WithField("ProductID", newDeparture.ProductID).Info("Departure is duplicate")
+			log.Info().Str("ProductID", newDeparture.ProductID).Msg("Departure is duplicate")
 
 			store.Counters.Duplicates++
 		}
 
 		// Check whether newDeparture is actually newer:
 		if existingDeparture.Timestamp.After(newDeparture.Timestamp) {
-			log.WithField("ProductID", newDeparture.ProductID).
-				WithField("ExistingTimestamp", existingDeparture.Timestamp).
-				WithField("NewTimestamp", newDeparture.Timestamp).
-				Info("Departure is outdated")
+			log.Info().
+				Str("ProductID", newDeparture.ProductID).
+				Time("ExistingTimestamp", existingDeparture.Timestamp).
+				Time("NewTimestamp", newDeparture.Timestamp).
+				Msg("Departure is outdated")
 			store.Counters.Outdated++
 			store.Counters.Processed++
 			return
@@ -50,7 +51,7 @@ func (store *DepartureStore) ProcessDeparture(newDeparture models.Departure) {
 	threshold = threshold.Add(-10 * time.Second)
 
 	if newDeparture.Timestamp.Before(threshold) {
-		log.WithField("ProductID", newDeparture.ProductID).Debug("Departure is outdated")
+		log.Debug().Str("ProductID", newDeparture.ProductID).Msg("Departure is outdated")
 		store.Counters.TooLate++
 	}
 
@@ -209,7 +210,7 @@ func (store *DepartureStore) CleanUp(currentTime time.Time) {
 	// Hide departures which should have departed 1 minute ago if they are not realtime:
 	thresholdHideNonRealtime := currentTime.Add(-1 * time.Minute)
 
-	log.Debug("Cleaning up departure store")
+	log.Debug().Msg("Cleaning up departure store")
 
 	store.RLock()
 	defer store.RUnlock()
@@ -218,15 +219,15 @@ func (store *DepartureStore) CleanUp(currentTime time.Time) {
 		store.RUnlock()
 
 		if !departure.Hidden && departure.RealDepartureTime().Before(thresholdHide) {
-			log.WithField("DepartureID", departureID).Debug("Hiding departure")
+			log.Debug().Str("DepartureID", departureID).Msg("Hiding departure")
 
 			store.hideDeparture(departureID)
 		} else if !departure.Hidden && (departure.NotRealTime || departure.Cancelled) && departure.RealDepartureTime().Before(thresholdHideNonRealtime) {
-			log.WithField("DepartureID", departureID).Debug("Hiding non-realtime departure")
+			log.Debug().Str("DepartureID", departureID).Msg("Hiding non-realtime departure")
 
 			store.hideDeparture(departureID)
 		} else if departure.Hidden && departure.RealDepartureTime().Before(thresholdRemove) {
-			log.WithField("DepartureID", departureID).Debug("Removing departure")
+			log.Debug().Str("DepartureID", departureID).Msg("Removing departure")
 
 			store.deleteDeparture(departure)
 		}

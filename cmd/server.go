@@ -11,7 +11,7 @@ import (
 	"github.com/rijdendetreinen/gotrain/prometheus_interface"
 	"github.com/rijdendetreinen/gotrain/receiver"
 	"github.com/rijdendetreinen/gotrain/stores"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -38,7 +38,7 @@ var autoSaveTicker *time.Ticker
 func startServer(cmd *cobra.Command) {
 	initLogger(cmd)
 
-	log.Infof("GoTrain %v starting", Version.VersionStringLong())
+	log.Info().Msgf("GoTrain %v starting", Version.VersionStringLong())
 
 	replacer := strings.NewReplacer(".", "_")
 	viper.SetEnvKeyReplacer(replacer)
@@ -53,7 +53,7 @@ func startServer(cmd *cobra.Command) {
 
 	go func() {
 		sig := <-signalChan
-		log.Warnf("Received signal: %+v, shutting down", sig)
+		log.Warn().Msgf("Received signal: %+v, shutting down", sig)
 		signal.Reset()
 		shutdown()
 		close(shutdownFinished)
@@ -77,13 +77,12 @@ func startServer(cmd *cobra.Command) {
 	setupAutoSave()
 
 	<-shutdownFinished
-	log.Warn("Exiting")
+	log.Warn().Msg("Exiting")
 }
 
 func setupCleanupScheduler() {
-	// Set up our internal "garbage collector" (which cleans up stores):
 	cleanupTicker := time.NewTicker(1 * time.Minute)
-	log.Debug("Cleanup scheduler set up")
+	log.Debug().Msg("Cleanup scheduler set up")
 
 	go func() {
 		for {
@@ -94,10 +93,8 @@ func setupCleanupScheduler() {
 }
 
 func setupDowntimeDetector() {
-	// Set up the downtime detector, which measures approximately every 20s the number of messages received
-	// for each store
 	downtimeDetectorTicker := time.NewTicker(20 * time.Second)
-	log.Debug("Downtime detector set up")
+	log.Debug().Msg("Downtime detector set up")
 
 	go func() {
 		for {
@@ -109,13 +106,13 @@ func setupDowntimeDetector() {
 
 func setupAutoSave() {
 	autoSaveTicker := time.NewTicker(12 * time.Hour)
-	log.Debug("Autosave set up")
+	log.Debug().Msg("Autosave set up")
 
 	go func() {
 		for {
 			<-autoSaveTicker.C
-			log.Info("Auto-saving stores")
-			log.Infof("Current inventory: %d arrivals, %d departures, %d services",
+			log.Info().Msg("Auto-saving stores")
+			log.Info().Msgf("Current inventory: %d arrivals, %d departures, %d services",
 				stores.Stores.ArrivalStore.GetNumberOfArrivals(),
 				stores.Stores.DepartureStore.GetNumberOfDepartures(),
 				stores.Stores.ServiceStore.GetNumberOfServices())
@@ -132,17 +129,17 @@ func initStores() {
 	}
 
 	if _, err := os.Stat(stores.StoresDataDirectory); os.IsNotExist(err) {
-		log.WithField("directory", stores.StoresDataDirectory).Error("Data directory does not exist; not loading stores")
+		log.Error().Str("directory", stores.StoresDataDirectory).Msg("Data directory does not exist; not loading stores")
 	} else {
-		log.WithField("directory", stores.StoresDataDirectory).Info("Data directory initialized")
+		log.Info().Str("directory", stores.StoresDataDirectory).Msg("Data directory initialized")
 
-		log.Info("Reading saved store contents...")
+		log.Info().Msg("Reading saved store contents...")
 		stores.LoadStores()
 	}
 }
 
 func shutdown() {
-	log.Warn("Shutting down")
+	log.Warn().Msg("Shutting down")
 
 	if cleanupTicker != nil {
 		cleanupTicker.Stop()
@@ -162,6 +159,6 @@ func shutdown() {
 	<-exitRestAPI
 	<-exitReceiverChannel
 
-	log.Info("Saving store contents...")
+	log.Info().Msg("Saving store contents...")
 	stores.SaveStores()
 }

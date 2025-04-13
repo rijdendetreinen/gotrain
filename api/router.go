@@ -9,7 +9,7 @@ import (
 	"github.com/rijdendetreinen/gotrain/stores"
 
 	"github.com/gorilla/mux"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 var (
@@ -69,19 +69,19 @@ func ServeAPI(address string, exit chan bool) {
 	srv.Handler = router
 
 	go listenAndServe(srv, exit)
-	log.WithField("address", address).Info("REST API started")
+	log.Info().Str("address", address).Msg("REST API started")
 
 	<-exit
-	log.Info("Shutting down REST API")
+	log.Info().Msg("Shutting down REST API")
 	srv.Close()
-	log.Info("REST API shut down")
+	log.Info().Msg("REST API shut down")
 	exit <- true
 }
 
 func listenAndServe(srv *http.Server, exit chan bool) {
 	if err := srv.ListenAndServe(); err != nil {
 		if err != http.ErrServerClosed {
-			log.WithError(err).Fatal("REST API fatal error")
+			log.Fatal().Err(err).Msg("REST API fatal error")
 		}
 	}
 }

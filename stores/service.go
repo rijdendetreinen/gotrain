@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 // The ServiceStore contains all services
@@ -25,7 +25,7 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 	if serviceExists {
 		// Check for duplicate:
 		if existingService.ProductID == newService.ProductID {
-			log.WithField("ProductID", newService.ProductID).Info("Service is duplicate")
+			log.Info().Str("ProductID", newService.ProductID).Msg("Service is duplicate")
 
 			store.Counters.Duplicates++
 			// We process duplicates anyway, just in case there was a mess-up somewhere.
@@ -33,10 +33,11 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 
 		// Check whether newService is actually newer:
 		if existingService.Timestamp.After(newService.Timestamp) {
-			log.WithField("ProductID", newService.ProductID).
-				WithField("ExistingTimestamp", existingService.Timestamp).
-				WithField("NewTimestamp", newService.Timestamp).
-				Info("Service is outdated")
+			log.Info().
+				Str("ProductID", newService.ProductID).
+				Time("ExistingTimestamp", existingService.Timestamp).
+				Time("NewTimestamp", newService.Timestamp).
+				Msg("Service is outdated")
 
 			store.Counters.Outdated++
 			store.Counters.Processed++
@@ -51,7 +52,7 @@ func (store *ServiceStore) ProcessService(newService models.Service) {
 	threshold = threshold.Add(-10 * time.Second)
 
 	if newService.Timestamp.Before(threshold) {
-		log.WithField("ProductID", newService.ProductID).Debug("Service is outdated")
+		log.Debug().Str("ProductID", newService.ProductID).Msg("Service is outdated")
 		store.Counters.TooLate++
 	}
 
@@ -143,7 +144,7 @@ func (store *ServiceStore) CleanUp(currentTime time.Time) {
 	thresholdRemove := currentTime.AddDate(0, 0, -2)
 	thresholdHide := currentTime
 
-	log.Debug("Cleaning up service store")
+	log.Debug().Msg("Cleaning up service store")
 
 	store.RLock()
 	defer store.RUnlock()
@@ -152,11 +153,11 @@ func (store *ServiceStore) CleanUp(currentTime time.Time) {
 		store.RUnlock()
 
 		if !service.Hidden && service.ValidUntil.Before(thresholdHide) {
-			log.WithField("ServiceID", serviceID).Debug("Hiding service")
+			log.Debug().Str("ServiceID", serviceID).Msg("Hiding service")
 
 			store.hideService(serviceID)
 		} else if service.Hidden && service.ValidUntil.Before(thresholdRemove) {
-			log.WithField("ServiceID", serviceID).Debug("Removing service")
+			log.Debug().Str("ServiceID", serviceID).Msg("Removing service")
 
 			store.deleteService(serviceID)
 		}

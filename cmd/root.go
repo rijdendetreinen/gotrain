@@ -5,8 +5,10 @@ import (
 	"os"
 	"time"
 
-	"github.com/evalphobia/logrus_sentry"
-	log "github.com/sirupsen/logrus"
+	"github.com/getsentry/sentry-go"
+	sentryzerolog "github.com/getsentry/sentry-go/zerolog"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -51,6 +53,7 @@ func Execute() {
 }
 
 func init() {
+	preInitLogger(RootCmd)
 	cobra.OnInitialize(initConfig)
 
 	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file")
@@ -74,47 +77,75 @@ func initConfig() {
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
-		log.WithField("file", viper.ConfigFileUsed()).Info("Using config file:")
+		log.Info().Str("file", viper.ConfigFileUsed()).Msg("Using config file")
 	}
 
-	log.Debug("Configuration loaded")
+	log.Info().Msg("Configuration loaded")
+}
+
+// Pre-initialize function to set up the logger
+// This function is called before the command is executed
+// It sets up the logger based on the command line flags and configuration
+// It also sets the global log level based on the verbose flag
+func preInitLogger(cmd *cobra.Command) {
+	consoleWriter := zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: "2006-01-02 15:04:05"}
+	log.Logger = zerolog.New(consoleWriter).With().Timestamp().Logger()
 }
 
 // Initialize logger
 func initLogger(cmd *cobra.Command) {
 	if verbose, _ := cmd.Flags().GetBool("verbose"); verbose {
-		log.SetLevel(log.DebugLevel)
-		log.Debug("Verbose logging enabled")
+		zerolog.SetGlobalLevel(zerolog.DebugLevel)
+		log.Info().Msg("Verbose logging enabled")
+	} else {
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	}
 
 	if viper.GetString("sentry.dsn") != "" {
-		// Set log levels. Logging warnings is optional
-		logLevels := []log.Level{
-			log.PanicLevel,
-			log.FatalLevel,
-			log.ErrorLevel,
-		}
-
-		if viper.GetBool("sentry.warnings") {
-			logLevels = append(logLevels, log.WarnLevel)
-		}
-
-		hook, err := logrus_sentry.NewSentryHook(viper.GetString("sentry.dsn"), logLevels)
-
-		// 5s timeout seems reasonable
-		hook.Timeout = 5 * time.Second
-
-		// Set release version:
-		hook.SetRelease(Version.Version)
-
-		// Set environment:
-		hook.SetEnvironment(viper.GetString("sentry.environment"))
-
-		if err == nil {
-			log.AddHook(hook)
-			log.WithField("dsn", viper.GetString("sentry.dsn")).Debug("Sentry logging enabled")
-		} else {
-			log.WithError(err).Error("Failed to initialize Sentry logging")
-		}
+		initSentry()
 	}
+}
+
+func initSentry() {
+	// Initialize Sentry
+	err := sentry.Init(sentry.ClientOptions{
+		Dsn:         viper.GetString("sentry.dsn"),
+		Environment: viper.GetString("sentry.environment"),
+		Release:     Version.Version,
+		BeforeSend: func(event *sentry.Event, hint *sentry.EventHint) *sentry.Event {
+			// Modify or filter events before sending them to Sentry
+			return event
+		},
+		Debug:            true,
+		AttachStacktrace: true,
+	})
+
+	if err != nil {
+		log.Fatal().Err(err).Msg("sentry initialization failed")
+	}
+
+	defer sentry.Flush(2 * time.Second)
+
+	// Configure Zerolog to use Sentry as a writer
+	sentryWriter, err := sentryzerolog.New(sentryzerolog.Config{
+		ClientOptions: sentry.ClientOptions{
+			Dsn:         viper.GetString("sentry.dsn"),
+			Environment: viper.GetString("sentry.environment"),
+			Release:     Version.Version,
+		},
+		Options: sentryzerolog.Options{
+			Levels:          []zerolog.Level{zerolog.ErrorLevel, zerolog.FatalLevel, zerolog.PanicLevel},
+			WithBreadcrumbs: true,
+			FlushTimeout:    3 * time.Second,
+		},
+	})
+
+	if err != nil {
+		log.Fatal().Err(err).Msg("failed to create sentry writer")
+	}
+
+	defer sentryWriter.Close()
+
+	// Use Sentry writer in Zerolog
+	log.Logger = log.Output(zerolog.MultiLevelWriter(zerolog.ConsoleWriter{Out: os.Stderr}, sentryWriter))
 }

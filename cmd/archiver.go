@@ -6,9 +6,8 @@ import (
 	"syscall"
 
 	"github.com/rijdendetreinen/gotrain/archiver"
-
 	"github.com/rijdendetreinen/gotrain/receiver"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
@@ -30,7 +29,7 @@ var exitArchiverReceiverChannel = make(chan bool)
 func startArchiver(cmd *cobra.Command) {
 	initLogger(cmd)
 
-	log.Infof("GoTrain archiver %v starting", Version.VersionStringLong())
+	log.Info().Msgf("GoTrain archiver %v starting", Version.VersionStringLong())
 
 	signalChan := make(chan os.Signal, 1)
 	shutdownArchiverFinished := make(chan struct{})
@@ -40,7 +39,7 @@ func startArchiver(cmd *cobra.Command) {
 
 	go func() {
 		sig := <-signalChan
-		log.Warnf("Received signal: %+v, shutting down", sig)
+		log.Warn().Msgf("Received signal: %+v, shutting down", sig)
 		signal.Reset()
 		shutdownArchiver()
 		close(shutdownArchiverFinished)
@@ -49,8 +48,7 @@ func startArchiver(cmd *cobra.Command) {
 	connectionError := archiver.Connect()
 
 	if connectionError != nil {
-		log.WithError(connectionError).Error("Error while connecting to archive queue")
-
+		log.Error().Err(connectionError).Msg("Error while connecting to archive queue")
 		return
 	}
 
@@ -60,11 +58,11 @@ func startArchiver(cmd *cobra.Command) {
 	go receiver.ReceiveData(exitArchiverReceiverChannel)
 
 	<-shutdownArchiverFinished
-	log.Warn("Exiting")
+	log.Warn().Msg("Exiting")
 }
 
 func shutdownArchiver() {
-	log.Warn("Shutting down")
+	log.Warn().Msg("Shutting down")
 
 	exitArchiverReceiverChannel <- true
 

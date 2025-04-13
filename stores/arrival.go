@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 // The ArrivalStore contains all arrivals
@@ -26,17 +26,18 @@ func (store *ArrivalStore) ProcessArrival(newArrival models.Arrival) {
 	if arrivalExists {
 		// Check for duplicate:
 		if existingArrival.ProductID == newArrival.ProductID {
-			log.WithField("ProductID", newArrival.ProductID).Info("Arrival is duplicate")
+			log.Info().Str("ProductID", newArrival.ProductID).Msg("Arrival is duplicate")
 
 			store.Counters.Duplicates++
 		}
 
 		// Check whether newArrival is actually newer:
 		if existingArrival.Timestamp.After(newArrival.Timestamp) {
-			log.WithField("ProductID", newArrival.ProductID).
-				WithField("ExistingTimestamp", existingArrival.Timestamp).
-				WithField("NewTimestamp", newArrival.Timestamp).
-				Info("Arrival is outdated")
+			log.Info().
+				Str("ProductID", newArrival.ProductID).
+				Time("ExistingTimestamp", existingArrival.Timestamp).
+				Time("NewTimestamp", newArrival.Timestamp).
+				Msg("Arrival is outdated")
 
 			store.Counters.Outdated++
 			store.Counters.Processed++
@@ -51,7 +52,7 @@ func (store *ArrivalStore) ProcessArrival(newArrival models.Arrival) {
 	threshold = threshold.Add(-10 * time.Second)
 
 	if newArrival.Timestamp.Before(threshold) {
-		log.WithField("ProductID", newArrival.ProductID).Debug("Arrival is outdated")
+		log.Debug().Str("ProductID", newArrival.ProductID).Msg("Arrival is outdated")
 		store.Counters.TooLate++
 	}
 
@@ -201,7 +202,7 @@ func (store *ArrivalStore) CleanUp(currentTime time.Time) {
 	// Hide arrivals which should have arrived 30 minutes ago:
 	thresholdHide := currentTime.Add(-30 * time.Minute)
 
-	log.Debug("Cleaning up arrival store")
+	log.Debug().Msg("Cleaning up arrival store")
 
 	store.RLock()
 	defer store.RUnlock()
@@ -210,11 +211,11 @@ func (store *ArrivalStore) CleanUp(currentTime time.Time) {
 		store.RUnlock()
 
 		if !arrival.Hidden && arrival.RealArrivalTime().Before(thresholdHide) {
-			log.WithField("ArrivalID", arrivalID).Debug("Hiding arrival")
+			log.Debug().Str("ArrivalID", arrivalID).Msg("Hiding arrival")
 
 			store.hideArrival(arrivalID)
 		} else if arrival.Hidden && arrival.RealArrivalTime().Before(thresholdRemove) {
-			log.WithField("ArrivalID", arrivalID).Debug("Removing arrival")
+			log.Debug().Str("ArrivalID", arrivalID).Msg("Removing arrival")
 
 			store.deleteArrival(arrival)
 		}

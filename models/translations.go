@@ -3,7 +3,7 @@ package models
 import (
 	"fmt"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 var causeTranslations = map[string]string{
@@ -160,7 +160,7 @@ func TranslateCause(causeLong string) string {
 	}
 
 	// Unknown translation, return original
-	log.WithField("cause", causeLong).Warnf("No translation for cause: %s", causeLong)
+	log.Warn().Str("cause", causeLong).Msgf("No translation for cause: %s", causeLong)
 	return causeLong
 }
 

@@ -6,7 +6,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/rijdendetreinen/gotrain/stores"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 )
 
@@ -22,7 +22,7 @@ func StartPrometheusInterface() {
 		address = ":2112"
 	}
 
-	log.WithField("address", address).Info("Prometheus interface started")
+	log.Info().Str("address", address).Msg("Prometheus interface started")
 	http.Handle("/metrics", promhttp.Handler())
 
 	go http.ListenAndServe(address, nil)

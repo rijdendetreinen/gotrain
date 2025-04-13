@@ -8,6 +8,7 @@ import (
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
+	"github.com/rs/zerolog/log"
 )
 
 // ParseDvsMessage parses a DVS XML message to a Departure object
@@ -21,6 +22,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			err = fmt.Errorf("parser error: %+v", r)
+			log.Error().Err(err).Msg("Recovered from panic in ParseDvsMessage")
 		}
 	}()
 

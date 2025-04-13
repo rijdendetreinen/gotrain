@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-redis/redis"
 	"github.com/rijdendetreinen/gotrain/models"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 )
 
@@ -18,9 +18,10 @@ func Connect() error {
 	redisPassword := viper.GetString("archive.password")
 	redisDbNumber := viper.GetInt("archive.db")
 
-	log.WithField("address", redisAddress).
-		WithField("db", redisDbNumber).
-		Info("Connecting to Redis server")
+	log.Info().
+		Str("address", redisAddress).
+		Int("db", redisDbNumber).
+		Msg("Connecting to Redis server")
 
 	redisDb = redis.NewClient(&redis.Options{
 		Addr:     redisAddress,
@@ -42,7 +43,11 @@ func ProcessService(service models.Service) {
 		err := result.Err()
 
 		if err != nil {
-			log.WithField("error", err).WithField("ServiceID", service.ID).WithField("ProductID", service.ProductID).Error("Archiver: could not add service to queue")
+			log.Error().
+				Err(err).
+				Str("ServiceID", service.ID).
+				Str("ProductID", service.ProductID).
+				Msg("Archiver: could not add service to queue")
 		}
 	}
 }

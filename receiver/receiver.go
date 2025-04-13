@@ -7,12 +7,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/rijdendetreinen/gotrain/archiver"
-
 	"github.com/pebbe/zmq4"
+	"github.com/rijdendetreinen/gotrain/archiver"
 	"github.com/rijdendetreinen/gotrain/parsers"
 	"github.com/rijdendetreinen/gotrain/stores"
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 )
 
@@ -34,17 +33,17 @@ func ReceiveData(exit chan bool) {
 	zmqHost := viper.GetString("source.server")
 
 	envelopes := map[string]string{
-		"arrivals": viper.GetString("source.envelopes.arrivals"),
+		"arrivals":   viper.GetString("source.envelopes.arrivals"),
 		"departures": viper.GetString("source.envelopes.departures"),
-		"services": viper.GetString("source.envelopes.services"),
+		"services":   viper.GetString("source.envelopes.services"),
 	}
 
 	subscriber.Connect(zmqHost)
-	log.WithField("host", zmqHost).Info("Connect to server")
+	log.Info().Str("host", zmqHost).Msg("Connected to server")
 
 	// Subscribe to all envelopes:
 	if !ProcessStores && ArchiveServices {
-		log.Info("Archiver enabled, not processing departures and arrivals. Only subscribing to services")
+		log.Info().Msg("Archiver enabled, not processing departures and arrivals. Only subscribing to services")
 	}
 
 	for key, envelope := range envelopes {
@@ -53,10 +52,10 @@ func ReceiveData(exit chan bool) {
 				continue
 			}
 		}
-		log.WithFields(log.Fields{
-			"system":   key,
-			"envelope": envelope,
-		}).Info("Subscribed to envelope")
+		log.Info().
+			Str("system", key).
+			Str("envelope", envelope).
+			Msg("Subscribed to envelope")
 		subscriber.SetSubscribe(envelope)
 	}
 
@@ -65,15 +64,15 @@ func ReceiveData(exit chan bool) {
 
 // Listen for messages
 func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool) {
-	log.Info("Receiving data...")
+	log.Info().Msg("Receiving data...")
 
 	for {
 		select {
 		case <-exit:
-			log.Info("Shutting down receiver")
+			log.Info().Msg("Shutting down receiver")
 
 			subscriber.Close()
-			log.Info("Receiver shut down")
+			log.Info().Msg("Receiver shut down")
 
 			exit <- true
 
@@ -88,55 +87,55 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 			envelope := string(msg[0])
 
 			// Decompress message:
-			message, _ := gunzip(msg[1])
+			message, err := gunzip(msg[1])
 
 			if err != nil {
-				log.WithFields(log.Fields{
-					"error":    err,
-					"envelope": envelope,
-					"message":  string(msg[1]),
-				}).Error("Error decompressing message. Message ignored")
+				log.Error().
+					Err(err).
+					Str("envelope", envelope).
+					Str("message", string(msg[1])).
+					Msg("Error decompressing message. Message ignored")
 			} else {
 				switch {
-				case strings.HasPrefix(envelope, envelopes["departures"]) == true:
+				case strings.HasPrefix(envelope, envelopes["departures"]):
 					departure, err := parsers.ParseDvsMessage(message)
 
 					if err != nil {
-						log.WithError(err).Error("Could not parse departure message")
+						log.Error().Err(err).Msg("Could not parse departure message")
 						stores.Stores.DepartureStore.Counters.Error++
 					} else {
 						if ProcessStores {
 							stores.Stores.DepartureStore.ProcessDeparture(departure)
 						}
 
-						log.WithFields(log.Fields{
-							"ProductID":   departure.ProductID,
-							"DepartureID": departure.ID,
-						}).Debug("Departure received")
+						log.Debug().
+							Str("ProductID", departure.ProductID).
+							Str("DepartureID", departure.ID).
+							Msg("Departure received")
 					}
 
 				case strings.HasPrefix(envelope, envelopes["arrivals"]):
 					arrival, err := parsers.ParseDasMessage(message)
 
 					if err != nil {
-						log.WithError(err).Error("Could not parse arrival message")
+						log.Error().Err(err).Msg("Could not parse arrival message")
 						stores.Stores.ArrivalStore.Counters.Error++
 					} else {
 						if ProcessStores {
 							stores.Stores.ArrivalStore.ProcessArrival(arrival)
 						}
 
-						log.WithFields(log.Fields{
-							"ProductID": arrival.ProductID,
-							"ArrivalID": arrival.ID,
-						}).Debug("Arrival received")
+						log.Debug().
+							Str("ProductID", arrival.ProductID).
+							Str("ArrivalID", arrival.ID).
+							Msg("Arrival received")
 					}
 
 				case strings.HasPrefix(envelope, envelopes["services"]):
 					service, err := parsers.ParseRitMessage(message)
 
 					if err != nil {
-						log.WithError(err).Error("Could not parse service message")
+						log.Error().Err(err).Msg("Could not parse service message")
 						stores.Stores.ServiceStore.Counters.Error++
 					} else {
 						if ProcessStores {
@@ -146,16 +145,16 @@ func listen(subscriber *zmq4.Socket, envelopes map[string]string, exit chan bool
 							archiver.ProcessService(service)
 						}
 
-						log.WithFields(log.Fields{
-							"ProductID": service.ProductID,
-							"ServiceID": service.ID,
-						}).Debug("Service received")
+						log.Debug().
+							Str("ProductID", service.ProductID).
+							Str("ServiceID", service.ID).
+							Msg("Service received")
 					}
 
 				default:
-					log.WithFields(log.Fields{
-						"envelope": envelope,
-					}).Warning("Unknown envelope")
+					log.Warn().
+						Str("envelope", envelope).
+						Msg("Unknown envelope")
 				}
 			}
 		}

@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 // StatusUnknown for when no status has been determined (not enough information)
@@ -226,13 +226,13 @@ func LoadStores() {
 	arrivalsError := Stores.ArrivalStore.ReadStore()
 
 	if servicesError != nil {
-		log.WithError(servicesError).Error("Can't load services store")
+		log.Error().Err(servicesError).Msg("Can't load services store")
 	}
 	if departuresError != nil {
-		log.WithError(departuresError).Error("Can't load departures store")
+		log.Error().Err(departuresError).Msg("Can't load departures store")
 	}
 	if arrivalsError != nil {
-		log.WithError(arrivalsError).Error("Can't load arrivals store")
+		log.Error().Err(arrivalsError).Msg("Can't load arrivals store")
 	}
 }
 
@@ -243,13 +243,13 @@ func SaveStores() {
 	arrivalsError := Stores.ArrivalStore.SaveStore()
 
 	if servicesError != nil {
-		log.WithError(servicesError).Error("Can't save services store")
+		log.Error().Err(servicesError).Msg("Can't save services store")
 	}
 	if departuresError != nil {
-		log.WithError(departuresError).Error("Can't save departures store")
+		log.Error().Err(departuresError).Msg("Can't save departures store")
 	}
 	if arrivalsError != nil {
-		log.WithError(arrivalsError).Error("Can't save arrivals store")
+		log.Error().Err(arrivalsError).Msg("Can't save arrivals store")
 	}
 }
 

@@ -7,6 +7,7 @@ import (
 
 	"github.com/rijdendetreinen/gotrain/models"
 	"github.com/rijdendetreinen/gotrain/parsers"
+	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 )
 
@@ -298,13 +299,11 @@ func openFile(args []string) *os.File {
 	f, err := os.Open(filename)
 
 	if err != nil {
-		fmt.Printf("Error opening %s", filename)
-		fmt.Printf("Error: %s\n", err)
+		log.Error().Err(err).Str("file", filename).Msg("Error opening file")
 		os.Exit(1)
 	}
 
-	fmt.Printf("%s:\n", filename)
-
+	log.Info().Str("file", filename).Msg("File opened successfully")
 	return f
 }
 
