@@ -88,7 +88,10 @@ func initConfig() {
 // It sets up the logger based on the command line flags and configuration
 // It also sets the global log level based on the verbose flag
 func preInitLogger(cmd *cobra.Command) {
-	consoleWriter := zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: "2006-01-02 15:04:05"}
+	consoleWriter := zerolog.ConsoleWriter{
+		Out:        os.Stderr,
+		TimeFormat: time.RFC3339,
+	}
 	log.Logger = zerolog.New(consoleWriter).With().Timestamp().Logger()
 }
 
@@ -147,5 +150,8 @@ func initSentry() {
 	defer sentryWriter.Close()
 
 	// Use Sentry writer in Zerolog
-	log.Logger = log.Output(zerolog.MultiLevelWriter(zerolog.ConsoleWriter{Out: os.Stderr}, sentryWriter))
+	log.Logger = log.Output(zerolog.MultiLevelWriter(zerolog.ConsoleWriter{
+		Out:        os.Stderr,
+		TimeFormat: time.RFC3339,
+	}, sentryWriter))
 }
