@@ -201,7 +201,7 @@ application or for some other purpose!
 License
 -------
 
-Copyright (c) 2019-2022 Geert Wirken, Rijden de Treinen
+Copyright (c) 2019-2025 Geert Wirken, Rijden de Treinen
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
