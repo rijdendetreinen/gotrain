@@ -131,6 +131,7 @@ var causeTranslations = map[string]string{
 	"om veiligheidsredenen":                                              "for safety reasons",
 	"door een dienstregelingswijziging":                                  "due to a timetable change",
 	"inzet veiligheidsmedewerkers":                                       "due to deployment of safety personnel",
+	"door rook in een trein":                                             "due to smoke in a train",
 }
 
 // Translate returns the appropriate translation based on language
