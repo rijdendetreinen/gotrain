@@ -6,9 +6,11 @@ toolchain go1.24.2
 
 require (
 	github.com/beevik/etree v1.1.0
+	github.com/getsentry/sentry-go v0.32.0
+	github.com/getsentry/sentry-go/zerolog v0.32.0
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gorilla/mux v1.7.4
-	github.com/pebbe/zmq4 v1.2.1
+	github.com/pebbe/zmq4 v1.3.0
 	github.com/prometheus/client_golang v1.12.2
 	github.com/rickb777/date v1.13.0
 	github.com/rs/zerolog v1.34.0
@@ -21,8 +23,6 @@ require (
 	github.com/buger/jsonparser v1.1.1 // indirect
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
-	github.com/getsentry/sentry-go v0.32.0 // indirect
-	github.com/getsentry/sentry-go/zerolog v0.32.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
