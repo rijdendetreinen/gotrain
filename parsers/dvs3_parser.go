@@ -29,9 +29,9 @@ func ParseDvs3Message(reader io.Reader) (departure models.Departure, err error) 
 	if dvs3_product != nil {
 		if dvs3_product.NamespaceURI() != "urn:ns:cdm:reisinformatie:data:dvs:3" {
 			dvs3_product = nil
+		} else {
+			return parseDvs3Product(dvs3_product)
 		}
-
-		return parseDvs3Product(dvs3_product)
 	}
 
 	err = errors.New("missing DVS3 element")

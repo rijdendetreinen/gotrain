@@ -31,11 +31,9 @@ func ParseDvs2Message(reader io.Reader) (departure models.Departure, err error) 
 	if dvs2_product != nil {
 		if dvs2_product.NamespaceURI() != "urn:ndov:cdm:trein:reisinformatie:data:4" {
 			dvs2_product = nil
+		} else {
+			return parseDvs2Product(dvs2_product)
 		}
-	}
-
-	if dvs2_product != nil {
-		return parseDvs2Product(dvs2_product)
 	}
 
 	err = errors.New("missing DVS2 element")
