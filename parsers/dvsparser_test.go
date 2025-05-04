@@ -22,7 +22,7 @@ func TestDvs2Recognition(t *testing.T) {
 func TestDvs3Recognition(t *testing.T) {
 	departure, err := ParseDvsMessage(testFileReader(t, "dvs3/example.xml"))
 
-	if err != nil && err.Error() != "not implemented" {
+	if err != nil {
 		t.Fatalf("Parser error: %v", err)
 	}
 

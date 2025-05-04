@@ -63,6 +63,38 @@ func ParseInfoPlusStation(element *etree.Element) models.Station {
 	return station
 }
 
+// ParseInfoPlusStation translates an 2024 XML InfoPlus station to a Station object
+func ParseInfoPlusStation2024(element *etree.Element) models.Station {
+	var station models.Station
+
+	station.Code = element.SelectElement("code").Text()
+
+	presentation := element.SelectElement("presentatieTekstPerTaal")
+
+	short := presentation.SelectElement("korteTekst")
+	if short != nil {
+		station.NameShort = short.Text()
+	}
+	medium := presentation.SelectElement("tekst")
+	if medium != nil {
+		station.NameMedium = medium.Text()
+	}
+	long := presentation.SelectElement("langeTekst")
+	if long != nil {
+		station.NameLong = long.Text()
+	}
+
+	// Fallback to medium name if long name is not available
+	if station.NameLong == "" {
+		station.NameLong = station.NameMedium
+	}
+	if station.NameShort == "" {
+		station.NameShort = station.NameMedium
+	}
+
+	return station
+}
+
 // ParseInfoPlusStations process multiple station elements and returns them as a slice
 func ParseInfoPlusStations(elements []*etree.Element) (stations []models.Station) {
 	for _, element := range elements {

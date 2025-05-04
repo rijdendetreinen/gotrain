@@ -8,7 +8,6 @@ import (
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
-	"github.com/rs/zerolog/log"
 )
 
 // ParseDvsMessage parses a DVS XML message to a Departure object
@@ -22,7 +21,7 @@ func ParseDvs2Message(reader io.Reader) (departure models.Departure, err error) 
 	defer func() {
 		if r := recover(); r != nil {
 			err = fmt.Errorf("parser error: %+v", r)
-			log.Error().Err(err).Msg("Recovered from panic in ParseDvsMessage")
+			// log.Error().Err(err).Msg("Recovered from panic in ParseDvs2Message")
 		}
 	}()
 
@@ -37,7 +36,7 @@ func ParseDvs2Message(reader io.Reader) (departure models.Departure, err error) 
 	}
 
 	err = errors.New("missing DVS2 element")
-	log.Error().Err(err).Msg("Failed to find DVS2 element in XML")
+	// log.Error().Err(err).Msg("Failed to find DVS2 element in XML")
 
 	return
 }
@@ -61,7 +60,8 @@ func parseDvs2Product(product *etree.Element) (departure models.Departure, err e
 	departure.ServiceType = trainProduct.SelectElement("TreinSoort").Text()
 	departure.ServiceTypeCode = trainProduct.SelectElement("TreinSoort").SelectAttrValue("Code", "")
 	departure.Company = trainProduct.SelectElement("Vervoerder").Text()
-	departure.Status, _ = strconv.Atoi(trainProduct.SelectElement("TreinStatus").Text())
+	status, _ := strconv.Atoi(trainProduct.SelectElement("TreinStatus").Text())
+	departure.Status = models.DepartureStatus(status)
 
 	lineNumberNode := trainProduct.SelectElement("LijnNummer")
 	if lineNumberNode != nil {

@@ -7,7 +7,6 @@ import (
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
-	"github.com/rs/zerolog/log"
 )
 
 // ParseDvsMessage parses a DVS XML message to a Departure object
@@ -21,7 +20,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			err = fmt.Errorf("parser error: %+v", r)
-			log.Error().Err(err).Msg("Recovered from panic in ParseDvsMessage")
+			// log.Error().Err(err).Msg("Recovered from panic in ParseDvsMessage")
 		}
 	}()
 
@@ -48,7 +47,7 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 
 	// if neither DVS2 nor DVS3 product is found, return an error
 	err = errors.New("missing DVS element (neither DVS2 nor DVS3)")
-	log.Error().Err(err).Msg("Failed to find DVS element in XML")
+	// log.Error().Err(err).Msg("Failed to find DVS element in XML")
 
 	return
 }

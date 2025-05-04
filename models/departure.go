@@ -16,7 +16,7 @@ type Departure struct {
 	Station     Station
 	LineNumber  string
 
-	Status          int
+	Status          DepartureStatus
 	ServiceNumber   string
 	ServiceType     string
 	ServiceTypeCode string
@@ -84,6 +84,15 @@ type TrainWing struct {
 	Material           []Material
 	Modifications      []Modification
 }
+
+type DepartureStatus int
+
+const (
+	DepartureStatusUnknown     DepartureStatus = 0
+	DepartureStatusApproaching DepartureStatus = 1
+	DepartureStatusArriving    DepartureStatus = 2
+	DepartureStatusDeparted    DepartureStatus = 5
+)
 
 type DvsVersion int
 

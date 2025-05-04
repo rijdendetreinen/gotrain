@@ -6,7 +6,6 @@ import (
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
-	"github.com/rs/zerolog/log"
 )
 
 // ParseRitMessage parses a RIT XML message to a Service object
@@ -20,7 +19,7 @@ func ParseRitMessage(reader io.Reader) (service models.Service, err error) {
 	defer func() {
 		if r := recover(); r != nil {
 			err = fmt.Errorf("parser error: %+v", r)
-			log.Error().Err(err).Msg("Recovered from panic in ParseRitMessage")
+			// log.Error().Err(err).Msg("Recovered from panic in ParseRitMessage")
 		}
 	}()
 
