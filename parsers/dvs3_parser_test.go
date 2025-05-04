@@ -21,5 +21,9 @@ func testParseDeparture_Dvs3(t *testing.T, name string) models.Departure {
 		t.Fatalf("Parser error: %v", err)
 	}
 
+	if departure.DvsVersion != models.DvsVersion2 {
+		t.Errorf("Wrong DVS version: expected %d, but got %d", 2, departure.DvsVersion)
+	}
+
 	return departure
 }
