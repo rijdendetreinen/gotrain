@@ -20,9 +20,8 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
       -
-        name: Docker meta
         id: meta
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v5
         with:
           images: rijdendetreinen/gotrain
           tags: |
