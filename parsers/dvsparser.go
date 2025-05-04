@@ -30,11 +30,9 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	if dvs2_product != nil {
 		if dvs2_product.NamespaceURI() != "urn:ndov:cdm:trein:reisinformatie:data:4" {
 			dvs2_product = nil
+		} else {
+			return parseDvs2Product(dvs2_product)
 		}
-	}
-
-	if dvs2_product != nil {
-		return parseDvs2Product(dvs2_product)
 	}
 
 	// try to find DVS3 product
@@ -43,9 +41,9 @@ func ParseDvsMessage(reader io.Reader) (departure models.Departure, err error) {
 	if dvs3_product != nil {
 		if dvs3_product.NamespaceURI() != "urn:ns:cdm:reisinformatie:data:dvs:3" {
 			dvs3_product = nil
+		} else {
+			return parseDvs3Product(dvs3_product)
 		}
-
-		return parseDvs3Product(dvs3_product)
 	}
 
 	// if neither DVS2 nor DVS3 product is found, return an error

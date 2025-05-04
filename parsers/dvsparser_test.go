@@ -51,3 +51,25 @@ func TestHandleInvalidDvs(t *testing.T) {
 		t.Error("Should return an error for an invalid DVS message")
 	}
 }
+
+func TestHandleWrongNamespace(t *testing.T) {
+	departure, err := ParseDvsMessage(testFileReader(t, "dvs2/wrong_namespace.xml"))
+
+	if departure.DvsVersion != models.DvsVersionUnknown {
+		t.Errorf("Wrong DVS version: expected %d, but got %d", models.DvsVersionUnknown, departure.DvsVersion)
+	}
+
+	if err == nil {
+		t.Error("Should return an error for an invalid DVS message")
+	}
+
+	departure, err = ParseDvsMessage(testFileReader(t, "dvs3/wrong_namespace.xml"))
+
+	if departure.DvsVersion != models.DvsVersionUnknown {
+		t.Errorf("Wrong DVS version: expected %d, but got %d", models.DvsVersionUnknown, departure.DvsVersion)
+	}
+
+	if err == nil {
+		t.Error("Should return an error for an invalid DVS message")
+	}
+}
