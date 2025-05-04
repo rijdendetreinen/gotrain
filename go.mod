@@ -5,7 +5,7 @@ go 1.23.0
 toolchain go1.24.2
 
 require (
-	github.com/beevik/etree v1.5.0
+	github.com/beevik/etree v1.5.1
 	github.com/getsentry/sentry-go v0.32.0
 	github.com/getsentry/sentry-go/zerolog v0.32.0
 	github.com/go-redis/redis v6.15.9+incompatible
