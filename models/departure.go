@@ -49,7 +49,8 @@ type Departure struct {
 
 	Modifications []Modification
 
-	Hidden bool
+	Hidden     bool
+	DvsVersion DvsVersion
 }
 
 // BoardingTip is a tip for passengers to board another train for certain destinations
@@ -83,6 +84,14 @@ type TrainWing struct {
 	Material           []Material
 	Modifications      []Modification
 }
+
+type DvsVersion int
+
+const (
+	DvsVersionUnknown DvsVersion = iota
+	DvsVersion2       DvsVersion = 2
+	DvsVersion3       DvsVersion = 3
+)
 
 // GenerateID generates an ID for this departure
 func (departure *Departure) GenerateID() {

@@ -7,8 +7,8 @@ import (
 	"github.com/rijdendetreinen/gotrain/models"
 )
 
-func TestParseNormalDeparture(t *testing.T) {
-	departure := testParseDeparture(t, "departure.xml")
+func TestParseNormalDeparture_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure.xml")
 
 	if departure.Cancelled {
 		t.Error("Departure should not be cancelled")
@@ -41,8 +41,8 @@ func TestParseNormalDeparture(t *testing.T) {
 	}
 }
 
-func TestCancelledDeparture(t *testing.T) {
-	departure := testParseDeparture(t, "departure_cancelled.xml")
+func TestCancelledDeparture_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_cancelled.xml")
 
 	if !departure.Cancelled {
 		t.Error("Departure should be cancelled")
@@ -57,8 +57,8 @@ func TestCancelledDeparture(t *testing.T) {
 	}
 }
 
-func TestDelayedDeparture(t *testing.T) {
-	departure := testParseDeparture(t, "departure_delay.xml")
+func TestDelayedDeparture_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_delay.xml")
 
 	if departure.Cancelled {
 		t.Error("Departure should not be cancelled")
@@ -81,40 +81,40 @@ func TestDelayedDeparture(t *testing.T) {
 	}
 }
 
-func TestDepartureTravelTips(t *testing.T) {
-	departure := testParseDeparture(t, "departure_travel-tips.xml")
+func TestDepartureTravelTips_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_travel-tips.xml")
 
 	if len(departure.TravelTips) != 2 {
 		t.Error("Wrong number of travel tips")
 	}
 }
 
-func TestDepartureBoardingTips(t *testing.T) {
-	departure := testParseDeparture(t, "departure_boarding-tips.xml")
+func TestDepartureBoardingTips_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_boarding-tips.xml")
 
 	if len(departure.BoardingTips) != 1 {
 		t.Error("Wrong number of boarding tips")
 	}
 }
 
-func TestDepartureNotRealtime(t *testing.T) {
-	departure := testParseDeparture(t, "departure_not-realtime.xml")
+func TestDepartureNotRealtime_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_not-realtime.xml")
 
 	if !departure.NotRealTime {
 		t.Error("Departure should be flagged as NotRealTime")
 	}
 }
 
-func TestDepartureTrainName(t *testing.T) {
-	departure := testParseDeparture(t, "departure_train-name.xml")
+func TestDepartureTrainName_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_train-name.xml")
 
 	if departure.ServiceName != "Spoorwegmuseum" {
 		t.Errorf("Train name should be '%s', but is '%s'", "Spoorwegmuseum", departure.ServiceName)
 	}
 }
 
-func TestDepartureModification(t *testing.T) {
-	departure := testParseDeparture(t, "departure_modification-cause.xml")
+func TestDepartureModification_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_modification-cause.xml")
 
 	if len(departure.Modifications) != 1 {
 		t.Error("Wrong number of modifications")
@@ -150,40 +150,30 @@ func TestDepartureModification(t *testing.T) {
 	}
 }
 
-func TestInvalidDeparture(t *testing.T) {
-	_, err := ParseDvsMessage(testFileReader(t, "invalid.xml"))
+func TestInvalidDeparture_Dvs2(t *testing.T) {
+	_, err := ParseDvs2Message(testFileReader(t, "invalid.xml"))
 
 	if err == nil {
 		t.Error("Should return an error for invalid XML")
 	}
 
-	_, err = ParseDvsMessage(testFileReader(t, "arrival.xml"))
+	_, err = ParseDvs2Message(testFileReader(t, "arrival.xml"))
 
 	if err == nil {
 		t.Error("Should return an error for an Arrival message")
 	}
 }
 
-func TestDepartureMultiplePlatforms(t *testing.T) {
-	departure := testParseDeparture(t, "departure_multiple-platforms.xml")
+func TestDepartureMultiplePlatforms_Dvs2(t *testing.T) {
+	departure := testParseDeparture_Dvs2(t, "departure_multiple-platforms.xml")
 
 	if departure.PlatformActual != "5/6" {
 		t.Errorf("Wrong platform: expected '%s', but got '%s'", "5/6", departure.PlatformActual)
 	}
 }
 
-func testParseDeparture(t *testing.T, name string) models.Departure {
-	departure, err := ParseDvsMessage(testFileReader(t, name))
-
-	if err != nil {
-		t.Fatalf("Parser error: %v", err)
-	}
-
-	return departure
-}
-
 func TestParseMaterialLeftBehind(t *testing.T) {
-	departure := testParseDeparture(t, "departure_material-left-behind.xml")
+	departure := testParseDeparture_Dvs2(t, "departure_material-left-behind.xml")
 
 	if departure.TrainWings[0].Material[0].RemainsBehind != true {
 		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].RemainsBehind)
@@ -191,9 +181,19 @@ func TestParseMaterialLeftBehind(t *testing.T) {
 }
 
 func TestParseMaterialModifications(t *testing.T) {
-	departure := testParseDeparture(t, "departure_material-added.xml")
+	departure := testParseDeparture_Dvs2(t, "departure_material-added.xml")
 
 	if departure.TrainWings[0].Material[0].Added != true {
 		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].Added)
 	}
+}
+
+func testParseDeparture_Dvs2(t *testing.T, name string) models.Departure {
+	departure, err := ParseDvs2Message(testFileReader(t, name))
+
+	if err != nil {
+		t.Fatalf("Parser error: %v", err)
+	}
+
+	return departure
 }
