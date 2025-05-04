@@ -39,6 +39,7 @@ var inspectDepartureCommand = &cobra.Command{
 
 		fmt.Printf("Product ID: %s\n", departure.ProductID)
 		fmt.Printf("Timestamp: %s\n", departure.Timestamp.Local())
+		fmt.Printf("DVS version: %d\n", departure.DvsVersion)
 		fmt.Printf("Departure ID: %s\n", departure.ID)
 		fmt.Printf("Service ID: %s\n", departure.ServiceID)
 		fmt.Printf("Cancelled: %v\n", departure.Cancelled)
