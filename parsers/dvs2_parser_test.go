@@ -8,7 +8,7 @@ import (
 )
 
 func TestParseNormalDeparture_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure.xml")
 
 	if departure.Cancelled {
 		t.Error("Departure should not be cancelled")
@@ -42,7 +42,7 @@ func TestParseNormalDeparture_Dvs2(t *testing.T) {
 }
 
 func TestCancelledDeparture_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_cancelled.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_cancelled.xml")
 
 	if !departure.Cancelled {
 		t.Error("Departure should be cancelled")
@@ -58,7 +58,7 @@ func TestCancelledDeparture_Dvs2(t *testing.T) {
 }
 
 func TestDelayedDeparture_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_delay.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_delay.xml")
 
 	if departure.Cancelled {
 		t.Error("Departure should not be cancelled")
@@ -82,7 +82,7 @@ func TestDelayedDeparture_Dvs2(t *testing.T) {
 }
 
 func TestDepartureTravelTips_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_travel-tips.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_travel-tips.xml")
 
 	if len(departure.TravelTips) != 2 {
 		t.Error("Wrong number of travel tips")
@@ -90,7 +90,7 @@ func TestDepartureTravelTips_Dvs2(t *testing.T) {
 }
 
 func TestDepartureBoardingTips_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_boarding-tips.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_boarding-tips.xml")
 
 	if len(departure.BoardingTips) != 1 {
 		t.Error("Wrong number of boarding tips")
@@ -98,7 +98,7 @@ func TestDepartureBoardingTips_Dvs2(t *testing.T) {
 }
 
 func TestDepartureNotRealtime_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_not-realtime.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_not-realtime.xml")
 
 	if !departure.NotRealTime {
 		t.Error("Departure should be flagged as NotRealTime")
@@ -106,7 +106,7 @@ func TestDepartureNotRealtime_Dvs2(t *testing.T) {
 }
 
 func TestDepartureTrainName_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_train-name.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_train-name.xml")
 
 	if departure.ServiceName != "Spoorwegmuseum" {
 		t.Errorf("Train name should be '%s', but is '%s'", "Spoorwegmuseum", departure.ServiceName)
@@ -114,7 +114,7 @@ func TestDepartureTrainName_Dvs2(t *testing.T) {
 }
 
 func TestDepartureModification_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_modification-cause.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_modification-cause.xml")
 
 	if len(departure.Modifications) != 1 {
 		t.Error("Wrong number of modifications")
@@ -165,7 +165,7 @@ func TestInvalidDeparture_Dvs2(t *testing.T) {
 }
 
 func TestDepartureMultiplePlatforms_Dvs2(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_multiple-platforms.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_multiple-platforms.xml")
 
 	if departure.PlatformActual != "5/6" {
 		t.Errorf("Wrong platform: expected '%s', but got '%s'", "5/6", departure.PlatformActual)
@@ -173,7 +173,7 @@ func TestDepartureMultiplePlatforms_Dvs2(t *testing.T) {
 }
 
 func TestParseMaterialLeftBehind(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_material-left-behind.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_material-left-behind.xml")
 
 	if departure.TrainWings[0].Material[0].RemainsBehind != true {
 		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].RemainsBehind)
@@ -181,7 +181,7 @@ func TestParseMaterialLeftBehind(t *testing.T) {
 }
 
 func TestParseMaterialModifications(t *testing.T) {
-	departure := testParseDeparture_Dvs2(t, "departure_material-added.xml")
+	departure := testParseDeparture_Dvs2(t, "dvs2/departure_material-added.xml")
 
 	if departure.TrainWings[0].Material[0].Added != true {
 		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].Added)

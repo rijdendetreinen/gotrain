@@ -115,7 +115,7 @@ func TestInvalidArrival(t *testing.T) {
 		t.Error("Should return an error for invalid XML")
 	}
 
-	_, err = ParseDasMessage(testFileReader(t, "departure.xml"))
+	_, err = ParseDasMessage(testFileReader(t, "dvs2/departure.xml"))
 
 	if err == nil {
 		t.Error("Should return an error for a Departure message")

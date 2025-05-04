@@ -85,7 +85,7 @@ func TestInvalidService(t *testing.T) {
 		t.Error("Should return an error for invalid XML")
 	}
 
-	_, err = ParseRitMessage(testFileReader(t, "departure.xml"))
+	_, err = ParseRitMessage(testFileReader(t, "dvs2/departure.xml"))
 
 	if err == nil {
 		t.Error("Should return an error for a Departure message")
