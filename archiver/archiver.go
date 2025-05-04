@@ -1,16 +1,18 @@
 package archiver
 
 import (
+	"context"
 	"encoding/json"
 	"time"
 
-	"github.com/go-redis/redis"
+	"github.com/redis/go-redis/v9"
 	"github.com/rijdendetreinen/gotrain/models"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 )
 
 var redisDb *redis.Client
+var ctx = context.Background()
 
 // Connect initializes the Redis client
 func Connect() error {
@@ -29,7 +31,7 @@ func Connect() error {
 		DB:       redisDbNumber,
 	})
 
-	result := redisDb.Ping()
+	result := redisDb.Ping(ctx)
 
 	return result.Err()
 }
@@ -39,7 +41,7 @@ func ProcessService(service models.Service) {
 	serviceJSON, _ := json.Marshal(serviceToJSON(service))
 
 	if serviceJSON != nil {
-		result := redisDb.LPush("services", string(serviceJSON))
+		result := redisDb.LPush(ctx, "services", string(serviceJSON))
 		err := result.Err()
 
 		if err != nil {
