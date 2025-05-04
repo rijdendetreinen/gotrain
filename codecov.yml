@@ -9,3 +9,7 @@ coverage:
     project:
       default:
         informational: true
+
+ignore:
+  - "cmd"
+  - "prometheus_interface"
