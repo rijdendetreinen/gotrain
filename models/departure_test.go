@@ -49,7 +49,7 @@ func TestDeparturePlatformChanged(t *testing.T) {
 		{"", "", false},
 		{"4", "4", false},
 		{"4", "5", true},
-		{"", "4", true},
+		{"", "4", false},
 		{"4", "", true},
 	}
 
@@ -60,11 +60,11 @@ func TestDeparturePlatformChanged(t *testing.T) {
 
 		if table.changed {
 			if !departure.PlatformChanged() {
-				t.Errorf("Planned platform %s is different from actual platform %s, but not changed", departure.PlatformPlanned, departure.PlatformActual)
+				t.Errorf("Planned platform \"%s\" is different from actual platform \"%s\", but not changed", departure.PlatformPlanned, departure.PlatformActual)
 			}
 		} else {
 			if departure.PlatformChanged() {
-				t.Errorf("Planned platform %s is equal to actual platform %s, but is marked as changed", departure.PlatformPlanned, departure.PlatformActual)
+				t.Errorf("Planned platform \"%s\" is equal to actual platform \"%s\", but is marked as changed", departure.PlatformPlanned, departure.PlatformActual)
 			}
 		}
 	}

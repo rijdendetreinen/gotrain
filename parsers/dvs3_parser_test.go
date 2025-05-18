@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
+	"github.com/stretchr/testify/assert"
 )
 
 // testParseDeparture_Dvs3 is a helper function to parse a DVS3 message and check for errors
@@ -84,9 +85,38 @@ func TestParseNormalDeparture_Dvs3(t *testing.T) {
 		t.Errorf("Expected departure time %v does not match %v", expectedDepartureTime, departure.DepartureTime)
 	}
 
+	assert.Equal(t, 189, departure.Delay, "Wrong Delay: expected %d, but got %d", 189, departure.Delay)
+
 	if departure.Delay != 189 {
 		t.Errorf("Wrong Delay: expected %d, but got %d", 189, departure.Delay)
 	}
+
+	// Verify that the destination is parsed correctly
+	assert.Len(t, departure.DestinationActual, 1, "Wrong number of actual destinations")
+	// assert.Len(t, departure.DestinationPlanned, 1, "Wrong number of planned destinations")
+
+	if len(departure.DestinationActual) > 0 {
+		// Verify that the destination station is parsed correctly
+		assert.Equal(t, "MTR", departure.DestinationActual[0].Code, "Wrong DestinationActual Code")
+		assert.Equal(t, "Randwyck", departure.DestinationActual[0].NameShort, "Wrong DestinationActual NameShort")
+		assert.Equal(t, "Randwyck", departure.DestinationActual[0].NameMedium, "Wrong DestinationActual NameMedium")
+		assert.Equal(t, "Maastricht Randwyck", departure.DestinationActual[0].NameLong, "Wrong DestinationActual NameLong")
+	}
+
+	// if len(departure.DestinationPlanned) > 0 {
+	// 	// Verify that the destination station is parsed correctly
+	// 	assert.Equal(t, "MTR", departure.DestinationPlanned[0].Code, "Wrong DestinationPlanned Code")
+	// 	assert.Equal(t, "Randwyck", departure.DestinationPlanned[0].NameShort, "Wrong DestinationPlanned NameShort")
+	// 	assert.Equal(t, "Randwyck", departure.DestinationPlanned[0].NameMedium, "Wrong DestinationPlanned NameMedium")
+	// 	assert.Equal(t, "Maastricht Randwyck", departure.DestinationPlanned[0].NameLong, "Wrong DestinationPlanned NameLong")
+	// }
+
+	// Verify departure platform
+	assert.Equal(t, "4b", departure.PlatformActual, "Wrong actual departure platform")
+	assert.False(t, departure.PlatformChanged(), "Platform should not be changed")
+
+	// Verify number of wings (1)
+	assert.Len(t, departure.TrainWings, 1, "Wrong number of wings")
 }
 
 func TestHandleWrongNamespace_Dvs3(t *testing.T) {

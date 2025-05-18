@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"strings"
 
 	"github.com/beevik/etree"
 	"github.com/rijdendetreinen/gotrain/models"
@@ -85,7 +86,7 @@ func parseDvs3Product(product *etree.Element) (departure models.Departure, err e
 		departure.ServiceName = nameNode.Text()
 	}
 
-	// Departure time:
+	// Departure time and delay
 	departureTimes := trainProduct.SelectElements("vertrekTijd")
 
 	for _, departureTime := range departureTimes {
@@ -98,5 +99,59 @@ func parseDvs3Product(product *etree.Element) (departure models.Departure, err e
 	if delayNode != nil {
 		departure.Delay = ParseInfoPlusDuration(delayNode.SelectElement("exact"))
 	}
+
+	// Departure platform
+	departurePlatformNode := trainProduct.SelectElement("vertrekSpoor")
+	if departurePlatformNode != nil {
+		departurePlatformTrackNode := departurePlatformNode.SelectElement("spoor")
+
+		trackNumberNode := departurePlatformTrackNode.SelectElement("nummer")
+		trackPhaseNode := departurePlatformTrackNode.SelectElement("fase")
+
+		if trackNumberNode == nil || trackPhaseNode == nil {
+			departure.PlatformActual = ""
+		} else if trackPhaseNode == nil {
+			departure.PlatformActual = trackNumberNode.Text()
+		} else {
+			departure.PlatformActual = trackNumberNode.Text() + strings.ToLower(trackPhaseNode.Text())
+		}
+	}
+
+	// Parse modifications
+	// modifications := trainProduct.SelectElements("wijziging")
+	// for _, modification := range modifications {
+	// 	modificationType, _ := strconv.Atoi(modification.SelectElement("code").Text())
+
+	// 	departure.Modifications = append(departure.Modifications, models.Modification{
+	// 		ModificationType: modificationType,
+	// 	})
+	// }
+
+	// Parse wings
+	wings := trainProduct.SelectElements("vleugel")
+
+	for _, wing := range wings {
+		wing := parseDvs3TrainWing(wing, &departure)
+
+		departure.TrainWings = append(departure.TrainWings, wing)
+
+		departure.DestinationActual = append(departure.DestinationActual, wing.DestinationActual...)
+		departure.DestinationPlanned = append(departure.DestinationPlanned, wing.DestinationPlanned...)
+	}
+
 	return
+}
+
+// parseDvs3TrainWing parses a DVS3 train wing element and returns a TrainWing object.
+func parseDvs3TrainWing(wing *etree.Element, departure *models.Departure) models.TrainWing {
+	wingDeparture := models.TrainWing{}
+
+	// Destinations:
+	destinations := wing.SelectElements("bestemming")
+	for _, destination := range destinations {
+		destinationStation := ParseInfoPlusStation2024(destination)
+		wingDeparture.DestinationActual = append(wingDeparture.DestinationActual, destinationStation)
+	}
+
+	return wingDeparture
 }

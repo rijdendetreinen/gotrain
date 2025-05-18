@@ -115,6 +115,10 @@ func (departure Departure) RealDepartureTime() time.Time {
 
 // PlatformChanged returns true when the platform has been changed
 func (departure Departure) PlatformChanged() bool {
+	if departure.PlatformActual != "" && departure.PlatformPlanned == "" {
+		return false
+	}
+
 	return departure.PlatformActual != departure.PlatformPlanned
 }
 
