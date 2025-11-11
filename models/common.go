@@ -11,6 +11,7 @@ type Station struct {
 	NameShort  string `json:"short"`
 	NameMedium string `json:"medium"`
 	NameLong   string `json:"long"`
+	StationUic int    `json:"uic"`
 }
 
 // Material is the physical train unit

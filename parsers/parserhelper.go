@@ -59,6 +59,7 @@ func ParseInfoPlusStation(element *etree.Element) models.Station {
 	station.NameShort = element.SelectElement("KorteNaam").Text()
 	station.NameMedium = element.SelectElement("MiddelNaam").Text()
 	station.NameLong = element.SelectElement("LangeNaam").Text()
+	station.StationUic, _ = strconv.Atoi(element.SelectElement("UICCode").Text())
 
 	return station
 }
