@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/beevik/etree"
-	"github.com/rickb777/date/period"
+	"github.com/rickb777/period"
 	"github.com/rijdendetreinen/gotrain/models"
 )
 
