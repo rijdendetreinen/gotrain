@@ -4,6 +4,8 @@ import (
 	"reflect"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
 )
 
 // TestRealDepartureTime tests the real departure time based on the planned time plus delay
@@ -416,4 +418,19 @@ func TestDepartureMaterialRemarksRemainsBehindAlreadyRemoved(t *testing.T) {
 	if remarks[0] != "Treinstel 2345 blijft achter in Rotterdam C." {
 		t.Errorf("Remarks: expected %s, got %s", "Treinstel 2345 blijft achter in Rotterdam C.", remarks[0])
 	}
+}
+
+func TestSupplementTipInTrainNameIsRemoved(t *testing.T) {
+	departure := Departure{
+		Station: Station{
+			Code:       "RTD",
+			NameMedium: "Rotterdam C.",
+		},
+		ServiceName: "Train with supplement between ",
+	}
+
+	remarks, tips := departure.GetRemarksTips("en")
+
+	assert.Empty(t, remarks)
+	assert.Empty(t, tips)
 }

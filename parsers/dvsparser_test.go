@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/rijdendetreinen/gotrain/models"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestParseNormalDeparture(t *testing.T) {
@@ -196,4 +197,11 @@ func TestParseMaterialModifications(t *testing.T) {
 	if departure.TrainWings[0].Material[0].Added != true {
 		t.Errorf("Wrong Material.RemainsBehind: expected '%v', but got '%v'", true, departure.TrainWings[0].Material[0].Added)
 	}
+}
+
+func TestParseDepartureWithSupplementTrainName(t *testing.T) {
+	departure := testParseDeparture(t, "departure_supplement_trainname.xml")
+
+	// Verify that the supplement train name is parsed correctly
+	assert.Equal(t, "Train with supplement between ", departure.ServiceName)
 }

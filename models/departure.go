@@ -295,7 +295,7 @@ func (departure Departure) GetRemarksTips(language string) (remarks, tips []stri
 		}
 	}
 
-	if departure.ServiceName != "" {
+	if departure.ServiceName != "" && departure.ServiceName != "Train with supplement between " {
 		tips = append(tips, departure.ServiceName)
 	}
 
