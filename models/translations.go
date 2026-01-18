@@ -89,6 +89,7 @@ var causeTranslations = map[string]string{
 	"door harde wind op de Hogesnelheidslijn":                            "due to strong winds on the high-speed line",
 	"door het onschadelijk maken van een bom uit de Tweede Wereldoorlog": "due to defusing a bomb from World War II",
 	"door het onschadelijk maken van een bom uit de 2e WO":               "due to defusing a bomb from World War II",
+	"door het onschadelijk maken van een WO-II bom":                      "due to defusing a bomb from World War II",
 	"door een evenement":                                                 "due to an event",
 	"door een sein-en overwegstoring":                                    "due to signalling failure and a level crossing failure",
 	"door een sein- en overwegstoring":                                   "due to signalling failure and a level crossing failure",
@@ -132,6 +133,7 @@ var causeTranslations = map[string]string{
 	"door een dienstregelingswijziging":                                  "due to a timetable change",
 	"inzet veiligheidsmedewerkers":                                       "due to deployment of safety personnel",
 	"door rook in een trein":                                             "due to smoke in a train",
+	"door de sneeuw":                                                     "due to snow",
 }
 
 // Translate returns the appropriate translation based on language
