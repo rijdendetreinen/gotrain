@@ -6,8 +6,8 @@ toolchain go1.24.2
 
 require (
 	github.com/beevik/etree v1.6.0
-	github.com/getsentry/sentry-go v0.32.0
-	github.com/getsentry/sentry-go/zerolog v0.32.0
+	github.com/getsentry/sentry-go v0.41.0
+	github.com/getsentry/sentry-go/zerolog v0.41.0
 	github.com/gorilla/mux v1.8.1
 	github.com/pebbe/zmq4 v1.4.0
 	github.com/prometheus/client_golang v1.23.2
