@@ -11,7 +11,7 @@ require (
 	github.com/gorilla/mux v1.8.1
 	github.com/pebbe/zmq4 v1.4.0
 	github.com/prometheus/client_golang v1.23.2
-	github.com/redis/go-redis/v9 v9.8.0
+	github.com/redis/go-redis/v9 v9.17.2
 	github.com/rickb777/period v1.0.22
 	github.com/rs/zerolog v1.34.0
 	github.com/spf13/cobra v1.10.2
