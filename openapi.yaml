@@ -182,7 +182,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  arrivals:
+                  departures:
                     type: array
                     items:
                       $ref: "#/components/schemas/Departure"
@@ -510,7 +510,7 @@ components:
                 type: string
                 format: date-time
               assistance_available:
-                format: boolean
+                type: boolean
               departure_cancelled:
                 type: boolean
               departure_delay:
@@ -593,10 +593,10 @@ components:
                             type: boolean
                           destination:
                             type: string
-                            example: GVC
+                            example: Den Haag Centraal
                           destination_code:
                             type: string
-                            example: Den Haag Centraal
+                            example: GVC
                           number:
                             type: string
                             example: "4024"
