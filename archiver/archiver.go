@@ -63,6 +63,7 @@ func serviceToJSON(service models.Service) map[string]interface{} {
 		"service_number": service.ServiceNumber,
 		"type":           service.ServiceType,
 		"type_code":      service.ServiceTypeCode,
+		"line_number":    nullString(service.LineNumber),
 		"company":        service.Company,
 
 		"journey_planner":      service.JourneyPlanner,
